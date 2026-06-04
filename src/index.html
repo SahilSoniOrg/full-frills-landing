@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Full Frills Balance — Double-Entry Finance, Done Right</title>
+  <meta name="description" content="A personal finance app that respects your intelligence. Double-entry accounting, offline-first, beautifully crafted.">
+  <meta name="robots" content="index, follow">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg-primary: #0a0c10;
+      --bg-secondary: #0a0a0a;
+      --bg-card: rgba(20, 20, 22, 0.6);
+      --border-light: rgba(255, 255, 255, 0.08);
+      --border-hover: rgba(255, 255, 255, 0.15);
+      
+      --text-primary: #ececf0;
+      --text-secondary: #94949e;
+      --text-muted: #5e5e66;
+      
+      --accent: #d4e3d8;
+      --accent-dim: #8ab094;
+      --accent-vivid: #4ade80;
+      --val-vivid: #4ade80;
+      
+      --expense: #ff8b8b;
+      --income: #8bffb6;
+      
+      --font-display: 'DM Serif Display', serif;
+      --font-body: 'Instrument Sans', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      
+      --radius: 24px;
+      --easing: cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      font-family: var(--font-body);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+      font-size: 16px;
+      line-height: 1.5;
+      position: relative;
+    }
+
+    .grain {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.035;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    }
+
+    .starfield { position: fixed; inset: 0; overflow: hidden; pointer-events: none; z-index: -2; }
+    .star { position: absolute; border-radius: 50%; background: #fff; opacity: 0; animation: twinkle var(--d) ease-in-out infinite var(--delay); }
+    @keyframes twinkle { 0%,100%{opacity:0} 50%{opacity:var(--op)} }
+
+    .glow-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      pointer-events: none;
+      z-index: -1;
+    }
+    .orb-1 {
+      width: 300px; height: 300px;
+      background: rgba(125, 211, 168, 0.07);
+      top: -80px; right: -60px;
+      animation: drift1 12s ease-in-out infinite;
+    }
+    .orb-2 {
+      width: 200px; height: 200px;
+      background: rgba(125, 211, 168, 0.04);
+      bottom: 40px; left: -40px;
+      animation: drift2 15s ease-in-out infinite;
+    }
+    @keyframes drift1 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(-20px,30px)} }
+    @keyframes drift2 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(15px,-25px)} }
+
+    .glow {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(120px);
+      z-index: -1;
+      opacity: 0.4;
+    }
+    .glow-1 { top: -10%; right: -10%; width: 50vw; height: 50vw; background: radial-gradient(circle, #1a2e22, transparent); }
+    .glow-2 { bottom: -10%; left: -10%; width: 60vw; height: 60vw; background: radial-gradient(circle, #1a1a2e, transparent); }
+
+    nav {
+      position: fixed;
+      top: 0; width: 100%; z-index: 100;
+      padding: 24px 0;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,0.03);
+    }
+
+    .nav-inner {
+      max-width: 1200px; margin: 0 auto; padding: 0 32px;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+
+    .logo {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      color: var(--text-primary);
+      text-decoration: none;
+    }
+    .logo span { font-style: italic; color: var(--accent-dim); }
+
+    .nav-links { display: flex; gap: 24px; align-items: center; }
+
+    .nav-link {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-link:hover { color: var(--text-primary); }
+
+    .btn-nav {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--text-primary);
+      background: rgba(255,255,255,0.05);
+      padding: 10px 20px;
+      border-radius: 100px;
+      border: 1px solid var(--border-light);
+      text-decoration: none;
+      transition: all 0.3s var(--easing);
+    }
+    .btn-nav:hover { background: rgba(255,255,255,0.1); border-color: var(--text-primary); }
+
+    .hero {
+      padding: 180px 32px 100px;
+      text-align: center;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .pill {
+      display: inline-block;
+      padding: 6px 16px;
+      border-radius: 100px;
+      border: 1px solid var(--border-light);
+      background: rgba(255,255,255,0.02);
+      font-size: 0.8rem;
+      color: var(--accent-dim);
+      margin-bottom: 32px;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 8vw, 6rem);
+      line-height: 0.95;
+      letter-spacing: -0.03em;
+      margin-bottom: 32px;
+      background: linear-gradient(to bottom, #fff 20%, #888);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    h1 em {
+      font-family: var(--font-display);
+      font-style: italic;
+      color: var(--accent);
+      -webkit-text-fill-color: var(--accent);
+    }
+
+    .hero p {
+      font-size: 1.25rem;
+      color: var(--text-secondary);
+      max-width: 540px;
+      margin: 0 auto 48px;
+      font-weight: 400;
+    }
+
+    .cta-group {
+      display: flex; gap: 16px; justify-content: center;
+    }
+
+    .btn-primary {
+      background: var(--text-primary);
+      color: var(--bg-primary);
+      padding: 16px 32px;
+      border-radius: 100px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: transform 0.2s var(--easing);
+    }
+    .btn-primary:hover { transform: scale(1.05); }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--text-primary);
+      border: 1px solid var(--border-light);
+      padding: 16px 32px;
+      border-radius: 100px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: border 0.2s;
+    }
+    .btn-secondary:hover { border-color: var(--text-secondary); }
+
+    .marquee-container {
+      margin-top: 80px;
+      width: 100%;
+      overflow: hidden;
+      position: relative;
+      mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+      -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+    }
+
+    .marquee-track {
+      display: flex;
+      gap: 32px;
+      width: max-content;
+      animation: scroll 40s linear infinite;
+      padding: 20px 0;
+    }
+    
+    .marquee-track:hover { animation-play-state: paused; }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes scroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(calc(-50% - 16px)); }
+    }
+
+    .mockup {
+      width: 240px;
+      border-radius: 36px;
+      border: 6px solid #222;
+      background: #000;
+      overflow: hidden;
+      box-shadow: 0 20px 50px -10px rgba(0,0,0,0.5);
+      flex-shrink: 0;
+      transition: transform 0.3s var(--easing);
+    }
+    .mockup:hover { transform: translateY(-10px); border-color: #333; }
+    .mockup img { width: 100%; display: block; }
+
+    .bento-section {
+      max-width: 1200px;
+      margin: 160px auto;
+      padding: 0 32px;
+    }
+
+    .section-header { text-align: center; margin-bottom: 80px; }
+    .section-header h2 { font-family: var(--font-display); font-size: 3rem; margin-bottom: 16px; }
+    .section-header p { color: var(--text-secondary); }
+
+    .bento-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-auto-rows: minmax(300px, auto);
+      gap: 24px;
+    }
+
+    .card {
+      opacity: 0; /* Initially hidden for animation */
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius);
+      padding: 40px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: border 0.3s, transform 0.3s;
+    }
+
+    .card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-4px);
+    }
+
+    .card.wide { grid-column: span 2; }
+    .card.tall { grid-row: span 2; }
+
+    .card-icon {
+      font-size: 2rem; margin-bottom: 24px;
+      width: 60px; height: 60px;
+      background: rgba(255,255,255,0.03);
+      border-radius: 16px;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    .card h3 {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      margin-bottom: 12px;
+      color: var(--text-primary);
+    }
+
+    .card p { color: var(--text-secondary); font-size: 1rem; }
+
+    .equation-container {
+      margin: 120px auto;
+      text-align: center;
+      display: flex; justify-content: center;
+    }
+    
+    .equation-pill {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid var(--border-light);
+      padding: 24px 48px;
+      border-radius: 100px;
+      display: flex; gap: 24px; align-items: center;
+      font-family: var(--font-display);
+      font-size: 2rem;
+      backdrop-filter: blur(10px);
+    }
+    
+    .val-debit { color: var(--expense); }
+    .val-credit { color: var(--income); }
+    .op { color: var(--text-muted); font-family: var(--font-body); font-weight: 300; }
+
+    .code-section {
+      max-width: 1000px; margin: 0 auto 160px; padding: 0 32px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;
+    }
+
+    .code-text h2 { font-family: var(--font-display); font-size: 2.5rem; margin-bottom: 24px; }
+    .code-text p { color: var(--text-secondary); margin-bottom: 24px; }
+
+    .terminal {
+      background: #0d0d10;
+      border: 1px solid var(--border-light);
+      border-radius: 16px;
+      padding: 24px;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      box-shadow: 0 40px 80px rgba(0,0,0,0.4);
+    }
+
+    .terminal-header {
+      display: flex; gap: 8px; margin-bottom: 20px; opacity: 0.5;
+    }
+    .dot { width: 10px; height: 10px; border-radius: 50%; background: #fff; }
+
+    .line { display: block; margin-bottom: 4px; }
+    .kw { color: #cc7832; }
+    .str { color: #6a8759; }
+    .num { color: #6897bb; }
+    .cmt { color: #808080; }
+
+    .waitlist {
+      max-width: 600px; margin: 0 auto 160px; padding: 0 32px; text-align: center;
+    }
+    
+    .input-group {
+      display: flex; gap: 12px; margin-top: 32px;
+    }
+    
+    input {
+      flex: 1;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border-light);
+      padding: 16px 24px;
+      border-radius: 100px;
+      color: white;
+      font-family: var(--font-body);
+      outline: none;
+    }
+    input:focus { border-color: var(--accent-dim); }
+    
+    .btn-submit {
+      background: var(--accent-dim);
+      color: #000;
+      border: none;
+      padding: 0 32px;
+      border-radius: 100px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    footer {
+      border-top: 1px solid var(--border-light);
+      padding: 60px 40px;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+    .footer-links { display: flex; gap: 32px; justify-content: center; margin-bottom: 24px; }
+    .footer-links a { color: var(--text-secondary); text-decoration: none; font-weight: 500; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--text-primary); }
+
+    @media (max-width: 768px) {
+      h1 { font-size: 3.5rem; }
+      .bento-grid { grid-template-columns: 1fr; }
+      .card.wide, .card.tall { grid-column: span 1; grid-row: span 1; }
+      .code-section { grid-template-columns: 1fr; }
+      .input-group { flex-direction: column; }
+      .btn-submit { padding: 16px; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="grain"></div>
+  <div class="starfield" id="starfield"></div>
+  <div class="glow-orb orb-1"></div>
+  <div class="glow-orb orb-2"></div>
+  <div class="glow glow-1"></div>
+  <div class="glow glow-2"></div>
+
+  <nav>
+    <div class="nav-inner">
+      <a href="#" class="logo">Full Frills <span>Balance</span></a>
+      <div class="nav-links">
+        <a href="https://t.me/FullFrills" class="nav-link" target="_blank">Telegram</a>
+        <a href="https://github.com/SscSPs/full-frills-balance" class="nav-link" target="_blank">GitHub</a>
+        <a href="https://play.google.com/store/apps/details?id=in.sahilsoni.fullfrillsbalance" class="btn-nav" target="_blank">Install Now</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <span class="pill">Public Beta Live</span>
+    <h1>Your bank balance is <em>incomplete.</em></h1>
+    <p>Know exactly what's Safe to Spend after every bill, commitment, and budget. Finance for real life, not just records.</p>
+    <div class="cta-group">
+      <a href="https://play.google.com/store/apps/details?id=in.sahilsoni.fullfrillsbalance" class="btn-primary" target="_blank">Get it on Google Play</a>
+      <a href="#features" class="btn-secondary">See Features</a>
+    </div>
+  </header>
+
+  <div class="marquee-container">
+    <div class="marquee-track">
+      <div class="mockup"><img src="assets/screen-dashboard.jpg" alt="Dashboard"></div>
+      <div class="mockup"><img src="assets/screen-accounts.jpg" alt="Accounts"></div>
+      <div class="mockup"><img src="assets/screen-charts.jpg" alt="Charts"></div>
+      <div class="mockup"><img src="assets/screen-setup.jpg" alt="Setup"></div>
+      <div class="mockup"><img src="assets/screen-currency.jpg" alt="Currency"></div>
+      <!-- Duplicate -->
+      <div class="mockup"><img src="assets/screen-dashboard.jpg" alt="Dashboard"></div>
+      <div class="mockup"><img src="assets/screen-accounts.jpg" alt="Accounts"></div>
+      <div class="mockup"><img src="assets/screen-charts.jpg" alt="Charts"></div>
+      <div class="mockup"><img src="assets/screen-setup.jpg" alt="Setup"></div>
+      <div class="mockup"><img src="assets/screen-currency.jpg" alt="Currency"></div>
+    </div>
+  </div>
+
+  <div class="equation-container">
+    <div class="equation-pill">
+      <span class="val-debit">Real Balance</span>
+      <span class="op">-</span>
+      <span class="val-credit">Commitments</span>
+      <span class="op">=</span>
+      <span class="val-vivid">Safe to Spend</span>
+    </div>
+  </div>
+
+  <section class="bento-section" id="features">
+    <div class="section-header">
+      <h2>Built for what happens next.</h2>
+      <p>Most finance apps tell you where your money went. We tell you where you stand.</p>
+    </div>
+    
+    <div class="bento-grid">
+      <div class="card wide" data-delay="0">
+        <div class="card-icon">🎯</div>
+        <div>
+          <h3>Safe to Spend</h3>
+          <p>The only number that matters. Know exactly what you can use today after upcoming bills, budgets, and debts are accounted for.</p>
+        </div>
+      </div>
+      <div class="card" data-delay="100">
+        <div class="card-icon">🔮</div>
+        <div>
+          <h3>30-Day Cash Forecast</h3>
+          <p>See your financial future. Detect shortfalls before they happen with our predictive cashflow engine.</p>
+        </div>
+      </div>
+      <div class="card tall" data-delay="200">
+        <div class="card-icon">🔒</div>
+        <div>
+          <h3>Private by Design</h3>
+          <p>Your data stays on your device. Works offline, no mandatory signups, and biometric locks to keep your eyes only on your money.</p>
+        </div>
+      </div>
+      <div class="card" data-delay="300">
+        <div class="card-icon">📒</div>
+        <div>
+          <h3>Double-Entry Core</h3>
+          <p>Accurate by design. Built on professional accounting principles so your balances are always consistent and dependable.</p>
+        </div>
+      </div>
+      <div class="card" data-delay="400">
+        <div class="card-icon">📲</div>
+        <div>
+          <h3>Android Power User</h3>
+          <p>Private SMS import to detect transactions automatically on-device. Home screen widgets for split-second logging.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="code-section">
+    <div class="code-text">
+      <h2>Computed, not cached.</h2>
+      <p>Most apps store "Current Balance" as a number. We derive it from your history every time. The math is always right.</p>
+      <p>Transactions are immutable ledgers. Edit history is preserved.</p>
+    </div>
+    <div class="terminal">
+      <div class="terminal-header">
+        <div class="dot" style="background:#ff5f56"></div>
+        <div class="dot" style="background:#ffbd2e"></div>
+        <div class="dot" style="background:#27c93f"></div>
+      </div>
+      <div class="code-lines">
+        <span class="line"><span class="cmt">// Ledger Entry </span></span>
+        <span class="line"><span class="kw">const</span> entry = {</span>
+        <span class="line">&nbsp;&nbsp;id: <span class="str">"tx_123"</span>,</span>
+        <span class="line">&nbsp;&nbsp;splits: [</span>
+        <span class="line">&nbsp;&nbsp;&nbsp;&nbsp;{ acct: <span class="str">"Assets:Bank"</span>, cr: <span class="num">150.00</span> },</span>
+        <span class="line">&nbsp;&nbsp;&nbsp;&nbsp;{ acct: <span class="str">"Exp:Groceries"</span>, dr: <span class="num">150.00</span> }</span>
+        <span class="line">&nbsp;&nbsp;]</span>
+        <span class="line">};</span>
+        <span class="line"><span class="cmt">// sum(dr) === sum(cr)</span></span>
+      </div>
+    </div>
+  </section>
+
+  <section class="waitlist" id="waitlist">
+    <h2>Get early access.</h2>
+    <p style="color:var(--text-secondary); margin-top:16px;">We're launching to a small group soon. Secure your spot.</p>
+    
+    <form id="waitlistForm" action="https://formsubmit.co/ajax/111495b1b7c9b58c74144ccbbc8cc708" method="POST">
+      <div class="input-group">
+        <input type="email" name="email" placeholder="sahil@example.com" required>
+        <button type="submit" class="btn-submit">Join Waitlist</button>
+      </div>
+    </form>
+  </section>
+
+  <footer>
+    <div class="footer-links">
+      <a href="https://t.me/FullFrills" target="_blank">Telegram</a>
+      <a href="https://github.com/SscSPs/full-frills-balance" target="_blank">GitHub</a>
+      <a href="https://sahilsoni.in" target="_blank">Developer</a>
+      <a href="privacy.html">Privacy Policy</a>
+    </div>
+    <p>Full Frills Balance © 2026 · Made with obsessive attention to detail</p>
+  </footer>
+
+  <script>
+    // Starfield
+    const sf = document.getElementById('starfield');
+    for (let i = 0; i < 50; i++) {
+      const s = document.createElement('div');
+      s.className = 'star';
+      const sz = Math.random() * 1.5 + 0.5;
+      s.style.cssText = `width:${sz}px;height:${sz}px;top:${Math.random()*100}%;left:${Math.random()*100}%;--d:${3+Math.random()*5}s;--delay:${Math.random()*6}s;--op:${0.2+Math.random()*0.5}`;
+      sf.appendChild(s);
+    }
+
+    // 3D Tilt Effect
+    document.querySelectorAll('.card, .mockup').forEach(card => {
+      card.addEventListener('mousemove', e => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const rotateX = ((y - centerY) / centerY) * -5;
+        const rotateY = ((x - centerX) / centerX) * 5;
+        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
+      });
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale(1)';
+      });
+    });
+
+    // Form Handling
+    document.getElementById('waitlistForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const btn = this.querySelector('button');
+      const input = this.querySelector('input');
+      const originalText = btn.textContent;
+      btn.textContent = '...';
+      btn.disabled = true;
+      try {
+        await fetch(this.action, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: input.value })
+        });
+        btn.textContent = 'In! ⚡️';
+        input.value = '';
+      } catch (err) {
+        btn.textContent = 'Error';
+        setTimeout(() => {
+          btn.textContent = originalText;
+          btn.disabled = false;
+        }, 2000);
+      }
+    });
+  </script>
+  <script>
+    // Scroll-triggered animations for cards
+    const cards = document.querySelectorAll('.bento-grid .card');
+    const observerOptions = {
+      root: null, // viewport
+      rootMargin: '0px',
+      threshold: 0.2 // 20% of item visible
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const card = entry.target;
+          const delay = parseInt(card.dataset.delay) || 0;
+          card.style.animation = `fadeInUp 0.8s var(--easing) forwards`;
+          card.style.animationDelay = `${delay}ms`;
+          observer.unobserve(card); // Only animate once
+        }
+      });
+    }, observerOptions);
+
+    cards.forEach((card, index) => {
+      // data-delay is already set, but this loop ensures all are observed
+      // and provides a fallback for delay if not set
+      if (!card.dataset.delay) {
+        card.dataset.delay = index * 100;
+      }
+      observer.observe(card);
+    });
+  </script>
+</body>
+</html>
