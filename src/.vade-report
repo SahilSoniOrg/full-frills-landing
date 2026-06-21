@@ -1,0 +1,49 @@
+## Vercel Web Analytics Installation - Complete
+
+Successfully configured Vercel Web Analytics for this vanilla HTML project following the latest official documentation from https://vercel.com/docs/analytics/quickstart.
+
+### What was implemented:
+
+**Framework Identified:** Vanilla HTML/JavaScript
+- This is a static HTML site with no framework (not Next.js, React, Vue, etc.)
+
+**Package Installation:**
+- The `@vercel/analytics` package (v2.0.1) was already present in package.json
+- Ran `pnpm install` to ensure dependencies are properly installed
+
+**Analytics Configuration:**
+Updated both HTML files to use the CDN-based Web Analytics script:
+
+**Modified Files:**
+1. `src/index.html` - Updated Web Analytics script tag
+2. `src/privacy.html` - Updated Web Analytics script tag
+
+**Changes Made:**
+- Changed script source from `/_vercel/insights/script.js` (old path) to `https://cdn.vercel-insights.com/v1/script.js` (official CDN)
+- This is the recommended approach for vanilla HTML projects according to Vercel's official documentation
+- The script loads asynchronously with `defer` attribute for optimal performance
+
+**Implementation Details:**
+According to the official Vercel documentation, for vanilla HTML projects, the recommended approach is to use the CDN script tag:
+```html
+<script defer src="https://cdn.vercel-insights.com/v1/script.js"></script>
+```
+
+This approach:
+- Works immediately without additional configuration
+- Automatically tracks page views
+- Loads asynchronously to avoid blocking page rendering
+- Uses the official Vercel CDN for optimal delivery
+
+**Verification:**
+- Confirmed both HTML files now include the correct Web Analytics script
+- No build process required for this vanilla HTML project
+- Analytics will start tracking once deployed to Vercel
+
+**Next Steps:**
+After deployment, you can:
+1. View analytics data in the Vercel dashboard under the Analytics section
+2. Verify tracking is working by checking the Network tab for requests to the analytics endpoint
+3. Wait a few days for meaningful traffic data to accumulate
+
+**Note:** The previous implementation was using `/_vercel/insights/script.js` which is the path for Vercel Speed Insights (performance monitoring). The new implementation uses the correct Web Analytics script for visitor and page view tracking.
