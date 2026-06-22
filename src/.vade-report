@@ -1,0 +1,57 @@
+# Vercel Speed Insights Installation Report
+
+## Summary
+Successfully installed and configured Vercel Speed Insights for this vanilla HTML/JavaScript project.
+
+## Changes Made
+
+### 1. Package Installation
+- Installed `@vercel/speed-insights` version 2.0.0 using pnpm
+- Updated `package.json` to include the new dependency
+- Updated `pnpm-lock.yaml` with the new package and its dependencies
+
+### 2. Speed Insights Integration
+
+#### Modified Files:
+- **src/index.html** - Added Speed Insights script tag in the `<head>` section
+- **src/privacy.html** - Added Speed Insights script tag in the `<head>` section
+
+#### Implementation Details:
+Added the following script tag to both HTML files:
+```html
+<!-- Vercel Speed Insights -->
+<script defer src="/_vercel/speed-insights/script.js"></script>
+```
+
+This follows the same pattern as the existing Vercel Web Analytics integration and uses the standard Vercel Speed Insights script path that's automatically available when the project is deployed on Vercel.
+
+## Implementation Approach
+
+After reviewing the latest Vercel Speed Insights documentation from https://vercel.com/docs/speed-insights/quickstart, I identified that this is a vanilla HTML/JavaScript project without a build framework.
+
+For static HTML sites deployed on Vercel, Speed Insights works by:
+1. Including the Speed Insights script tag in the HTML
+2. The script at `/_vercel/speed-insights/script.js` is automatically served by Vercel when the project is deployed
+3. Speed Insights will automatically track Core Web Vitals and performance metrics once deployed
+
+The script is loaded with the `defer` attribute to ensure it doesn't block page rendering, following best practices for performance.
+
+## Next Steps
+
+To complete the setup:
+1. Deploy this project to Vercel
+2. Enable Speed Insights in the Vercel dashboard for your project
+3. Speed Insights will automatically begin collecting performance data from your deployed site
+
+## Framework Detection
+- **Project Type**: Vanilla HTML/JavaScript
+- **Package Manager**: pnpm
+- **Existing Analytics**: Vercel Web Analytics (already configured)
+
+## Files Changed
+- src/index.html (added Speed Insights script tag)
+- src/privacy.html (added Speed Insights script tag)
+- src/package.json (added @vercel/speed-insights dependency)
+- src/pnpm-lock.yaml (updated lock file with new dependencies)
+
+All changes preserve the existing code structure and maintain consistency with the existing Vercel Web Analytics implementation.
