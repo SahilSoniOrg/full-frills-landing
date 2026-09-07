@@ -23,10 +23,13 @@
 </head>
 <body>
     <h1>Privacy Policy for Full Frills Balance</h1>
-    <p>Effective Date: March 5, 2026</p>
+    <p>Effective Date: September 7, 2026</p>
+    <p>Last Updated: September 7, 2026</p>
+    <p>Policy update (September 7, 2026): This update clarifies that the current app is local-first, does not connect to bank accounts, and does not provide online sync or cloud backup. It also documents privacy principles for a possible future encrypted sync feature. The future-sync section describes planned behavior only; it does not mean that feature is available today.</p>
 
     <h2>1. Overview</h2>
     <p>Full Frills Balance is designed primarily as an offline personal money management application.</p>
+    <p>It does not connect to bank accounts; financial records are based on information you enter or files you choose to import.</p>
     <p>Most financial data entered or generated inside the app remains stored locally on your device and is not uploaded to external servers.</p>
 
     <h2>2. Financial Data Stored Locally</h2>
@@ -42,6 +45,7 @@
         <li>rule-based tagging preferences</li>
     </ul>
     <p>We do not store this financial data on our own servers.</p>
+    <p>The app may also store the version of this Privacy Policy you acknowledged and the acknowledgement time. That record remains on your device. If product analytics is enabled, the app may send a pseudonymous acknowledgement event to PostHog with the policy version as its event-specific data, alongside the standard analytics and device context described below. It does not send the policy text, a signature, or your financial records.</p>
 
     <h2>3. SMS Access and Transaction Import</h2>
     <p>Full Frills Balance may request SMS permission to help import financial transactions automatically.</p>
@@ -63,14 +67,14 @@
     <ul>
         <li>pages visited inside the app</li>
         <li>onboarding completion</li>
-        <li>journal creation</li>
-        <li>import actions</li>
-        <li>export actions</li>
-        <li>in-app account creation events</li>
+        <li>journal and budget creation (event counts only, not monetary values)</li>
+        <li>import and export actions (counts and formats, not row contents)</li>
+        <li>in-app account creation events (account type and currency code only)</li>
         <li>selected currency preference</li>
-        <li>app version</li>
-        <li>device type</li>
-        <li>operating system version</li>
+        <li>app version, build, and variant</li>
+        <li>device model, device name, operating system, and tablet flag</li>
+        <li>pseudonymous analytics identifiers</li>
+        <li>privacy policy acknowledgement events (policy version as event-specific data)</li>
     </ul>
     <p>We do not intentionally send:</p>
     <ul>
@@ -79,9 +83,11 @@
         <li>SMS text</li>
         <li>balances</li>
         <li>user-entered notes</li>
+        <li>privacy policy text or signatures</li>
     </ul>
     <p>Analytics identifiers are pseudonymous and are used only to understand app usage and improve functionality.</p>
-    <p>No screenshots or session replay are used.</p>
+    <p>PostHog session replay is disabled. We do not record in-app screenshots or screen replays for product analytics.</p>
+    <p><strong>Sentry (crash reporting)</strong> is separate from PostHog. When enabled, Sentry receives error reports and performance traces (for example stack traces and navigation timing). We do not enable Sentry session replay or screen recording.</p>
 
     <h2>5. Internet Use</h2>
     <p>Although Full Frills Balance is primarily offline, internet access is used for limited features:</p>
@@ -92,12 +98,12 @@
     <p>Exchange-rate requests do not include your transaction history or personal financial records.</p>
 
     <h2>6. Export and Backup</h2>
-    <p>You may export app data as JSON files for personal backup.</p>
+    <p>You may export app data as ZIP backup files containing your personal records.</p>
     <p>Exported files remain under your control on your device.</p>
     <p>Backups are not encrypted by the app, so you are responsible for protecting exported files.</p>
 
     <h2>7. No Account Registration</h2>
-    <p>Full Frills Balance does not require:</p>
+    <p>Currently, Full Frills Balance does not require:</p>
     <ul>
         <li>login</li>
         <li>email registration</li>
@@ -117,20 +123,40 @@
     </ul>
     <p>Permissions are optional where possible and used only for app functionality.</p>
 
-    <h2>10. Future Features</h2>
-    <p>Future versions may include optional background transaction parsing. If introduced, this Privacy Policy will be updated before release.</p>
+    <h2>10. Planned Future Online Features (Not Currently Available)</h2>
+    <p>The current app does not offer account registration, online sync, or cloud backup. Future versions may offer optional encrypted backup or multi-device sync. If introduced, the intended privacy principles are:</p>
+    <ul>
+        <li>sync requires a separate, clear opt-in after a notice explains what categories of data would be uploaded and why</li>
+        <li>declining sync keeps local use available</li>
+        <li>financial records are encrypted on your device before upload; the service is designed to store ciphertext without the keys needed to read the financial content</li>
+        <li>sync uses encrypted operations or snapshots rather than uploading the raw local database; balances, reports, and other derived views are rebuilt locally</li>
+        <li>sync is limited to the workspace you choose, but the service may still process account, device, membership, operation-size, timing, and security metadata needed to authenticate, authorize, route, and operate the service</li>
+        <li>recovery methods, device enrollment and revocation, key changes, retention, and deletion are explained before sync is activated</li>
+        <li>encryption and recovery keys are intended to remain under your control; losing your devices and recovery method may make synced books unrecoverable</li>
+        <li>raw SMS text is not uploaded or parsed on the server, and server-side tax, legal, or financial-reporting workflows are not part of the planned sync design</li>
+    </ul>
+    <p>If online sync is introduced, this Privacy Policy and the in-app disclosure will be updated before the feature is enabled. Stopping sync would stop future uploads, but it would not automatically recall data already downloaded to a device or delete a server backup unless a separate deletion process is completed.</p>
+    <p>Future versions may also include optional background transaction parsing on the device. If introduced, this Privacy Policy and the in-app disclosure will be updated before release.</p>
 
     <h2>11. Security</h2>
     <p>Your financial records remain primarily on your own device.</p>
     <p>You are responsible for securing your device and exported backup files.</p>
 
     <h2>12. Children’s Privacy</h2>
-    <p>Full Frills Balance is not intended for children under 13.</p>
+    <p>Full Frills Balance is not directed to children. If you are below the age at which you can provide valid consent under the law that applies to you, use the app only with a parent or legal guardian involved.</p>
 
-    <h2>13. Changes to This Policy</h2>
-    <p>This Privacy Policy may be updated when app features change.</p>
+    <h2>13. Privacy Requests and Contact</h2>
+    <p>Your local financial records are stored on your device, so we generally cannot access or recover them from our servers. Use the app’s Settings controls for export, restore, and factory reset.</p>
+    <p>For data processed by Full Frills Balance or its service providers, you may contact us about privacy questions or requests such as access, correction, deletion, or withdrawal of consent where applicable. We may need to verify a request and may retain information where required by law.</p>
 
-    <h2>14. Contact</h2>
     <p>Sahil Soni<br>sscsps@gmail.com</p>
+
+    <h2>14. Changes to This Policy</h2>
+    <p>This Privacy Policy may be updated when app features or data practices change. When an update materially changes how data is handled, we will update the effective and last-updated dates and provide an in-app or other appropriate notice where practical.</p>
+    <p>Update history:</p>
+    <ul>
+        <li>September 7, 2026 — clarified current local-first and no-bank behavior, export files, analytics and crash reporting, and planned privacy principles for optional encrypted sync. No sync feature was enabled by this update.</li>
+        <li>March 5, 2026 — initial policy published.</li>
+    </ul>
 </body>
 </html>
