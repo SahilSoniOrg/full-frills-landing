@@ -3,161 +3,282 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="policy-version" content="2026-09-07">
-    <title>Privacy Policy - Full Frills Balance</title>
+    <meta name="policy-version" content="2026-10-16">
+    <title>Privacy Policy — Full Frills Balance</title>
+    <meta name="description" content="How Full Frills Balance handles your data: local-first storage, optional on-device SMS import, limited analytics, and no bank connections.">
+    <meta name="theme-color" content="#0a0c10">
+    <link rel="canonical" href="https://full-frills-landing.vercel.app/privacy.html">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Full Frills Balance">
+    <meta property="og:title" content="Privacy Policy — Full Frills Balance">
+    <meta property="og:description" content="Local-first, no bank connections, optional on-device SMS import, limited analytics.">
+    <meta property="og:url" content="https://full-frills-landing.vercel.app/privacy.html">
+    <meta property="og:image" content="https://full-frills-landing.vercel.app/assets/og-image.png">
+    <meta name="twitter:card" content="summary_large_image">
     <!-- Vercel Web Analytics -->
     <script defer src="/_vercel/insights/script.js"></script>
-    
+
     <!-- Vercel Speed Insights -->
     <script defer src="/_vercel/speed-insights/script.js"></script>
     <style>
-        body { font-family: sans-serif; line-height: 1.6; margin: 20px; max-width: 800px; margin-left: auto; margin-right: auto; color: #333; }
-        h1 { color: #000; font-size: 2em; margin-top: 1em; }
-        h2 { color: #000; font-size: 1.5em; margin-top: 1em; }
-        h3 { color: #000; font-size: 1.2em; margin-top: 1em; }
-        p { margin-bottom: 1em; }
-        ul { list-style-type: disc; margin-left: 20px; margin-bottom: 1em; }
-        li { margin-bottom: 0.5em; }
-        a { color: #007bff; text-decoration: none; }
-        a:hover { text-decoration: underline; }
+        :root { --bg: #0a0c10; --text: #ececf0; --muted: #a3a3ad; --line: rgba(255,255,255,0.08); --mint: #7dd3a8; --accent-dim: #8ab094; }
+        * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; line-height: 1.7; margin: 0; background: var(--bg); color: var(--text); -webkit-font-smoothing: antialiased; }
+        .top { border-bottom: 1px solid var(--line); }
+        .top-inner, main, footer { max-width: 800px; margin: 0 auto; padding: 0 24px; }
+        .top-inner { display: flex; justify-content: space-between; align-items: center; padding-top: 20px; padding-bottom: 20px; }
+        .logo { font-family: Georgia, "Times New Roman", serif; font-size: 1.3rem; color: var(--text); text-decoration: none; }
+        .logo span { font-style: italic; color: var(--accent-dim); }
+        .back { color: var(--muted); text-decoration: none; font-size: 0.95rem; }
+        main { padding-top: 40px; padding-bottom: 64px; }
+        h1 { font-family: Georgia, "Times New Roman", serif; font-weight: 400; font-size: clamp(2rem, 6vw, 2.8rem); line-height: 1.15; margin: 0 0 16px; }
+        h2 { font-size: 1.3rem; margin: 2.4em 0 0.6em; padding-top: 0.4em; border-top: 1px solid var(--line); }
+        h3 { font-size: 1.05rem; margin: 1.6em 0 0.4em; color: var(--text); }
+        p, li { color: var(--muted); }
+        strong { color: var(--text); }
+        ul { padding-left: 22px; margin: 0 0 1em; }
+        li { margin-bottom: 0.35em; }
+        a { color: var(--mint); }
+        a:focus-visible { outline: 2px solid var(--mint); outline-offset: 3px; }
+        .dates { color: var(--muted); font-size: 0.95rem; margin: 0 0 24px; }
+        .callout { border: 1px solid rgba(125,211,168,0.3); background: rgba(125,211,168,0.05); border-radius: 16px; padding: 16px 20px; margin: 24px 0; }
+        .callout p { margin: 10px 0 0; } .callout summary { cursor: pointer; color: var(--text); }
+        .summary { border: 1px solid var(--line); border-radius: 16px; padding: 8px 20px 4px; margin: 24px 0; background: rgba(255,255,255,0.02); }
+        .summary h2 { border: 0; margin-top: 0.8em; }
+        nav.toc ol { columns: 2; column-gap: 32px; padding-left: 22px; color: var(--muted); }
+        nav.toc a { color: var(--muted); text-decoration: none; }
+        nav.toc a:hover { color: var(--text); }
+        footer { border-top: 1px solid var(--line); padding-top: 24px; padding-bottom: 48px; color: var(--muted); font-size: 0.9rem; }
+        @media (max-width: 600px) { nav.toc ol { columns: 1; } }
     </style>
 </head>
 <body>
-    <h1>Privacy Policy for Full Frills Balance</h1>
-    <p>Effective Date: September 7, 2026</p>
-    <p>Last Updated: September 7, 2026</p>
-    <p>Policy update (September 7, 2026): This update clarifies that the current app is local-first, does not connect to bank accounts, and does not provide online sync or cloud backup. It also documents privacy principles for a possible future encrypted sync feature. The future-sync section describes planned behavior only; it does not mean that feature is available today.</p>
+    <header class="top">
+        <div class="top-inner">
+            <a href="/" class="logo">Full Frills <span>Balance</span></a>
+            <a href="/" class="back">← Back to home</a>
+        </div>
+    </header>
+    <main>
+        <h1>Privacy Policy for Full Frills Balance</h1>
+        <p class="dates"><strong>Effective date:</strong> October 16, 2026 · <strong>Last updated:</strong> October 16, 2026</p>
 
-    <h2>1. Overview</h2>
-    <p>Full Frills Balance is designed primarily as an offline personal money management application.</p>
-    <p>It does not connect to bank accounts; financial records are based on information you enter or files you choose to import.</p>
-    <p>Most financial data entered or generated inside the app remains stored locally on your device and is not uploaded to external servers.</p>
+        <section class="summary" aria-labelledby="summary">
+            <h2 id="summary">The short version</h2>
+            <ul>
+                <li>Your financial records are stored on your device. We don't store them on our servers.</li>
+                <li>No bank logins, no account sign-up, and no online sync or cloud backup in the current app.</li>
+                <li>SMS import is optional, Android-only, and parsed on your device. Transaction SMS you capture are kept on your phone until you clear app data, reset, or uninstall.</li>
+                <li>We do not intentionally send amounts, balances, merchant names, SMS text or your notes in analytics or crash reports. Analytics is on in release builds and there is currently no in-app switch to turn it off.</li>
+                <li>Voice entry is optional. Your phone's speech-recognition service turns speech into text and, depending on your phone, may process the audio online.</li>
+                <li>If Android device backup is on, Android may back up the app's data to your Google account.</li>
+                <li>Backup files you export are not encrypted by the app and can include original SMS text, so keep them somewhere safe.</li>
+            </ul>
+        </section>
 
-    <h2>2. Financial Data Stored Locally</h2>
-    <p>The following data is stored only on your device:</p>
-    <ul>
-        <li>income and expense entries</li>
-        <li>balances</li>
-        <li>journals</li>
-        <li>account names</li>
-        <li>categories</li>
-        <li>transaction descriptions</li>
-        <li>imported transaction records</li>
-        <li>rule-based tagging preferences</li>
-    </ul>
-    <p>We do not store this financial data on our own servers.</p>
-    <p>The app may also store the version of this Privacy Policy you acknowledged and the acknowledgement time. That local record is the app's acknowledgement state and remains on your device. If product analytics is enabled, the app may send a best-effort pseudonymous acknowledgement event to PostHog with the policy version as its event-specific data, alongside the standard analytics and device context described below. This telemetry is not a signed legal record. It does not send the policy text, a signature, or your financial records.</p>
+        <details class="callout">
+            <summary><strong>What changed on October 16, 2026</strong></summary>
+            <p>This update brings the public policy in line with the current app. It covers optional automatic SMS import on Android, local retention of original transaction SMS, SMS review notifications, the allowlisted analytics and crash-reporting fields, optional voice entry, the services used to fetch exchange rates, the app-update check, Android system backup, and this website's own analytics and waitlist. The app still does not connect to bank accounts and does not offer online sync or cloud backup. The planned-sync section describes possible future behavior only.</p>
+        </details>
 
-    <h2>3. SMS Access and Transaction Import</h2>
-    <p>Full Frills Balance may request SMS permission to help import financial transactions automatically.</p>
-    <p>SMS access is used only to:</p>
-    <ul>
-        <li>read messages available on your device when you trigger import</li>
-        <li>detect whether a message is transaction-related</li>
-        <li>extract transaction details such as amount, sender, and transaction type</li>
-        <li>create transaction entries inside the app</li>
-    </ul>
-    <p>All SMS processing currently happens only when the user manually starts import.</p>
-    <p>SMS permission is optional, and the app remains usable without granting SMS access.</p>
-    <p>We do not intentionally upload full SMS content, sender details, or message bodies to external servers.</p>
-    <p>Raw SMS content is not stored after processing, except where limited extracted data may be saved if you create app rules for tagging, account mapping, or transaction descriptions.</p>
+        <nav class="toc" aria-label="Contents">
+            <ol>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#local">Financial data stored locally</a></li>
+                <li><a href="#sms">SMS access and transaction import</a></li>
+                <li><a href="#voice">Voice entry</a></li>
+                <li><a href="#analytics">Analytics and crash reporting</a></li>
+                <li><a href="#internet">Internet use</a></li>
+                <li><a href="#backup">Export, backup and device backup</a></li>
+                <li><a href="#accounts">No account registration</a></li>
+                <li><a href="#sharing">Data sharing</a></li>
+                <li><a href="#permissions">Permissions</a></li>
+                <li><a href="#future">Planned future online features</a></li>
+                <li><a href="#security">Security</a></li>
+                <li><a href="#website">This website</a></li>
+                <li><a href="#children">Children's privacy</a></li>
+                <li><a href="#contact">Privacy requests and contact</a></li>
+                <li><a href="#changes">Changes to this policy</a></li>
+            </ol>
+        </nav>
 
-    <h2>4. Analytics and Telemetry</h2>
-    <p>We use PostHog and Expo Insights for product analytics and technical improvement.</p>
-    <p>Analytics may include:</p>
-    <ul>
-        <li>pages visited inside the app</li>
-        <li>onboarding completion</li>
-        <li>journal and budget creation (event counts only, not monetary values)</li>
-        <li>import and export actions (counts and formats, not row contents)</li>
-        <li>in-app account creation events (account type and currency code only)</li>
-        <li>selected currency preference</li>
-        <li>app version, build, and variant</li>
-        <li>device model, device name, operating system, and tablet flag</li>
-        <li>pseudonymous analytics identifiers</li>
-        <li>privacy policy acknowledgement events (policy version as event-specific data)</li>
-    </ul>
-    <p>We do not intentionally send:</p>
-    <ul>
-        <li>transaction amounts</li>
-        <li>merchant names</li>
-        <li>SMS text</li>
-        <li>balances</li>
-        <li>user-entered notes</li>
-        <li>privacy policy text or signatures</li>
-    </ul>
-    <p>Analytics identifiers are pseudonymous and are used only to understand app usage and improve functionality.</p>
-    <p>PostHog session replay is disabled. We do not record in-app screenshots or screen replays for product analytics.</p>
-    <p><strong>Sentry (crash reporting)</strong> is separate from PostHog. When enabled, Sentry receives error reports and performance traces (for example stack traces and navigation timing). We do not enable Sentry session replay or screen recording.</p>
+        <h2 id="overview">1. Overview</h2>
+        <p>Full Frills Balance is designed primarily as an offline personal money management application. It does not connect to bank accounts; financial records are based on information you enter, SMS messages you choose to import, or files you choose to import.</p>
+        <p>Your financial records are stored on your device and are not uploaded to our servers. A small amount of data does leave your device for the purposes described in this policy: allowlisted analytics and crash reports (section 5), voice entry through your phone's speech service (section 4), exchange-rate and update-check requests (section 6), and Android device backup if you have it turned on (section 7). Section 9 lists everyone who may receive data.</p>
 
-    <h2>5. Internet Use</h2>
-    <p>Although Full Frills Balance is primarily offline, internet access is used for limited features:</p>
-    <ul>
-        <li>retrieving currency exchange rates from ExchangeRate-API</li>
-        <li>sending analytics telemetry</li>
-    </ul>
-    <p>Exchange-rate requests do not include your transaction history or personal financial records.</p>
+        <h2 id="local">2. Financial Data Stored Locally</h2>
+        <p>The following data is stored on your device:</p>
+        <ul>
+            <li>income and expense entries, including planned (future-dated) entries</li>
+            <li>balances</li>
+            <li>journals</li>
+            <li>account names</li>
+            <li>categories and budgets</li>
+            <li>transaction descriptions</li>
+            <li>imported transaction records, including retained transaction SMS (see section 3)</li>
+            <li>rule-based tagging preferences</li>
+        </ul>
+        <p>We do not store this financial data on our own servers.</p>
+        <p>The app may also store the version of this Privacy Policy you acknowledged and the acknowledgement time. That local record is the app's acknowledgement state and remains on your device. If product analytics is enabled, the app may send a best-effort pseudonymous acknowledgement event to PostHog with the policy version as its event-specific data, alongside the standard analytics and device context described below. This telemetry is not a signed legal record. It does not send the policy text, a signature, or your financial records.</p>
 
-    <h2>6. Export and Backup</h2>
-    <p>You may export app data as ZIP backup files containing your personal records.</p>
-    <p>Exported files remain under your control on your device.</p>
-    <p>Backups are not encrypted by the app, so you are responsible for protecting exported files.</p>
+        <h2 id="sms">3. SMS Access and Transaction Import</h2>
+        <p>On Android, Full Frills Balance may request SMS permissions to check messages for transaction details. Automatic SMS import is optional and starts only after you enable it in Settings.</p>
+        <p>SMS access is used only to:</p>
+        <ul>
+            <li>scan your inbox when you manually start an import</li>
+            <li>read incoming SMS messages while automatic import is enabled</li>
+            <li>detect whether a message is transaction-related</li>
+            <li>extract transaction details such as amount, sender, and transaction type</li>
+            <li>create transaction entries inside the app</li>
+        </ul>
+        <h3>How automatic import works</h3>
+        <p>Everything below happens on your phone:</p>
+        <ul>
+            <li>The first time you turn on automatic import, the app scans up to 50 recent inbox messages as a catch-up.</li>
+            <li>While it's on, the app checks every incoming SMS to see whether it's a transaction, including messages it then ignores.</li>
+            <li>Android may start a short background task when an SMS arrives, even if the app isn't open.</li>
+            <li>The app also checks for missed messages when it starts and when you return to it. If Android restricts or force-stops the app, it catches up when it can run again.</li>
+            <li>Matching messages go to the SMS review flow, and may be auto-posted under rules you set up.</li>
+            <li>Turning automatic import off stops processing new arrivals.</li>
+        </ul>
+        <h3>What is kept on your device</h3>
+        <p>For transaction messages the app captures:</p>
+        <ul>
+            <li>The sender and original message text are kept on your phone, including after you review, dismiss, import or auto-post them. Journal details can show the original SMS so you can check the entry against it.</li>
+            <li>New captures keep one copy in the shared device inbox; each workplace's records point to it rather than copying the text. Older records may still hold their own copy.</li>
+            <li>Imported entries also keep extracted details (amount, currency, merchant, reference number) and a one-way fingerprint used to avoid duplicates.</li>
+            <li>Privacy maintenance hashes older duplicate-check identities and strips raw SMS fields from automatic audit records. It does not erase kept source messages or notes you wrote.</li>
+            <li>New SMS imports never copy the raw message into journal notes, audit fields or analytics.</li>
+            <li>Kept SMS text has no automatic expiry. Importing, auto-posting, dismissing or turning off automatic import doesn't delete it. It stays until you clear app data, use Factory Reset, or uninstall the app.</li>
+            <li>Privacy Mode hides the original SMS text in journal details. SMS rules may keep the conditions you chose.</li>
+        </ul>
+        <h3>SMS review notifications</h3>
+        <p>SMS review notifications are optional and scheduled locally on your device. Their enablement and detail-preview settings apply to this device and are not included in exported backups. By default they contain a generic review prompt. You can choose detailed previews with extracted transaction information; the app hides these details while Privacy Mode or app lock is enabled. Notification routing uses local inbox and workplace identifiers rather than raw SMS content. The pending inbox is shared on the device; posting, dismissing, and rule decisions belong to each workplace (a separate set of books in the app).</p>
+        <p>SMS permissions are optional, and the app remains usable without granting SMS access or enabling automatic import. Automatic import requires Android's SMS read and receive permissions. We do not intentionally upload full SMS content, sender details, or message bodies to external servers.</p>
 
-    <h2>7. No Account Registration</h2>
-    <p>Currently, Full Frills Balance does not require:</p>
-    <ul>
-        <li>login</li>
-        <li>email registration</li>
-        <li>phone number verification</li>
-        <li>cloud account</li>
-    </ul>
+        <h2 id="voice">4. Voice Entry</h2>
+        <p>You can optionally dictate a transaction instead of typing it. Voice entry asks for microphone and speech-recognition permission only when you start it. Speech is converted to text by your device's speech-recognition service, which, depending on your device and settings, may be provided by your phone's operating system vendor (for example Google on Android) and may process audio online under that provider's own privacy terms. The app then parses the resulting text on your device. We do not receive or store your audio recordings. Analytics may record that voice entry was started or that permission was denied, but not what you said.</p>
 
-    <h2>8. Data Sharing</h2>
-    <p>We do not sell personal data.</p>
-    <p>Limited technical analytics may be processed by third-party providers strictly for app improvement.</p>
+        <h2 id="analytics">5. Analytics and Crash Reporting</h2>
+        <p>We use PostHog and Expo Insights for product analytics and technical improvement. Analytics may include only allowlisted event fields and values, including:</p>
+        <ul>
+            <li>pages visited inside the app</li>
+            <li>onboarding completion</li>
+            <li>journal and budget creation (event counts only, not monetary values)</li>
+            <li>import and export actions (counts and formats, not row contents)</li>
+            <li>feature-usage events, such as starting voice entry</li>
+            <li>SMS import setting changes (enabled or disabled) and whether an SMS rule auto-posted a transaction (boolean values only)</li>
+            <li>in-app account creation events (account type and currency code only)</li>
+            <li>selected currency preference</li>
+            <li>app version, build, and variant</li>
+            <li>operating system name and version, and tablet flag</li>
+            <li>pseudonymous analytics identifiers</li>
+            <li>privacy policy acknowledgement events (policy version as event-specific data)</li>
+        </ul>
+        <p>We do not intentionally send:</p>
+        <ul>
+            <li>transaction or budget amounts</li>
+            <li>conversion or funnel monetary values</li>
+            <li>merchant names</li>
+            <li>SMS text</li>
+            <li>balances</li>
+            <li>user-entered notes</li>
+            <li>privacy policy text or signatures</li>
+        </ul>
+        <p>Analytics and crash reporting are turned on in release builds of the app. There is currently no in-app setting to turn them off; if you object, contact us (section 15). Analytics identifiers are pseudonymous and are used only to understand app usage and improve functionality. PostHog session replay is disabled. We do not record in-app screenshots or screen replays for product analytics.</p>
+        <p><strong>Sentry (crash reporting)</strong> is separate from PostHog. When enabled, error reports and performance traces may include error types, code locations (function names, file paths and line numbers from the app's own code), and navigation timing; error message text is removed before sending. Default personal data collection is turned off. Native crash reporting is disabled because its reports bypass the app's privacy filters, so native crashes, freezes and out-of-memory terminations are not reported. We do not attach screenshots or screen layouts, and we do not enable Sentry session replay or screen recording.</p>
+        <p><strong>Bug reports you choose to send.</strong> If you use the in-app bug report option, the app builds a diagnostic ZIP (app and device details plus recent app logs) and opens your phone's share sheet. Nothing is sent unless you pick where to share it.</p>
 
-    <h2>9. Permissions</h2>
-    <p>Depending on features you choose to use, the app may request:</p>
-    <ul>
-        <li>SMS permission for transaction import</li>
-        <li>storage access for export and backup</li>
-    </ul>
-    <p>Permissions are optional where possible and used only for app functionality.</p>
+        <h2 id="internet">6. Internet Use</h2>
+        <p>Although Full Frills Balance is primarily offline, internet access is used for limited features:</p>
+        <ul>
+            <li><strong>Exchange rates.</strong> Current rates are fetched from ExchangeRate-API. Historical rates for a past date are fetched from the open currency-api dataset (served via the jsDelivr CDN, with a Cloudflare-hosted fallback) or from Frankfurter's European Central Bank rates. These requests contain currency codes and, for historical rates, a date. They do not include your transaction history, amounts, or personal financial records.</li>
+            <li><strong>Update check.</strong> Release builds may download a small public version-policy file from GitHub to tell you when an app update is available or required. The request does not include your financial data.</li>
+            <li><strong>Analytics and crash reporting</strong>, as described in section 5.</li>
+        </ul>
+        <p>Like any internet request, these services can see standard network information such as your IP address and the time of the request.</p>
 
-    <h2>10. Planned Future Online Features (Not Currently Available)</h2>
-    <p>The current app does not offer account registration, online sync, or cloud backup. Future versions may offer optional encrypted backup or multi-device sync. If introduced, the intended privacy principles are:</p>
-    <ul>
-        <li>sync requires a separate, clear opt-in after a notice explains what categories of data would be uploaded and why</li>
-        <li>declining sync keeps local use available</li>
-        <li>financial records are encrypted on your device before upload; the service is designed to store ciphertext without the keys needed to read the financial content</li>
-        <li>sync uses encrypted operations or snapshots rather than uploading the raw local database; balances, reports, and other derived views are rebuilt locally</li>
-        <li>sync is limited to the workspace you choose, but the service may still process account, device, membership, operation-size, timing, and security metadata needed to authenticate, authorize, route, and operate the service</li>
-        <li>recovery methods, device enrollment and revocation, key changes, retention, and deletion are explained before sync is activated</li>
-        <li>encryption and recovery keys are intended to remain under your control; losing your devices and recovery method may make synced books unrecoverable</li>
-        <li>raw SMS text is not uploaded or parsed on the server, and server-side tax, legal, or financial-reporting workflows are not part of the planned sync design</li>
-    </ul>
-    <p>If online sync is introduced, this Privacy Policy and the in-app disclosure will be updated before the feature is enabled. Stopping sync would stop future uploads, but it would not automatically recall data already downloaded to a device or delete a server backup unless a separate deletion process is completed.</p>
-    <p>Future versions may also include optional background transaction parsing on the device. If introduced, this Privacy Policy and the in-app disclosure will be updated before release.</p>
+        <h2 id="backup">7. Export, Backup and Device Backup</h2>
+        <p>You may export app data as ZIP backup files containing your personal records. Exported files remain under your control on your device or wherever you choose to save or share them.</p>
+        <p>Backups are not encrypted by the app, so you are responsible for protecting exported files. Backups you explicitly export may include original SMS content associated with the exported workplace records, including older journal source fields; the shared Device pending feed is not part of a workplace backup. Clearing app data does not delete backup files you previously saved or shared.</p>
+        <p><strong>Android system backup.</strong> The app currently allows Android's built-in app-data backup. If you have device backup turned on (for example Google backup on Android), Android may include the app's local data in that backup under your Google account, and may restore it to a new device. This backup is controlled by Android and your Google account settings, not by us, and we cannot access it.</p>
 
-    <h2>11. Security</h2>
-    <p>Your financial records remain primarily on your own device.</p>
-    <p>You are responsible for securing your device and exported backup files.</p>
+        <h2 id="accounts">8. No Account Registration</h2>
+        <p>Currently, Full Frills Balance does not require:</p>
+        <ul>
+            <li>login</li>
+            <li>email registration</li>
+            <li>phone number verification</li>
+            <li>cloud account</li>
+        </ul>
 
-    <h2>12. Children’s Privacy</h2>
-    <p>Full Frills Balance is not directed to children. If you are below the age at which you can provide valid consent under the law that applies to you, use the app only with a parent or legal guardian involved.</p>
+        <h2 id="sharing">9. Data Sharing</h2>
+        <p>We do not sell personal data. Data may be processed by these parties, only for the purposes described:</p>
+        <ul>
+            <li><strong>PostHog and Expo</strong>: product analytics (section 5).</li>
+            <li><strong>Sentry</strong>: crash reports and performance traces (section 5).</li>
+            <li><strong>Your phone's speech-recognition service</strong> (for example Google on Android): audio when you use voice entry (section 4).</li>
+            <li><strong>Google (Android device backup)</strong>: the app's local data, if you have Android backup turned on (section 7).</li>
+            <li><strong>ExchangeRate-API, jsDelivr/Cloudflare (currency-api) and Frankfurter</strong>: exchange-rate requests (section 6).</li>
+            <li><strong>GitHub</strong>: the app-update check (section 6).</li>
+            <li><strong>Vercel</strong>: hosting, page-view analytics and performance measurement for this website (section 13).</li>
+            <li><strong>FormSubmit</strong>: your email address if you join the iOS waitlist on this website (section 13).</li>
+        </ul>
+        <p>Files you export or bug reports you share go only where you choose to send them.</p>
 
-    <h2>13. Privacy Requests and Contact</h2>
-    <p>Your local financial records are stored on your device, so we generally cannot access or recover them from our servers. Use the app’s Settings controls for export, restore, and factory reset.</p>
-    <p>For data processed by Full Frills Balance or its service providers, you may contact us about privacy questions or requests such as access, correction, deletion, or withdrawal of consent where applicable. We may need to verify a request and may retain information where required by law.</p>
+        <h2 id="permissions">10. Permissions</h2>
+        <p>Depending on features you choose to use, the app may request:</p>
+        <ul>
+            <li>SMS read and receive permission, for SMS transaction import (Android)</li>
+            <li>microphone and speech-recognition permission, for voice entry</li>
+            <li>notification permission, for SMS review notifications</li>
+            <li>biometric or device-credential authentication, for the optional app lock</li>
+            <li>storage access on older Android versions (Android 12 and below), for export and backup files</li>
+            <li>internet access, for the features in section 6</li>
+        </ul>
+        <p>Permissions are optional where possible and used only for app functionality. The app does not request access to your photos or videos.</p>
 
-    <p>Sahil Soni<br>sscsps@gmail.com</p>
+        <h2 id="future">11. Planned Future Online Features (Not Currently Available)</h2>
+        <p>The current app does not offer account registration, online sync, or cloud backup. Future versions may offer optional encrypted backup or multi-device sync. If introduced, the intended privacy principles are:</p>
+        <ul>
+            <li>sync requires a separate, clear opt-in after a notice explains what categories of data would be uploaded and why</li>
+            <li>declining sync keeps local use available</li>
+            <li>financial records are encrypted on your device before upload; the service is designed to store ciphertext without the keys needed to read the financial content</li>
+            <li>sync uses encrypted operations or snapshots rather than uploading the raw local database; balances, reports, and other derived views are rebuilt locally</li>
+            <li>sync is limited to the workplace you choose, but the service may still process account, device, membership, operation-size, timing, and security metadata needed to authenticate, authorize, route, and operate the service</li>
+            <li>recovery methods, device enrollment and revocation, key changes, retention, and deletion are explained before sync is activated</li>
+            <li>encryption and recovery keys are intended to remain under your control; losing your devices and recovery method may make synced books unrecoverable</li>
+            <li>raw SMS text is not uploaded or parsed on the server, and server-side tax, legal, or financial-reporting workflows are not part of the planned sync design</li>
+        </ul>
+        <p>If online sync is introduced, this Privacy Policy and the in-app disclosure will be updated before the feature is enabled. Stopping sync would stop future uploads, but it would not automatically recall data already downloaded to a device or delete a server backup unless a separate deletion process is completed.</p>
 
-    <h2>14. Changes to This Policy</h2>
-    <p>This Privacy Policy may be updated when app features or data practices change. When an update materially changes how data is handled, we will update the effective and last-updated dates and provide an in-app or other appropriate notice where practical.</p>
-    <p>Update history:</p>
-    <ul>
-        <li>September 7, 2026 — clarified current local-first and no-bank behavior, export files, analytics and crash reporting, and planned privacy principles for optional encrypted sync. No sync feature was enabled by this update.</li>
-        <li>March 5, 2026 — initial policy published.</li>
-    </ul>
+        <h2 id="security">12. Security</h2>
+        <p>Your financial records remain primarily on your own device. The app offers an optional app lock using your device's biometrics or credentials, and a Privacy Mode that hides amounts and SMS content on screen. You are responsible for securing your device and exported backup files.</p>
+
+        <h2 id="website">13. This Website</h2>
+        <p>This website (full-frills-landing.vercel.app) uses Vercel Web Analytics and Speed Insights to count page views and measure page performance. If you join the iOS waitlist, the email address you enter is sent through the FormSubmit form service so we can notify you when the iOS app is available. We use it only for that purpose.</p>
+
+        <h2 id="children">14. Children's Privacy</h2>
+        <p>Full Frills Balance is not directed to children. If you are below the age at which you can provide valid consent under the law that applies to you, use the app only with a parent or legal guardian involved.</p>
+
+        <h2 id="contact">15. Privacy Requests and Contact</h2>
+        <p>Your local financial records are stored on your device, so we generally cannot access or recover them from our servers. Use the app's Settings controls for export, restore, and factory reset.</p>
+        <p>For data processed by Full Frills Balance or its service providers, you may contact us about privacy questions or requests such as access, correction, deletion, or withdrawal of consent where applicable. We may need to verify a request and may retain information where required by law.</p>
+        <p>Sahil Soni<br><a href="mailto:sscsps@gmail.com">sscsps@gmail.com</a></p>
+
+        <h2 id="changes">16. Changes to This Policy</h2>
+        <p>This Privacy Policy may be updated when app features or data practices change. When an update materially changes how data is handled, we will update the effective and last-updated dates and provide an in-app or other appropriate notice where practical.</p>
+        <p>Update history:</p>
+        <ul>
+            <li>October 16, 2026 — aligned the public policy with the current app: optional automatic SMS import on Android and local retention of original transaction SMS; SMS review notifications; allowlisted analytics and crash reporting (native crash reporting disabled, error message text removed); optional voice entry; exchange-rate providers and the app-update check; Android system backup; user-initiated bug reports; expanded permissions list; and this website's analytics and waitlist. No online sync or cloud backup was enabled by this update.</li>
+            <li>October 4, 2026 — documented optional automatic SMS import on Android at startup and on new-message arrival; documented retention of original transaction SMS for journal details and user-controlled backups, privacy maintenance, and allowlisted diagnostics and analytics.</li>
+            <li>September 7, 2026 — clarified current local-first and no-bank behavior, export files, analytics and crash reporting, and planned privacy principles for optional encrypted sync. No sync feature was enabled by this update.</li>
+            <li>March 5, 2026 — initial policy published.</li>
+        </ul>
+    </main>
+    <footer>
+        <p>Full Frills Balance © 2026 · <a href="/">Home</a></p>
+    </footer>
 </body>
 </html>
