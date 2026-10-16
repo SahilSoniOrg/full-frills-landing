@@ -3,10 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Full Frills Balance — Double-Entry Finance, Done Right</title>
-  <meta name="description" content="A personal finance app that respects your intelligence. Double-entry accounting, offline-first, beautifully crafted.">
+  <title>Full Frills Balance — Know what's actually Safe to Spend</title>
+  <meta name="description" content="Your balance isn't all spendable. Full Frills Balance sets aside the bills due before your salary lands and shows what's Safe to Spend. Private, offline-first, on Android.">
   <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#0a0c10">
+  <link rel="canonical" href="https://full-frills-landing.vercel.app/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Full Frills Balance">
+  <meta property="og:title" content="Full Frills Balance — Know what's actually Safe to Spend">
+  <meta property="og:description" content="Your balance isn't all spendable. Full Frills Balance sets aside bills due before payday and shows what's Safe to Spend.">
+  <meta property="og:url" content="https://full-frills-landing.vercel.app/">
+  <meta property="og:image" content="https://full-frills-landing.vercel.app/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Full Frills Balance showing ₹12,400 Safe to Spend after commitments">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Full Frills Balance — Know what's actually Safe to Spend">
+  <meta name="twitter:description" content="Your balance isn't all spendable. See what's Safe to Spend after the bills due before payday.">
+  <meta name="twitter:image" content="https://full-frills-landing.vercel.app/assets/og-image.png">
+  <link rel="preload" as="image" href="assets/shot-safe-to-spend.webp" type="image/webp">
   
+  <script>document.documentElement.classList.add('js');</script>
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -32,11 +49,12 @@
       
       --accent: #d4e3d8;
       --accent-dim: #8ab094;
-      --accent-vivid: #4ade80;
-      --val-vivid: #4ade80;
+      --mint: #7dd3a8; /* existing brand mint (same as glow orbs / app) */
+      --accent-vivid: var(--mint);
+      --val-vivid: var(--mint);
       
       --expense: #ff8b8b;
-      --income: #8bffb6;
+      --income: var(--mint);
       
       --font-display: 'DM Serif Display', serif;
       --font-body: 'Instrument Sans', sans-serif;
@@ -47,6 +65,7 @@
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { overflow-x: clip; scroll-behavior: smooth; }
 
     body {
       background-color: var(--bg-primary);
@@ -54,6 +73,7 @@
       font-family: var(--font-body);
       -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
+      overflow-x: clip;
       font-size: 16px;
       line-height: 1.5;
       position: relative;
@@ -269,7 +289,7 @@
       transition: transform 0.3s var(--easing);
     }
     .mockup:hover { transform: translateY(-10px); border-color: #333; }
-    .mockup img { width: 100%; display: block; }
+    .mockup img { width: 100%; height: auto; display: block; }
 
     .bento-section {
       max-width: 1200px;
@@ -289,7 +309,7 @@
     }
 
     .card {
-      opacity: 0; /* Initially hidden for animation */
+      /* hidden only when JS can reveal it (see .js below) */
       background: var(--bg-card);
       border: 1px solid var(--border-light);
       border-radius: var(--radius);
@@ -418,67 +438,142 @@
     .footer-links a { color: var(--text-secondary); text-decoration: none; font-weight: 500; transition: color 0.2s; }
     .footer-links a:hover { color: var(--text-primary); }
 
+    .js .bento-grid .card { opacity: 0; }
+    .skip-link { position: absolute; left: 16px; top: -60px; z-index: 200; background: var(--mint); color: #08110c; padding: 10px 16px; border-radius: 12px; font-weight: 600; text-decoration: none; }
+    .skip-link:focus { top: 16px; }
+    a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid var(--mint); outline-offset: 3px; }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+
+    /* Hero: the Safe-to-Spend number */
+    .hero { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 56px; align-items: center; text-align: left; max-width: 1200px; padding-top: 140px; padding-bottom: 60px; }
+    .hero h1 { font-size: clamp(2.8rem, 6vw, 5.2rem); }
+    .hero p { margin: 0 0 40px; }
+    .hero .cta-group { justify-content: flex-start; flex-wrap: wrap; }
+    .hero-visual { position: relative; justify-self: center; }
+    .hero-visual .mockup { width: 290px; box-shadow: 0 30px 80px -20px rgba(125,211,168,0.18), 0 20px 50px -10px rgba(0,0,0,0.6); }
+    .hero-visual .mockup:hover { transform: none; }
+    .hero-note { margin-top: 28px; font-size: 0.9rem; color: var(--text-muted); }
+
+    /* How it works */
+    .how { max-width: 1100px; margin: 140px auto; padding: 0 32px; display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+    .how.flip .how-media { order: 2; }
+    .how h2 { font-family: var(--font-display); font-size: clamp(2rem, 4vw, 2.8rem); line-height: 1.1; margin-bottom: 20px; }
+    .how p { color: var(--text-secondary); margin-bottom: 16px; }
+    .how-media { justify-self: center; }
+    .how-media .mockup { width: 280px; }
+    .steps { list-style: none; margin: 28px 0 0; display: grid; gap: 12px; }
+    .steps li { display: flex; justify-content: space-between; gap: 16px; padding: 14px 18px; border: 1px solid var(--border-light); border-radius: 16px; background: rgba(255,255,255,0.02); font-family: var(--font-mono); font-size: 0.95rem; }
+    .steps li span:first-child { font-family: var(--font-body); color: var(--text-secondary); }
+    .steps .minus { color: var(--expense); }
+    .steps .total { border-color: rgba(125,211,168,0.4); }
+    .steps .total span { color: var(--mint) !important; font-weight: 600; }
+    .tag-new { display: inline-block; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--mint); border: 1px solid rgba(125,211,168,0.35); border-radius: 100px; padding: 4px 12px; margin-bottom: 16px; }
+    .form-status { min-height: 1.5em; margin-top: 12px; color: var(--text-secondary); font-size: 0.9rem; }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+      .js .bento-grid .card { opacity: 1; }
+    }
+
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; text-align: center; gap: 48px; padding-top: 130px; }
+      .hero p { margin: 0 auto 32px; }
+      .hero .cta-group { justify-content: center; }
+        .how, .how.flip { grid-template-columns: 1fr; gap: 40px; margin: 96px auto; }
+      .how.flip .how-media { order: 0; }
+    }
+
     @media (max-width: 768px) {
-      h1 { font-size: 3.5rem; }
+      h1 { font-size: 3rem; }
+      nav { padding: 16px 0; }
+      .nav-inner { padding: 0 20px; }
+      .logo { font-size: 1.25rem; }
+      .hero { padding-left: 20px; padding-right: 20px; }
+      .hero p { font-size: 1.1rem; }
+      .cta-group { flex-direction: column; align-items: stretch; }
+      .btn-primary, .btn-secondary { text-align: center; }
+      .hero-visual .mockup { width: 250px; }
+      .equation-container { margin: 80px auto; padding: 0 20px; }
+      .equation-pill { flex-wrap: wrap; justify-content: center; gap: 8px 14px; padding: 20px 24px; font-size: 1.35rem; border-radius: 28px; }
+      .bento-section { margin: 96px auto; padding: 0 20px; }
+      .section-header { margin-bottom: 48px; }
+      .section-header h2 { font-size: 2.2rem; }
+      .card { padding: 28px; }
+      .how { padding: 0 20px; }
+      .code-section { padding: 0 20px; margin-bottom: 96px; gap: 32px; }
+      .terminal { font-size: 0.75rem; overflow-x: auto; }
+      .waitlist { margin-bottom: 96px; padding: 0 20px; }
+      footer { padding: 48px 20px; }
+      .footer-links { flex-wrap: wrap; gap: 16px 24px; }
       .bento-grid { grid-template-columns: 1fr; }
       .card.wide, .card.tall { grid-column: span 1; grid-row: span 1; }
       .code-section { grid-template-columns: 1fr; }
       .input-group { flex-direction: column; }
       .btn-submit { padding: 16px; }
-      .nav-links { display: none; }
+      .nav-links .nav-link { display: none; }
+      .btn-nav { padding: 8px 16px; }
     }
   </style>
 </head>
 <body>
-  <div class="grain"></div>
-  <div class="starfield" id="starfield"></div>
-  <div class="glow-orb orb-1"></div>
-  <div class="glow-orb orb-2"></div>
-  <div class="glow glow-1"></div>
-  <div class="glow glow-2"></div>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="starfield" id="starfield" aria-hidden="true"></div>
+  <div class="glow-orb orb-1" aria-hidden="true"></div>
+  <div class="glow-orb orb-2" aria-hidden="true"></div>
+  <div class="glow glow-1" aria-hidden="true"></div>
+  <div class="glow glow-2" aria-hidden="true"></div>
 
-  <nav>
+  <nav aria-label="Main">
     <div class="nav-inner">
-      <a href="#" class="logo">Full Frills <span>Balance</span></a>
+      <a href="/" class="logo" aria-label="Full Frills Balance home">Full Frills <span>Balance</span></a>
       <div class="nav-links">
-        <a href="https://t.me/FullFrills" class="nav-link" target="_blank">Telegram</a>
-        <a href="https://github.com/SscSPs/full-frills-balance" class="nav-link" target="_blank">GitHub</a>
-        <a href="https://play.google.com/store/apps/details?id=in.sahilsoni.fullfrillsbalance" class="btn-nav" target="_blank">Install Now</a>
+        <a href="#how" class="nav-link">How it works</a>
+        <a href="https://t.me/FullFrills" class="nav-link" target="_blank" rel="noopener">Telegram</a>
+        <a href="https://github.com/SahilSoniOrg/full-frills-balance" class="nav-link" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://play.google.com/store/apps/details?id=in.sahilsoni.fullfrillsbalance" class="btn-nav" target="_blank" rel="noopener">Get the app</a>
       </div>
     </div>
   </nav>
 
+  <main id="main">
   <header class="hero">
-    <span class="pill">Android · Live &nbsp;|&nbsp; iOS · Waitlist Open</span>
-    <h1>Your bank balance is <em>incomplete.</em></h1>
-    <p>Know exactly what's Safe to Spend after every bill, commitment, and budget. Finance for real life, not just records.</p>
-    <div class="cta-group">
-      <a href="https://play.google.com/store/apps/details?id=in.sahilsoni.fullfrillsbalance" class="btn-primary" target="_blank">Get it on Google Play</a>
-      <a href="#waitlist" class="btn-secondary">Join iOS Waitlist →</a>
+    <div>
+      <span class="pill">Android · Live &nbsp;|&nbsp; iOS · Waitlist open</span>
+      <h1>Your balance isn't all <em>yours to spend.</em></h1>
+      <p>Rent, cards and that sneaky Netflix renewal are already spoken for. Full Frills Balance sets aside the bills due before your salary lands, then shows the one number you actually need: <strong style="color:var(--text-primary)">Safe to Spend</strong>.</p>
+      <div class="cta-group">
+        <a href="https://play.google.com/store/apps/details?id=in.sahilsoni.fullfrillsbalance" class="btn-primary" target="_blank" rel="noopener">Get it on Google Play</a>
+        <a href="#waitlist" class="btn-secondary">Join the iOS waitlist →</a>
+      </div>
+      <p class="hero-note">No bank logins. Your money data stays on your phone.</p>
+    </div>
+    <div class="hero-visual">
+      <div class="mockup"><img src="assets/shot-safe-to-spend.webp" width="600" height="807" alt="Full Frills Balance dashboard showing ₹12,400 Safe to Spend after commitments over 30 days, with a 30-day projection chart" fetchpriority="high"></div>
     </div>
   </header>
 
-  <div class="marquee-container">
+  <div class="marquee-container" role="region" aria-label="More app screens">
     <div class="marquee-track">
-      <div class="mockup"><img src="assets/Screenshot_1779179327.png" alt="App Screenshot 1"></div>
-      <div class="mockup"><img src="assets/Screenshot_1779179342.png" alt="App Screenshot 2"></div>
-      <div class="mockup"><img src="assets/Screenshot_1779179345.png" alt="App Screenshot 3"></div>
-      <div class="mockup"><img src="assets/Screenshot_1779179347.png" alt="App Screenshot 4"></div>
-      <div class="mockup"><img src="assets/Screenshot_1779179355.png" alt="App Screenshot 5"></div>
-      <div class="mockup"><img src="assets/Screenshot_1779179367.png" alt="App Screenshot 6"></div>
-      <div class="mockup"><img src="assets/Screenshot_1779179376.png" alt="App Screenshot 7"></div>
-      <div class="mockup"><img src="assets/Screenshot_1779179412.png" alt="App Screenshot 8"></div>
-      <div class="mockup"><img src="assets/Screenshot_1779179419.png" alt="App Screenshot 9"></div>
-      <!-- Duplicate for seamless loop -->
-      <div class="mockup"><img src="assets/Screenshot_1779179327.png" alt="App Screenshot 1"></div>
-      <div class="mockup"><img src="assets/Screenshot_1779179342.png" alt="App Screenshot 2"></div>
-      <div class="mockup"><img src="assets/Screenshot_1779179345.png" alt="App Screenshot 3"></div>
-      <div class="mockup"><img src="assets/Screenshot_1779179347.png" alt="App Screenshot 4"></div>
-      <div class="mockup"><img src="assets/Screenshot_1779179355.png" alt="App Screenshot 5"></div>
-      <div class="mockup"><img src="assets/Screenshot_1779179367.png" alt="App Screenshot 6"></div>
-      <div class="mockup"><img src="assets/Screenshot_1779179376.png" alt="App Screenshot 7"></div>
-      <div class="mockup"><img src="assets/Screenshot_1779179412.png" alt="App Screenshot 8"></div>
-      <div class="mockup"><img src="assets/Screenshot_1779179419.png" alt="App Screenshot 9"></div>
+      <div class="mockup"><img src="assets/Screenshot_1779179327.png" alt="Full Frills Balance app screen" width="1080" height="2424" loading="lazy" decoding="async"></div>
+      <div class="mockup"><img src="assets/Screenshot_1779179342.png" alt="Full Frills Balance app screen" width="1080" height="2424" loading="lazy" decoding="async"></div>
+      <div class="mockup"><img src="assets/Screenshot_1779179345.png" alt="Full Frills Balance app screen" width="1080" height="2424" loading="lazy" decoding="async"></div>
+      <div class="mockup"><img src="assets/Screenshot_1779179347.png" alt="Full Frills Balance app screen" width="1080" height="2424" loading="lazy" decoding="async"></div>
+      <div class="mockup"><img src="assets/Screenshot_1779179355.png" alt="Full Frills Balance app screen" width="1080" height="2424" loading="lazy" decoding="async"></div>
+      <div class="mockup"><img src="assets/Screenshot_1779179367.png" alt="Full Frills Balance app screen" width="1080" height="2424" loading="lazy" decoding="async"></div>
+      <div class="mockup"><img src="assets/Screenshot_1779179376.png" alt="Full Frills Balance app screen" width="1080" height="2424" loading="lazy" decoding="async"></div>
+      <div class="mockup"><img src="assets/Screenshot_1779179412.png" alt="Full Frills Balance app screen" width="1080" height="2424" loading="lazy" decoding="async"></div>
+      <div class="mockup"><img src="assets/Screenshot_1779179419.png" alt="Full Frills Balance app screen" width="1080" height="2424" loading="lazy" decoding="async"></div>
+      <!-- Duplicate for seamless loop (hidden from screen readers) -->
+      <div class="mockup"><img src="assets/Screenshot_1779179327.png" alt="" width="1080" height="2424" loading="lazy" decoding="async"></div>
+      <div class="mockup"><img src="assets/Screenshot_1779179342.png" alt="" width="1080" height="2424" loading="lazy" decoding="async"></div>
+      <div class="mockup"><img src="assets/Screenshot_1779179345.png" alt="" width="1080" height="2424" loading="lazy" decoding="async"></div>
+      <div class="mockup"><img src="assets/Screenshot_1779179347.png" alt="" width="1080" height="2424" loading="lazy" decoding="async"></div>
+      <div class="mockup"><img src="assets/Screenshot_1779179355.png" alt="" width="1080" height="2424" loading="lazy" decoding="async"></div>
+      <div class="mockup"><img src="assets/Screenshot_1779179367.png" alt="" width="1080" height="2424" loading="lazy" decoding="async"></div>
+      <div class="mockup"><img src="assets/Screenshot_1779179376.png" alt="" width="1080" height="2424" loading="lazy" decoding="async"></div>
+      <div class="mockup"><img src="assets/Screenshot_1779179412.png" alt="" width="1080" height="2424" loading="lazy" decoding="async"></div>
+      <div class="mockup"><img src="assets/Screenshot_1779179419.png" alt="" width="1080" height="2424" loading="lazy" decoding="async"></div>
     </div>
   </div>
 
@@ -492,46 +587,73 @@
     </div>
   </div>
 
+  <section class="how" id="how" aria-labelledby="how-title">
+    <div class="how-media">
+      <div class="mockup"><img src="assets/shot-holding-back.webp" width="600" height="819" alt="Dashboard in 'Holding back for bills' mode: upcoming bills outpace cash, so spending is on hold until payday" loading="lazy" decoding="async"></div>
+    </div>
+    <div>
+      <h2 id="how-title">Balance ≠ spendable. Here's the maths.</h2>
+      <p>Your accounts say one thing. Your upcoming bills say another. We do the subtraction so you don't have to do it in your head at 11 pm.</p>
+      <ul class="steps" aria-label="Example: from balance to Safe to Spend">
+        <li><span>Balance across accounts</span><span>₹21,748</span></li>
+        <li><span>Bills due before salary</span><span class="minus">− ₹9,348</span></li>
+        <li class="total"><span>Safe to Spend</span><span>₹12,400</span></li>
+      </ul>
+      <p style="margin-top:20px">And when bills outrun cash, the dashboard says so plainly and switches to <em>Holding back for bills</em>, so you glide into payday instead of crashing into it.</p>
+    </div>
+  </section>
+
+  <section class="how flip" aria-labelledby="planned-title">
+    <div class="how-media">
+      <div class="mockup"><img src="assets/shot-planned.webp" width="600" height="819" alt="Commitments screen, Planned tab: ₹5,226 still to pay in October across four planned payments" loading="lazy" decoding="async"></div>
+    </div>
+    <div>
+      <span class="tag-new">New</span>
+      <h2 id="planned-title">Plan it once. It's counted until it's paid.</h2>
+      <p>Add a future-dated entry as <strong style="color:var(--text-primary)">planned</strong>. It shows up under Commitments and in the bills under Safe to Spend until it's actually posted. No more "oh right, the electricity bill".</p>
+    </div>
+  </section>
+
   <section class="bento-section" id="features">
     <div class="section-header">
       <h2>Built for what happens next.</h2>
-      <p>Most finance apps tell you where your money went. We tell you where you stand.</p>
+      <p>Most finance apps tell you where your money went. This one tells you where you stand.</p>
     </div>
     
     <div class="bento-grid">
       <div class="card wide" data-delay="0">
-        <div class="card-icon">🎯</div>
+        <div class="card-icon" aria-hidden="true">🎯</div>
         <div>
           <h3>Safe to Spend</h3>
-          <p>The only number that matters. Know exactly what you can use today after upcoming bills, budgets, and debts are accounted for.</p>
+          <p>The number your balance should have been. See what you can use today once upcoming bills and commitments are set aside.</p>
         </div>
       </div>
       <div class="card" data-delay="100">
-        <div class="card-icon">🔮</div>
+        <div class="card-icon" aria-hidden="true">🔮</div>
         <div>
-          <h3>30-Day Cash Forecast</h3>
-          <p>See your financial future. Detect shortfalls before they happen with our predictive cashflow engine.</p>
+          <h3>30-Day Projection</h3>
+          <p>A chart of where your balance is heading over the next 30 days, so a tight week shows up before it arrives.</p>
         </div>
       </div>
       <div class="card tall" data-delay="200">
-        <div class="card-icon">🔒</div>
+        <div class="card-icon" aria-hidden="true">🔒</div>
         <div>
           <h3>Private by Design</h3>
-          <p>Your data stays on your device. Works offline, no mandatory signups, and biometric locks to keep your eyes only on your money.</p>
+          <p>Your financial records stay on your device. Works offline, no sign-up, no bank logins, and an optional biometric app lock. <a href="privacy.html" style="color:var(--accent-dim)">Read the privacy policy</a>.</p>
         </div>
       </div>
       <div class="card" data-delay="300">
-        <div class="card-icon">📒</div>
+        <div class="card-icon" aria-hidden="true">📒</div>
         <div>
           <h3>Double-Entry Core</h3>
           <p>Accurate by design. Built on professional accounting principles so your balances are always consistent and dependable.</p>
         </div>
       </div>
       <div class="card" data-delay="400">
-        <div class="card-icon">📲</div>
+        <div class="card-icon" aria-hidden="true">📲</div>
         <div>
           <h3>Android Power User</h3>
-          <p>Private SMS import to detect transactions automatically on-device. Home screen widgets for split-second logging.</p>
+          <p>Optional SMS import that reads transaction messages on your device. Home screen widgets for Safe to Spend and quick logging.</p>
         </div>
       </div>
     </div>
@@ -541,9 +663,9 @@
     <div class="code-text">
       <h2>Computed, not cached.</h2>
       <p>Most apps store "Current Balance" as a number. We derive it from your history every time. The math is always right.</p>
-      <p>Transactions are immutable ledgers. Edit history is preserved.</p>
+      <p>Every entry balances: what leaves one account lands in another, so the totals always add up.</p>
     </div>
-    <div class="terminal">
+    <div class="terminal" aria-label="Example double-entry ledger entry">
       <div class="terminal-header">
         <div class="dot" style="background:#ff5f56"></div>
         <div class="dot" style="background:#ffbd2e"></div>
@@ -565,27 +687,32 @@
 
   <section class="waitlist" id="waitlist">
     <h2>iOS coming soon.</h2>
-    <p style="color:var(--text-secondary); margin-top:16px;">Get notified when the iOS version drops. <strong style="color:var(--text-primary);">Android users</strong> — you're all set, just <a href="https://play.google.com/store/apps/details?id=in.sahilsoni.fullfrillsbalance" style="color:var(--accent-dim); text-decoration:underline;">grab it on Google Play</a>.</p>
+    <p style="color:var(--text-secondary); margin-top:16px;">Get notified when the iOS version drops. <strong style="color:var(--text-primary);">Android users</strong> — you're all set, just <a href="https://play.google.com/store/apps/details?id=in.sahilsoni.fullfrillsbalance" target="_blank" rel="noopener" style="color:var(--accent-dim); text-decoration:underline;">grab it on Google Play</a>.</p>
     
     <form id="waitlistForm" action="https://formsubmit.co/ajax/111495b1b7c9b58c74144ccbbc8cc708" method="POST">
       <div class="input-group">
-        <input type="email" name="email" placeholder="you@example.com" required>
+        <label for="waitlist-email" class="sr-only">Email address</label>
+        <input id="waitlist-email" type="email" name="email" placeholder="you@example.com" autocomplete="email" required>
         <button type="submit" class="btn-submit">Notify Me</button>
       </div>
+      <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
     </form>
   </section>
 
+  </main>
+
   <footer>
     <div class="footer-links">
-      <a href="https://t.me/FullFrills" target="_blank">Telegram</a>
-      <a href="https://github.com/SscSPs/full-frills-balance" target="_blank">GitHub</a>
-      <a href="https://sahilsoni.in" target="_blank">Developer</a>
+      <a href="https://t.me/FullFrills" target="_blank" rel="noopener">Telegram</a>
+      <a href="https://github.com/SahilSoniOrg/full-frills-balance" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://sahilsoni.in" target="_blank" rel="noopener">Developer</a>
       <a href="privacy.html">Privacy Policy</a>
     </div>
     <p>Full Frills Balance © 2026 · Made with obsessive attention to detail</p>
   </footer>
 
   <script>
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     // Starfield
     const sf = document.getElementById('starfield');
     for (let i = 0; i < 50; i++) {
@@ -597,7 +724,7 @@
     }
 
     // 3D Tilt Effect
-    document.querySelectorAll('.card, .mockup').forEach(card => {
+    if (!reduceMotion && window.matchMedia('(hover: hover)').matches) document.querySelectorAll('.bento-grid .card, .marquee-track .mockup').forEach(card => {
       card.addEventListener('mousemove', e => {
         const rect = card.getBoundingClientRect();
         const x = e.clientX - rect.left;
@@ -619,18 +746,22 @@
       const btn = this.querySelector('button');
       const input = this.querySelector('input');
       const originalText = btn.textContent;
+      const status = document.getElementById('form-status');
       btn.textContent = '...';
       btn.disabled = true;
       try {
-        await fetch(this.action, {
+        const res = await fetch(this.action, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
           body: JSON.stringify({ email: input.value })
         });
+        if (!res.ok) throw new Error('Request failed');
         btn.textContent = 'In! ⚡️';
+        status.textContent = "You're on the list. We'll email you when iOS is ready.";
         input.value = '';
       } catch (err) {
         btn.textContent = 'Error';
+        status.textContent = "That didn't go through. Please try again in a moment.";
         setTimeout(() => {
           btn.textContent = originalText;
           btn.disabled = false;
