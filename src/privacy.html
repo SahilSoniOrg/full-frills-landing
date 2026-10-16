@@ -43,7 +43,7 @@
         a:focus-visible { outline: 2px solid var(--mint); outline-offset: 3px; }
         .dates { color: var(--muted); font-size: 0.95rem; margin: 0 0 24px; }
         .callout { border: 1px solid rgba(125,211,168,0.3); background: rgba(125,211,168,0.05); border-radius: 16px; padding: 16px 20px; margin: 24px 0; }
-        .callout p { margin: 0; }
+        .callout p { margin: 10px 0 0; } .callout summary { cursor: pointer; color: var(--text); }
         .summary { border: 1px solid var(--line); border-radius: 16px; padding: 8px 20px 4px; margin: 24px 0; background: rgba(255,255,255,0.02); }
         .summary h2 { border: 0; margin-top: 0.8em; }
         nav.toc ol { columns: 2; column-gap: 32px; padding-left: 22px; color: var(--muted); }
@@ -64,20 +64,23 @@
         <h1>Privacy Policy for Full Frills Balance</h1>
         <p class="dates"><strong>Effective date:</strong> October 16, 2026 · <strong>Last updated:</strong> October 16, 2026</p>
 
-        <div class="callout">
-            <p><strong>Policy update (October 16, 2026):</strong> This update brings the public policy in line with the current app. It covers optional automatic SMS import on Android, local retention of original transaction SMS, SMS review notifications, the allowlisted analytics and crash-reporting fields, optional voice entry, the services used to fetch exchange rates, the app-update check, Android system backup, and this website's own analytics and waitlist. The app still does not connect to bank accounts and does not offer online sync or cloud backup. The planned-sync section describes possible future behavior only.</p>
-        </div>
-
         <section class="summary" aria-labelledby="summary">
             <h2 id="summary">The short version</h2>
             <ul>
                 <li>Your financial records are stored on your device. We don't store them on our servers.</li>
-                <li>No bank logins, no account sign-up, no online sync or cloud backup in the current app.</li>
-                <li>SMS import is optional, Android-only, and parsed on your device.</li>
-                <li>Analytics and crash reports use an allowlist and never include amounts, balances, merchant names, SMS text, or your notes.</li>
-                <li>Backup files you export are not encrypted by the app, so keep them somewhere safe.</li>
+                <li>No bank logins, no account sign-up, and no online sync or cloud backup in the current app.</li>
+                <li>SMS import is optional, Android-only, and parsed on your device. Transaction SMS you capture are kept on your phone until you clear app data, reset, or uninstall.</li>
+                <li>We do not intentionally send amounts, balances, merchant names, SMS text or your notes in analytics or crash reports. Analytics is on in release builds and there is currently no in-app switch to turn it off.</li>
+                <li>Voice entry is optional. Your phone's speech-recognition service turns speech into text and, depending on your phone, may process the audio online.</li>
+                <li>If Android device backup is on, Android may back up the app's data to your Google account.</li>
+                <li>Backup files you export are not encrypted by the app and can include original SMS text, so keep them somewhere safe.</li>
             </ul>
         </section>
+
+        <details class="callout">
+            <summary><strong>What changed on October 16, 2026</strong></summary>
+            <p>This update brings the public policy in line with the current app. It covers optional automatic SMS import on Android, local retention of original transaction SMS, SMS review notifications, the allowlisted analytics and crash-reporting fields, optional voice entry, the services used to fetch exchange rates, the app-update check, Android system backup, and this website's own analytics and waitlist. The app still does not connect to bank accounts and does not offer online sync or cloud backup. The planned-sync section describes possible future behavior only.</p>
+        </details>
 
         <nav class="toc" aria-label="Contents">
             <ol>
@@ -102,7 +105,7 @@
 
         <h2 id="overview">1. Overview</h2>
         <p>Full Frills Balance is designed primarily as an offline personal money management application. It does not connect to bank accounts; financial records are based on information you enter, SMS messages you choose to import, or files you choose to import.</p>
-        <p>Most financial data entered or generated inside the app remains stored locally on your device and is not uploaded to our servers.</p>
+        <p>Your financial records are stored on your device and are not uploaded to our servers. A small amount of data does leave your device for the purposes described in this policy: allowlisted analytics and crash reports (section 5), voice entry through your phone's speech service (section 4), exchange-rate and update-check requests (section 6), and Android device backup if you have it turned on (section 7). Section 9 lists everyone who may receive data.</p>
 
         <h2 id="local">2. Financial Data Stored Locally</h2>
         <p>The following data is stored on your device:</p>
@@ -130,12 +133,28 @@
             <li>create transaction entries inside the app</li>
         </ul>
         <h3>How automatic import works</h3>
-        <p>SMS scanning and parsing happen on your device. The first time you enable automatic import, the app scans up to 50 recent inbox messages as an initial catch-up. Matching transaction messages enter the SMS import flow and may be auto-posted under rules you configured. While automatic import is enabled, the app checks every incoming SMS locally to determine whether it contains a transaction, including messages it later ignores. Android may start a short background task when an SMS arrives, even if the app is not open. The app also checks for missed messages at startup and when it returns to the foreground. Android may delay background work while the app is force-stopped or restricted; the app catches up when it can run again. Disabling automatic import stops future arrival-triggered processing.</p>
+        <p>Everything below happens on your phone:</p>
+        <ul>
+            <li>The first time you turn on automatic import, the app scans up to 50 recent inbox messages as a catch-up.</li>
+            <li>While it's on, the app checks every incoming SMS to see whether it's a transaction, including messages it then ignores.</li>
+            <li>Android may start a short background task when an SMS arrives, even if the app isn't open.</li>
+            <li>The app also checks for missed messages when it starts and when you return to it. If Android restricts or force-stops the app, it catches up when it can run again.</li>
+            <li>Matching messages go to the SMS review flow, and may be auto-posted under rules you set up.</li>
+            <li>Turning automatic import off stops processing new arrivals.</li>
+        </ul>
         <h3>What is kept on your device</h3>
-        <p>For transaction-related messages captured in the SMS inbox, the app retains the sender and original message body locally, including after review, dismissal, import, or auto-posting. Linked journal details can display that source message so you can check the transaction against the original SMS. New captures keep the original message in the shared Device inbox; workplace records and journals reference it instead of making additional raw copies. Older inbox records and journal metadata may retain existing source content. Imported financial entries also retain extracted details such as amount, currency, merchant, and reference number, plus a one-way deduplication digest. Privacy maintenance hashes older deduplication identities and removes raw SMS fields from machine-generated audit payloads; it does not erase retained source messages or user-written notes. New SMS imports do not copy raw messages into journal notes, audit fields, or analytics.</p>
-        <p>Retained SMS source content has no automatic expiry. Importing, auto-posting, dismissing a message, or disabling automatic import does not delete it. It remains until you clear the app data, use Factory Reset, or uninstall the app. Privacy Mode hides the original SMS body in journal details. SMS rule configuration may retain conditions you chose.</p>
+        <p>For transaction messages the app captures:</p>
+        <ul>
+            <li>The sender and original message text are kept on your phone, including after you review, dismiss, import or auto-post them. Journal details can show the original SMS so you can check the entry against it.</li>
+            <li>New captures keep one copy in the shared device inbox; each workplace's records point to it rather than copying the text. Older records may still hold their own copy.</li>
+            <li>Imported entries also keep extracted details (amount, currency, merchant, reference number) and a one-way fingerprint used to avoid duplicates.</li>
+            <li>Privacy maintenance hashes older duplicate-check identities and strips raw SMS fields from automatic audit records. It does not erase kept source messages or notes you wrote.</li>
+            <li>New SMS imports never copy the raw message into journal notes, audit fields or analytics.</li>
+            <li>Kept SMS text has no automatic expiry. Importing, auto-posting, dismissing or turning off automatic import doesn't delete it. It stays until you clear app data, use Factory Reset, or uninstall the app.</li>
+            <li>Privacy Mode hides the original SMS text in journal details. SMS rules may keep the conditions you chose.</li>
+        </ul>
         <h3>SMS review notifications</h3>
-        <p>SMS review notifications are optional and scheduled locally on your device. Their enablement and detail-preview settings apply to this device and are not included in exported backups. By default they contain a generic review prompt. You can choose detailed previews with extracted transaction information; the app hides these details while Privacy Mode or app lock is enabled. Notification routing uses local inbox and workplace identifiers rather than raw SMS content. The pending inbox is shared on the device; posting, dismissing, and rule decisions belong to each workplace.</p>
+        <p>SMS review notifications are optional and scheduled locally on your device. Their enablement and detail-preview settings apply to this device and are not included in exported backups. By default they contain a generic review prompt. You can choose detailed previews with extracted transaction information; the app hides these details while Privacy Mode or app lock is enabled. Notification routing uses local inbox and workplace identifiers rather than raw SMS content. The pending inbox is shared on the device; posting, dismissing, and rule decisions belong to each workplace (a separate set of books in the app).</p>
         <p>SMS permissions are optional, and the app remains usable without granting SMS access or enabling automatic import. Automatic import requires Android's SMS read and receive permissions. We do not intentionally upload full SMS content, sender details, or message bodies to external servers.</p>
 
         <h2 id="voice">4. Voice Entry</h2>
@@ -167,7 +186,7 @@
             <li>user-entered notes</li>
             <li>privacy policy text or signatures</li>
         </ul>
-        <p>Analytics identifiers are pseudonymous and are used only to understand app usage and improve functionality. PostHog session replay is disabled. We do not record in-app screenshots or screen replays for product analytics.</p>
+        <p>Analytics and crash reporting are turned on in release builds of the app. There is currently no in-app setting to turn them off; if you object, contact us (section 15). Analytics identifiers are pseudonymous and are used only to understand app usage and improve functionality. PostHog session replay is disabled. We do not record in-app screenshots or screen replays for product analytics.</p>
         <p><strong>Sentry (crash reporting)</strong> is separate from PostHog. When enabled, error reports and performance traces may include error types, code locations (function names, file paths and line numbers from the app's own code), and navigation timing; error message text is removed before sending. Default personal data collection is turned off. Native crash reporting is disabled because its reports bypass the app's privacy filters, so native crashes, freezes and out-of-memory terminations are not reported. We do not attach screenshots or screen layouts, and we do not enable Sentry session replay or screen recording.</p>
         <p><strong>Bug reports you choose to send.</strong> If you use the in-app bug report option, the app builds a diagnostic ZIP (app and device details plus recent app logs) and opens your phone's share sheet. Nothing is sent unless you pick where to share it.</p>
 
@@ -195,7 +214,18 @@
         </ul>
 
         <h2 id="sharing">9. Data Sharing</h2>
-        <p>We do not sell personal data. Limited technical analytics and crash reports may be processed by the third-party providers named above (PostHog, Expo, Sentry) strictly for app improvement. Exchange-rate and update-check providers receive only the requests described in section 6.</p>
+        <p>We do not sell personal data. Data may be processed by these parties, only for the purposes described:</p>
+        <ul>
+            <li><strong>PostHog and Expo</strong>: product analytics (section 5).</li>
+            <li><strong>Sentry</strong>: crash reports and performance traces (section 5).</li>
+            <li><strong>Your phone's speech-recognition service</strong> (for example Google on Android): audio when you use voice entry (section 4).</li>
+            <li><strong>Google (Android device backup)</strong>: the app's local data, if you have Android backup turned on (section 7).</li>
+            <li><strong>ExchangeRate-API, jsDelivr/Cloudflare (currency-api) and Frankfurter</strong>: exchange-rate requests (section 6).</li>
+            <li><strong>GitHub</strong>: the app-update check (section 6).</li>
+            <li><strong>Vercel</strong>: hosting, page-view analytics and performance measurement for this website (section 13).</li>
+            <li><strong>FormSubmit</strong>: your email address if you join the iOS waitlist on this website (section 13).</li>
+        </ul>
+        <p>Files you export or bug reports you share go only where you choose to send them.</p>
 
         <h2 id="permissions">10. Permissions</h2>
         <p>Depending on features you choose to use, the app may request:</p>
@@ -216,7 +246,7 @@
             <li>declining sync keeps local use available</li>
             <li>financial records are encrypted on your device before upload; the service is designed to store ciphertext without the keys needed to read the financial content</li>
             <li>sync uses encrypted operations or snapshots rather than uploading the raw local database; balances, reports, and other derived views are rebuilt locally</li>
-            <li>sync is limited to the workspace you choose, but the service may still process account, device, membership, operation-size, timing, and security metadata needed to authenticate, authorize, route, and operate the service</li>
+            <li>sync is limited to the workplace you choose, but the service may still process account, device, membership, operation-size, timing, and security metadata needed to authenticate, authorize, route, and operate the service</li>
             <li>recovery methods, device enrollment and revocation, key changes, retention, and deletion are explained before sync is activated</li>
             <li>encryption and recovery keys are intended to remain under your control; losing your devices and recovery method may make synced books unrecoverable</li>
             <li>raw SMS text is not uploaded or parsed on the server, and server-side tax, legal, or financial-reporting workflows are not part of the planned sync design</li>

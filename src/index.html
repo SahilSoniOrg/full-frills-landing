@@ -115,7 +115,7 @@
     @keyframes drift2 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(15px,-25px)} }
 
     .glow {
-      position: absolute;
+      position: fixed; /* fixed so it never extends the page (empty space under footer) */
       border-radius: 50%;
       filter: blur(120px);
       z-index: -1;
@@ -331,7 +331,7 @@
     .card.tall { grid-row: span 2; }
 
     .card-icon {
-      font-size: 2rem; margin-bottom: 24px;
+      color: var(--mint); margin-bottom: 24px;
       width: 60px; height: 60px;
       background: rgba(255,255,255,0.03);
       border-radius: 16px;
@@ -346,27 +346,6 @@
     }
 
     .card p { color: var(--text-secondary); font-size: 1rem; }
-
-    .equation-container {
-      margin: 120px auto;
-      text-align: center;
-      display: flex; justify-content: center;
-    }
-    
-    .equation-pill {
-      background: rgba(255,255,255,0.02);
-      border: 1px solid var(--border-light);
-      padding: 24px 48px;
-      border-radius: 100px;
-      display: flex; gap: 24px; align-items: center;
-      font-family: var(--font-display);
-      font-size: 2rem;
-      backdrop-filter: blur(10px);
-    }
-    
-    .val-debit { color: var(--expense); }
-    .val-credit { color: var(--income); }
-    .op { color: var(--text-muted); font-family: var(--font-body); font-weight: 300; }
 
     .code-section {
       max-width: 1000px; margin: 0 auto 160px; padding: 0 32px;
@@ -470,6 +449,15 @@
     .tag-new { display: inline-block; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--mint); border: 1px solid rgba(125,211,168,0.35); border-radius: 100px; padding: 4px 12px; margin-bottom: 16px; }
     .form-status { min-height: 1.5em; margin-top: 12px; color: var(--text-secondary); font-size: 0.9rem; }
 
+    .how-solo { grid-template-columns: minmax(0, 640px); justify-content: center; margin-bottom: 40px; }
+    .nerds { max-width: 1000px; margin: 0 auto 120px; padding: 0 32px; }
+    .nerds > summary { cursor: pointer; list-style: none; width: fit-content; margin: 0 auto 40px; padding: 12px 22px; border: 1px solid var(--border-light); border-radius: 100px; color: var(--text-secondary); font-weight: 500; }
+    .nerds > summary::-webkit-details-marker { display: none; }
+    .nerds > summary::after { content: " ↓"; color: var(--mint); }
+    .nerds[open] > summary::after { content: " ↑"; }
+    .nerds > summary:hover { color: var(--text-primary); border-color: var(--border-hover); }
+    .nerds .code-section { padding: 0; margin-bottom: 0; }
+
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
       .js .bento-grid .card { opacity: 1; }
@@ -492,21 +480,31 @@
       .hero p { font-size: 1.1rem; }
       .cta-group { flex-direction: column; align-items: stretch; }
       .btn-primary, .btn-secondary { text-align: center; }
-      .hero-visual .mockup { width: 250px; }
-      .equation-container { margin: 80px auto; padding: 0 20px; }
-      .equation-pill { flex-wrap: wrap; justify-content: center; gap: 8px 14px; padding: 20px 24px; font-size: 1.35rem; border-radius: 28px; }
+      .hero-visual .mockup { width: 230px; }
+      .hero { padding-top: 92px; gap: 24px; padding-bottom: 32px; }
+      .hero .pill { margin-bottom: 16px; font-size: 0.7rem; }
+      .hero h1 { font-size: 2.6rem; margin-bottom: 16px; }
+      .hero p { font-size: 1rem; margin-bottom: 20px; }
+      .hero .cta-group { gap: 10px; }
+      .hero .btn-primary, .hero .btn-secondary { padding: 12px 16px; font-size: 0.95rem; }
+      .hero-note { margin-top: 14px; font-size: 0.85rem; }
+      .bento-grid { grid-template-columns: 1fr 1fr; gap: 12px; grid-auto-rows: auto; }
+      .card.wide { grid-column: span 2; }
+      .card { padding: 20px; }
+      .card h3 { font-size: 1.25rem; }
+      .card p { font-size: 0.9rem; }
+      .card-icon { width: 44px; height: 44px; margin-bottom: 14px; border-radius: 12px; }
+      .nerds { padding: 0 20px; margin-bottom: 80px; }
       .bento-section { margin: 96px auto; padding: 0 20px; }
       .section-header { margin-bottom: 48px; }
       .section-header h2 { font-size: 2.2rem; }
-      .card { padding: 28px; }
       .how { padding: 0 20px; }
       .code-section { padding: 0 20px; margin-bottom: 96px; gap: 32px; }
       .terminal { font-size: 0.75rem; overflow-x: auto; }
       .waitlist { margin-bottom: 96px; padding: 0 20px; }
       footer { padding: 48px 20px; }
       .footer-links { flex-wrap: wrap; gap: 16px 24px; }
-      .bento-grid { grid-template-columns: 1fr; }
-      .card.wide, .card.tall { grid-column: span 1; grid-row: span 1; }
+      .card.tall { grid-row: span 1; }
       .code-section { grid-template-columns: 1fr; }
       .input-group { flex-direction: column; }
       .btn-submit { padding: 16px; }
@@ -546,7 +544,7 @@
         <a href="https://play.google.com/store/apps/details?id=in.sahilsoni.fullfrillsbalance" class="btn-primary" target="_blank" rel="noopener">Get it on Google Play</a>
         <a href="#waitlist" class="btn-secondary">Join the iOS waitlist →</a>
       </div>
-      <p class="hero-note">No bank logins. Your money data stays on your phone.</p>
+      <p class="hero-note">No account, no bank login, no loans. Your records stay on your phone.</p>
     </div>
     <div class="hero-visual">
       <div class="mockup"><img src="assets/shot-safe-to-spend.webp" width="600" height="807" alt="Full Frills Balance dashboard showing ₹12,400 Safe to Spend after commitments over 30 days, with a 30-day projection chart" fetchpriority="high"></div>
@@ -555,42 +553,22 @@
 
   <div class="marquee-container" role="region" aria-label="More app screens">
     <div class="marquee-track">
-      <div class="mockup"><img src="assets/Screenshot_1779179327.png" alt="Full Frills Balance app screen" width="1080" height="2424" loading="lazy" decoding="async"></div>
-      <div class="mockup"><img src="assets/Screenshot_1779179342.png" alt="Full Frills Balance app screen" width="1080" height="2424" loading="lazy" decoding="async"></div>
-      <div class="mockup"><img src="assets/Screenshot_1779179345.png" alt="Full Frills Balance app screen" width="1080" height="2424" loading="lazy" decoding="async"></div>
-      <div class="mockup"><img src="assets/Screenshot_1779179347.png" alt="Full Frills Balance app screen" width="1080" height="2424" loading="lazy" decoding="async"></div>
-      <div class="mockup"><img src="assets/Screenshot_1779179355.png" alt="Full Frills Balance app screen" width="1080" height="2424" loading="lazy" decoding="async"></div>
-      <div class="mockup"><img src="assets/Screenshot_1779179367.png" alt="Full Frills Balance app screen" width="1080" height="2424" loading="lazy" decoding="async"></div>
-      <div class="mockup"><img src="assets/Screenshot_1779179376.png" alt="Full Frills Balance app screen" width="1080" height="2424" loading="lazy" decoding="async"></div>
-      <div class="mockup"><img src="assets/Screenshot_1779179412.png" alt="Full Frills Balance app screen" width="1080" height="2424" loading="lazy" decoding="async"></div>
-      <div class="mockup"><img src="assets/Screenshot_1779179419.png" alt="Full Frills Balance app screen" width="1080" height="2424" loading="lazy" decoding="async"></div>
+      <div class="mockup"><img src="assets/car-1.webp" alt="Light-theme dashboard: ₹12,400 Safe to Spend with a 30-day projection" width="480" height="945" loading="lazy" decoding="async"></div>
+      <div class="mockup"><img src="assets/car-2.webp" alt="Commitments, Budgets tab: ₹14,330 left of the October limit, by category" width="480" height="945" loading="lazy" decoding="async"></div>
+      <div class="mockup"><img src="assets/car-3.webp" alt="Activity for October 2026: EMI, Zepto and Zomato entries in ₹" width="480" height="945" loading="lazy" decoding="async"></div>
+      <div class="mockup"><img src="assets/car-4.webp" alt="Commitments, Planned tab: ₹5,226 still to pay in October" width="480" height="945" loading="lazy" decoding="async"></div>
+      <div class="mockup"><img src="assets/car-5.webp" alt="Dashboard showing ₹1,01,345 Safe to Spend after commitments" width="480" height="945" loading="lazy" decoding="async"></div>
       <!-- Duplicate for seamless loop (hidden from screen readers) -->
-      <div class="mockup"><img src="assets/Screenshot_1779179327.png" alt="" width="1080" height="2424" loading="lazy" decoding="async"></div>
-      <div class="mockup"><img src="assets/Screenshot_1779179342.png" alt="" width="1080" height="2424" loading="lazy" decoding="async"></div>
-      <div class="mockup"><img src="assets/Screenshot_1779179345.png" alt="" width="1080" height="2424" loading="lazy" decoding="async"></div>
-      <div class="mockup"><img src="assets/Screenshot_1779179347.png" alt="" width="1080" height="2424" loading="lazy" decoding="async"></div>
-      <div class="mockup"><img src="assets/Screenshot_1779179355.png" alt="" width="1080" height="2424" loading="lazy" decoding="async"></div>
-      <div class="mockup"><img src="assets/Screenshot_1779179367.png" alt="" width="1080" height="2424" loading="lazy" decoding="async"></div>
-      <div class="mockup"><img src="assets/Screenshot_1779179376.png" alt="" width="1080" height="2424" loading="lazy" decoding="async"></div>
-      <div class="mockup"><img src="assets/Screenshot_1779179412.png" alt="" width="1080" height="2424" loading="lazy" decoding="async"></div>
-      <div class="mockup"><img src="assets/Screenshot_1779179419.png" alt="" width="1080" height="2424" loading="lazy" decoding="async"></div>
+      <div class="mockup" aria-hidden="true"><img src="assets/car-1.webp" alt="" width="480" height="945" loading="lazy" decoding="async"></div>
+      <div class="mockup" aria-hidden="true"><img src="assets/car-2.webp" alt="" width="480" height="945" loading="lazy" decoding="async"></div>
+      <div class="mockup" aria-hidden="true"><img src="assets/car-3.webp" alt="" width="480" height="945" loading="lazy" decoding="async"></div>
+      <div class="mockup" aria-hidden="true"><img src="assets/car-4.webp" alt="" width="480" height="945" loading="lazy" decoding="async"></div>
+      <div class="mockup" aria-hidden="true"><img src="assets/car-5.webp" alt="" width="480" height="945" loading="lazy" decoding="async"></div>
     </div>
   </div>
-
-  <div class="equation-container">
-    <div class="equation-pill">
-      <span class="val-debit">Real Balance</span>
-      <span class="op">-</span>
-      <span class="val-credit">Commitments</span>
-      <span class="op">=</span>
-      <span class="val-vivid">Safe to Spend</span>
-    </div>
   </div>
 
-  <section class="how" id="how" aria-labelledby="how-title">
-    <div class="how-media">
-      <div class="mockup"><img src="assets/shot-holding-back.webp" width="600" height="819" alt="Dashboard in 'Holding back for bills' mode: upcoming bills outpace cash, so spending is on hold until payday" loading="lazy" decoding="async"></div>
-    </div>
+  <section class="how how-solo" id="how" aria-labelledby="how-title">
     <div>
       <h2 id="how-title">Balance ≠ spendable. Here's the maths.</h2>
       <p>Your accounts say one thing. Your upcoming bills say another. We do the subtraction so you don't have to do it in your head at 11 pm.</p>
@@ -599,7 +577,16 @@
         <li><span>Bills due before salary</span><span class="minus">− ₹9,348</span></li>
         <li class="total"><span>Safe to Spend</span><span>₹12,400</span></li>
       </ul>
-      <p style="margin-top:20px">And when bills outrun cash, the dashboard says so plainly and switches to <em>Holding back for bills</em>, so you glide into payday instead of crashing into it.</p>
+    </div>
+  </section>
+
+  <section class="how" aria-labelledby="shortfall-title">
+    <div class="how-media">
+      <div class="mockup"><img src="assets/shot-holding-back.webp" width="600" height="819" alt="Dashboard showing ₹23,555 under Holding Back for Bills: upcoming bills outpace cash, so spending is on hold until payday" loading="lazy" decoding="async"></div>
+    </div>
+    <div>
+      <h2 id="shortfall-title">Short this month? It'll tell you.</h2>
+      <p>When bills outrun cash, it doesn't pretend you're at ₹0. It shows the shortfall under <strong style="color:var(--text-primary)">Holding Back for Bills</strong>, so you can glide into payday instead of crashing into it.</p>
     </div>
   </section>
 
@@ -609,7 +596,7 @@
     </div>
     <div>
       <span class="tag-new">New</span>
-      <h2 id="planned-title">Plan it once. It's counted until it's paid.</h2>
+      <h2 id="planned-title">Plan it once. It's counted until it's posted.</h2>
       <p>Add a future-dated entry as <strong style="color:var(--text-primary)">planned</strong>. It shows up under Commitments and in the bills under Safe to Spend until it's actually posted. No more "oh right, the electricity bill".</p>
     </div>
   </section>
@@ -622,43 +609,45 @@
     
     <div class="bento-grid">
       <div class="card wide" data-delay="0">
-        <div class="card-icon" aria-hidden="true">🎯</div>
+        <div class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.2"/></svg></div>
         <div>
           <h3>Safe to Spend</h3>
-          <p>The number your balance should have been. See what you can use today once upcoming bills and commitments are set aside.</p>
+          <p>The honest spending number. What's left once the bills due before your salary are set aside.</p>
         </div>
       </div>
       <div class="card" data-delay="100">
-        <div class="card-icon" aria-hidden="true">🔮</div>
+        <div class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l5-5 4 3 8-8"/><path d="M15 7h5v5"/></svg></div>
         <div>
           <h3>30-Day Projection</h3>
           <p>A chart of where your balance is heading over the next 30 days, so a tight week shows up before it arrives.</p>
         </div>
       </div>
       <div class="card tall" data-delay="200">
-        <div class="card-icon" aria-hidden="true">🔒</div>
+        <div class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></div>
         <div>
           <h3>Private by Design</h3>
           <p>Your financial records stay on your device. Works offline, no sign-up, no bank logins, and an optional biometric app lock. <a href="privacy.html" style="color:var(--accent-dim)">Read the privacy policy</a>.</p>
         </div>
       </div>
       <div class="card" data-delay="300">
-        <div class="card-icon" aria-hidden="true">📒</div>
+        <div class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h7v14H4z"/><path d="M13 5h7v14h-7z"/><path d="M6.5 9h2M15.5 9h2M6.5 12h2M15.5 12h2"/></svg></div>
         <div>
           <h3>Double-Entry Core</h3>
-          <p>Accurate by design. Built on professional accounting principles so your balances are always consistent and dependable.</p>
+          <p>We work out your balance from your history every time, so the totals always add up.</p>
         </div>
       </div>
       <div class="card" data-delay="400">
-        <div class="card-icon" aria-hidden="true">📲</div>
+        <div class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2.5" width="10" height="19" rx="2"/><path d="M10 6h4M11 18.5h2"/></svg></div>
         <div>
           <h3>Android Power User</h3>
-          <p>Optional SMS import that reads transaction messages on your device. Home screen widgets for Safe to Spend and quick logging.</p>
+          <p>Bank SMS turned into entries in a tap, on Android. Switching? Import from Ivy Wallet or Cashew.</p>
         </div>
       </div>
     </div>
   </section>
 
+  <details class="nerds">
+    <summary>For the nerds: how the maths works</summary>
   <section class="code-section">
     <div class="code-text">
       <h2>Computed, not cached.</h2>
@@ -684,6 +673,7 @@
       </div>
     </div>
   </section>
+  </details>
 
   <section class="waitlist" id="waitlist">
     <h2>iOS coming soon.</h2>
