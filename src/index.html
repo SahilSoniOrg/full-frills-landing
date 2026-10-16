@@ -292,19 +292,15 @@
     .mockup img { width: 100%; height: auto; display: block; }
 
     .bento-section {
-      max-width: 1200px;
-      margin: 160px auto;
+      max-width: 1100px;
+      margin: 64px auto 140px;
       padding: 0 32px;
     }
 
-    .section-header { text-align: center; margin-bottom: 80px; }
-    .section-header h2 { font-family: var(--font-display); font-size: 3rem; margin-bottom: 16px; }
-    .section-header p { color: var(--text-secondary); }
 
     .bento-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      grid-auto-rows: minmax(300px, auto);
       gap: 24px;
     }
 
@@ -313,12 +309,12 @@
       background: var(--bg-card);
       border: 1px solid var(--border-light);
       border-radius: var(--radius);
-      padding: 40px;
+      padding: 28px;
       position: relative;
       overflow: hidden;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
+      justify-content: flex-start;
       transition: border 0.3s, transform 0.3s;
     }
 
@@ -327,54 +323,17 @@
       transform: translateY(-4px);
     }
 
-    .card.wide { grid-column: span 2; }
-    .card.tall { grid-row: span 2; }
 
-    .card-icon {
-      color: var(--mint); margin-bottom: 24px;
-      width: 60px; height: 60px;
-      background: rgba(255,255,255,0.03);
-      border-radius: 16px;
-      display: flex; align-items: center; justify-content: center;
-    }
+    .card-icon { width: 26px; height: 26px; color: var(--mint); margin-bottom: 20px; flex-shrink: 0; }
 
     .card h3 {
       font-family: var(--font-display);
-      font-size: 1.8rem;
-      margin-bottom: 12px;
+      font-size: 1.5rem;
+      margin-bottom: 8px;
       color: var(--text-primary);
     }
 
     .card p { color: var(--text-secondary); font-size: 1rem; }
-
-    .code-section {
-      max-width: 1000px; margin: 0 auto 160px; padding: 0 32px;
-      display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;
-    }
-
-    .code-text h2 { font-family: var(--font-display); font-size: 2.5rem; margin-bottom: 24px; }
-    .code-text p { color: var(--text-secondary); margin-bottom: 24px; }
-
-    .terminal {
-      background: #0d0d10;
-      border: 1px solid var(--border-light);
-      border-radius: 16px;
-      padding: 24px;
-      font-family: var(--font-mono);
-      font-size: 0.85rem;
-      box-shadow: 0 40px 80px rgba(0,0,0,0.4);
-    }
-
-    .terminal-header {
-      display: flex; gap: 8px; margin-bottom: 20px; opacity: 0.5;
-    }
-    .dot { width: 10px; height: 10px; border-radius: 50%; background: #fff; }
-
-    .line { display: block; margin-bottom: 4px; }
-    .kw { color: #cc7832; }
-    .str { color: #6a8759; }
-    .num { color: #6897bb; }
-    .cmt { color: #808080; }
 
     .waitlist {
       max-width: 600px; margin: 0 auto 160px; padding: 0 32px; text-align: center;
@@ -433,30 +392,18 @@
     .hero-visual .mockup:hover { transform: none; }
     .hero-note { margin-top: 28px; font-size: 0.9rem; color: var(--text-muted); }
 
-    /* How it works */
-    .how { max-width: 1100px; margin: 140px auto; padding: 0 32px; display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
-    .how.flip .how-media { order: 2; }
-    .how h2 { font-family: var(--font-display); font-size: clamp(2rem, 4vw, 2.8rem); line-height: 1.1; margin-bottom: 20px; }
-    .how p { color: var(--text-secondary); margin-bottom: 16px; }
-    .how-media { justify-self: center; }
-    .how-media .mockup { width: 280px; }
-    .steps { list-style: none; margin: 28px 0 0; display: grid; gap: 12px; }
-    .steps li { display: flex; justify-content: space-between; gap: 16px; padding: 14px 18px; border: 1px solid var(--border-light); border-radius: 16px; background: rgba(255,255,255,0.02); font-family: var(--font-mono); font-size: 0.95rem; }
-    .steps li span:first-child { font-family: var(--font-body); color: var(--text-secondary); }
-    .steps .minus { color: var(--expense); }
-    .steps .total { border-color: rgba(125,211,168,0.4); }
-    .steps .total span { color: var(--mint) !important; font-weight: 600; }
-    .tag-new { display: inline-block; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--mint); border: 1px solid rgba(125,211,168,0.35); border-radius: 100px; padding: 4px 12px; margin-bottom: 16px; }
+    .how { max-width: 900px; margin: 120px auto 80px; padding: 0 32px; text-align: center; }
+    .how h2, .waitlist h2 { font-family: var(--font-display); font-size: clamp(2rem, 4vw, 2.6rem); font-weight: 400; margin-bottom: 32px; }
+    .how > p { color: var(--text-secondary); margin-top: 24px; }
+    .math { display: flex; align-items: center; justify-content: center; gap: 16px; flex-wrap: wrap; }
+    .math div { border: 1px solid var(--border-light); background: rgba(255,255,255,0.02); border-radius: 20px; padding: 16px 22px; min-width: 150px; }
+    .math strong { display: block; font-family: var(--font-mono); font-size: 1.5rem; font-weight: 500; }
+    .math span { color: var(--text-secondary); font-size: 0.85rem; }
+    .math b { color: var(--text-muted); font-size: 1.6rem; font-weight: 300; }
+    .math .minus strong { color: var(--expense); }
+    .math .total { border-color: rgba(125,211,168,0.45); }
+    .math .total strong { color: var(--mint); }
     .form-status { min-height: 1.5em; margin-top: 12px; color: var(--text-secondary); font-size: 0.9rem; }
-
-    .how-solo { grid-template-columns: minmax(0, 640px); justify-content: center; margin-bottom: 40px; }
-    .nerds { max-width: 1000px; margin: 0 auto 120px; padding: 0 32px; }
-    .nerds > summary { cursor: pointer; list-style: none; width: fit-content; margin: 0 auto 40px; padding: 12px 22px; border: 1px solid var(--border-light); border-radius: 100px; color: var(--text-secondary); font-weight: 500; }
-    .nerds > summary::-webkit-details-marker { display: none; }
-    .nerds > summary::after { content: " ↓"; color: var(--mint); }
-    .nerds[open] > summary::after { content: " ↑"; }
-    .nerds > summary:hover { color: var(--text-primary); border-color: var(--border-hover); }
-    .nerds .code-section { padding: 0; margin-bottom: 0; }
 
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
@@ -467,8 +414,6 @@
       .hero { grid-template-columns: 1fr; text-align: center; gap: 48px; padding-top: 130px; }
       .hero p { margin: 0 auto 32px; }
       .hero .cta-group { justify-content: center; }
-        .how, .how.flip { grid-template-columns: 1fr; gap: 40px; margin: 96px auto; }
-      .how.flip .how-media { order: 0; }
     }
 
     @media (max-width: 768px) {
@@ -489,23 +434,18 @@
       .hero .btn-primary, .hero .btn-secondary { padding: 12px 16px; font-size: 0.95rem; }
       .hero-note { margin-top: 14px; font-size: 0.85rem; }
       .bento-grid { grid-template-columns: 1fr 1fr; gap: 12px; grid-auto-rows: auto; }
-      .card.wide { grid-column: span 2; }
-      .card { padding: 20px; }
+      .card { padding: 18px; }
+      .math div { min-width: 0; padding: 12px 14px; }
+      .math strong { font-size: 1.15rem; }
+      .math { gap: 8px; }
       .card h3 { font-size: 1.25rem; }
       .card p { font-size: 0.9rem; }
-      .card-icon { width: 44px; height: 44px; margin-bottom: 14px; border-radius: 12px; }
-      .nerds { padding: 0 20px; margin-bottom: 80px; }
-      .bento-section { margin: 96px auto; padding: 0 20px; }
-      .section-header { margin-bottom: 48px; }
-      .section-header h2 { font-size: 2.2rem; }
-      .how { padding: 0 20px; }
-      .code-section { padding: 0 20px; margin-bottom: 96px; gap: 32px; }
-      .terminal { font-size: 0.75rem; overflow-x: auto; }
+      .card-icon { margin-bottom: 12px; }
+      .bento-section { margin: 48px auto 96px; padding: 0 20px; }
+      .how { padding: 0 20px; margin: 72px auto 0; }
       .waitlist { margin-bottom: 96px; padding: 0 20px; }
       footer { padding: 48px 20px; }
       .footer-links { flex-wrap: wrap; gap: 16px 24px; }
-      .card.tall { grid-row: span 1; }
-      .code-section { grid-template-columns: 1fr; }
       .input-group { flex-direction: column; }
       .btn-submit { padding: 16px; }
       .nav-links .nav-link { display: none; }
@@ -526,7 +466,7 @@
     <div class="nav-inner">
       <a href="/" class="logo" aria-label="Full Frills Balance home">Full Frills <span>Balance</span></a>
       <div class="nav-links">
-        <a href="#how" class="nav-link">How it works</a>
+        
         <a href="https://t.me/FullFrills" class="nav-link" target="_blank" rel="noopener">Telegram</a>
         <a href="https://github.com/SahilSoniOrg/full-frills-balance" class="nav-link" target="_blank" rel="noopener">GitHub</a>
         <a href="https://play.google.com/store/apps/details?id=in.sahilsoni.fullfrillsbalance" class="btn-nav" target="_blank" rel="noopener">Get the app</a>
@@ -537,9 +477,9 @@
   <main id="main">
   <header class="hero">
     <div>
-      <span class="pill">Android · Live &nbsp;|&nbsp; iOS · Waitlist open</span>
+      <span class="pill">Android · Live &nbsp;|&nbsp; iOS soon</span>
       <h1>Your balance isn't all <em>yours to spend.</em></h1>
-      <p>Rent, cards and that sneaky Netflix renewal are already spoken for. Full Frills Balance sets aside the bills due before your salary lands, then shows the one number you actually need: <strong style="color:var(--text-primary)">Safe to Spend</strong>.</p>
+      <p>It sets aside the bills due before your salary and shows what's Safe to Spend.</p>
       <div class="cta-group">
         <a href="https://play.google.com/store/apps/details?id=in.sahilsoni.fullfrillsbalance" class="btn-primary" target="_blank" rel="noopener">Get it on Google Play</a>
         <a href="#waitlist" class="btn-secondary">Join the iOS waitlist →</a>
@@ -568,117 +508,33 @@
   </div>
   </div>
 
-  <section class="how how-solo" id="how" aria-labelledby="how-title">
-    <div>
-      <h2 id="how-title">Balance ≠ spendable. Here's the maths.</h2>
-      <p>Your accounts say one thing. Your upcoming bills say another. We do the subtraction so you don't have to do it in your head at 11 pm.</p>
-      <ul class="steps" aria-label="Example: from balance to Safe to Spend">
-        <li><span>Balance across accounts</span><span>₹21,748</span></li>
-        <li><span>Bills due before salary</span><span class="minus">− ₹9,348</span></li>
-        <li class="total"><span>Safe to Spend</span><span>₹12,400</span></li>
-      </ul>
+  <section class="how" id="how" aria-labelledby="how-title">
+    <h2 id="how-title">How it works</h2>
+    <div class="math" role="img" aria-label="₹21,748 balance minus ₹9,348 in bills before salary equals ₹12,400 Safe to Spend">
+      <div><strong>₹21,748</strong><span>Balance</span></div>
+      <b aria-hidden="true">−</b>
+      <div class="minus"><strong>₹9,348</strong><span>Bills before salary</span></div>
+      <b aria-hidden="true">=</b>
+      <div class="total"><strong>₹12,400</strong><span>Safe to Spend</span></div>
     </div>
+    <p>Short this month? It shows the gap under Holding Back for Bills.</p>
   </section>
 
-  <section class="how" aria-labelledby="shortfall-title">
-    <div class="how-media">
-      <div class="mockup"><img src="assets/shot-holding-back.webp" width="600" height="819" alt="Dashboard showing ₹23,555 under Holding Back for Bills: upcoming bills outpace cash, so spending is on hold until payday" loading="lazy" decoding="async"></div>
-    </div>
-    <div>
-      <h2 id="shortfall-title">Short this month? It'll tell you.</h2>
-      <p>When bills outrun cash, it doesn't pretend you're at ₹0. It shows the shortfall under <strong style="color:var(--text-primary)">Holding Back for Bills</strong>, so you can glide into payday instead of crashing into it.</p>
-    </div>
-  </section>
-
-  <section class="how flip" aria-labelledby="planned-title">
-    <div class="how-media">
-      <div class="mockup"><img src="assets/shot-planned.webp" width="600" height="819" alt="Commitments screen, Planned tab: ₹5,226 still to pay in October across four planned payments" loading="lazy" decoding="async"></div>
-    </div>
-    <div>
-      <span class="tag-new">New</span>
-      <h2 id="planned-title">Plan it once. It's counted until it's posted.</h2>
-      <p>Add a future-dated entry as <strong style="color:var(--text-primary)">planned</strong>. It shows up under Commitments and in the bills under Safe to Spend until it's actually posted. No more "oh right, the electricity bill".</p>
-    </div>
-  </section>
-
-  <section class="bento-section" id="features">
-    <div class="section-header">
-      <h2>Built for what happens next.</h2>
-      <p>Most finance apps tell you where your money went. This one tells you where you stand.</p>
-    </div>
-    
+  <section class="bento-section" id="features" aria-label="Features">
     <div class="bento-grid">
-      <div class="card wide" data-delay="0">
-        <div class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.2"/></svg></div>
-        <div>
-          <h3>Safe to Spend</h3>
-          <p>The honest spending number. What's left once the bills due before your salary are set aside.</p>
-        </div>
-      </div>
-      <div class="card" data-delay="100">
-        <div class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l5-5 4 3 8-8"/><path d="M15 7h5v5"/></svg></div>
-        <div>
-          <h3>Look Ahead</h3>
-          <p>See where your balance is heading over the next 30, 60 or 90 days. You pick; it's 30 by default. A tight week shows up before it arrives.</p>
-        </div>
-      </div>
-      <div class="card tall" data-delay="200">
-        <div class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></div>
-        <div>
-          <h3>Private by Design</h3>
-          <p>Your financial records stay on your device. Works offline, no sign-up, no bank logins, and an optional biometric app lock. <a href="privacy.html" style="color:var(--accent-dim)">Read the privacy policy</a>.</p>
-        </div>
-      </div>
-      <div class="card" data-delay="300">
-        <div class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h7v14H4z"/><path d="M13 5h7v14h-7z"/><path d="M6.5 9h2M15.5 9h2M6.5 12h2M15.5 12h2"/></svg></div>
-        <div>
-          <h3>Double-Entry Core</h3>
-          <p>We work out your balance from your history every time, so the totals always add up.</p>
-        </div>
-      </div>
-      <div class="card" data-delay="400">
-        <div class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2.5" width="10" height="19" rx="2"/><path d="M10 6h4M11 18.5h2"/></svg></div>
-        <div>
-          <h3>Android Power User</h3>
-          <p>Bank SMS turned into entries in a tap, on Android. Switching? Import from Ivy Wallet or Cashew.</p>
-        </div>
-      </div>
+      <div class="card"><svg class="card-icon" aria-hidden="true" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.2"/></svg><h3>Safe to Spend</h3><p>What's left once bills before salary are set aside.</p></div>
+      <div class="card"><svg class="card-icon" aria-hidden="true" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M8 3v4M16 3v4M4 10h16"/></svg><h3>Planned entries</h3><p>Future-dated entries count under Commitments until they're posted.</p></div>
+      <div class="card"><svg class="card-icon" aria-hidden="true" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l5-5 4 3 8-8"/><path d="M15 7h5v5"/></svg><h3>Look ahead</h3><p>Project your balance 30, 60 or 90 days out.</p></div>
+      <div class="card"><svg class="card-icon" aria-hidden="true" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg><h3>Private by design</h3><p>Records stay on your phone. Optional biometric app lock.</p></div>
+      <div class="card"><svg class="card-icon" aria-hidden="true" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h7v14H4z"/><path d="M13 5h7v14h-7z"/></svg><h3>Double-entry core</h3><p>Balances worked out from your history, so totals add up.</p></div>
+      <div class="card"><svg class="card-icon" aria-hidden="true" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2.5" width="10" height="19" rx="2"/><path d="M10 6h4M11 18.5h2"/></svg><h3>SMS import on Android</h3><p>Bank SMS into entries in a tap. Import from Ivy Wallet or Cashew.</p></div>
     </div>
   </section>
-
-  <details class="nerds">
-    <summary>For the nerds: how the maths works</summary>
-  <section class="code-section">
-    <div class="code-text">
-      <h2>Computed, not cached.</h2>
-      <p>Most apps store "Current Balance" as a number. We derive it from your history every time. The math is always right.</p>
-      <p>Every entry balances: what leaves one account lands in another, so the totals always add up.</p>
-    </div>
-    <div class="terminal" aria-label="Example double-entry ledger entry">
-      <div class="terminal-header">
-        <div class="dot" style="background:#ff5f56"></div>
-        <div class="dot" style="background:#ffbd2e"></div>
-        <div class="dot" style="background:#27c93f"></div>
-      </div>
-      <div class="code-lines">
-        <span class="line"><span class="cmt">// Ledger Entry </span></span>
-        <span class="line"><span class="kw">const</span> entry = {</span>
-        <span class="line">&nbsp;&nbsp;id: <span class="str">"tx_123"</span>,</span>
-        <span class="line">&nbsp;&nbsp;splits: [</span>
-        <span class="line">&nbsp;&nbsp;&nbsp;&nbsp;{ acct: <span class="str">"Assets:Bank"</span>, cr: <span class="num">150.00</span> },</span>
-        <span class="line">&nbsp;&nbsp;&nbsp;&nbsp;{ acct: <span class="str">"Exp:Groceries"</span>, dr: <span class="num">150.00</span> }</span>
-        <span class="line">&nbsp;&nbsp;]</span>
-        <span class="line">};</span>
-        <span class="line"><span class="cmt">// sum(dr) === sum(cr)</span></span>
-      </div>
-    </div>
-  </section>
-  </details>
 
   <section class="waitlist" id="waitlist">
     <h2>iOS coming soon.</h2>
-    <p style="color:var(--text-secondary); margin-top:16px;">Get notified when the iOS version drops. <strong style="color:var(--text-primary);">Android users</strong> — you're all set, just <a href="https://play.google.com/store/apps/details?id=in.sahilsoni.fullfrillsbalance" target="_blank" rel="noopener" style="color:var(--accent-dim); text-decoration:underline;">grab it on Google Play</a>.</p>
-    
+    <p style="color:var(--text-secondary); margin-top:12px;">Get an email when it's ready. On Android? <a href="https://play.google.com/store/apps/details?id=in.sahilsoni.fullfrillsbalance" target="_blank" rel="noopener" style="color:var(--accent-dim); text-decoration:underline;">Get it on Google Play</a>.</p>
+
     <form id="waitlistForm" action="https://formsubmit.co/ajax/111495b1b7c9b58c74144ccbbc8cc708" method="POST">
       <div class="input-group">
         <label for="waitlist-email" class="sr-only">Email address</label>
@@ -698,7 +554,7 @@
       <a href="https://sahilsoni.in" target="_blank" rel="noopener">Developer</a>
       <a href="privacy.html">Privacy Policy</a>
     </div>
-    <p>Full Frills Balance © 2026 · Made with obsessive attention to detail</p>
+    <p>Full Frills Balance © 2026</p>
   </footer>
 
   <script>
