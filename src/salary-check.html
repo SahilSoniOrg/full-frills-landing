@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will I make it to salary day? — Full Frills Balance</title>
+    <meta name="description" content="A free quick check: enter your balance and the bills still due, and get a rough estimate of what you can spend until salary day.">
+    <meta name="theme-color" content="#0a0c10">
+    <link rel="canonical" href="https://full-frills-landing.vercel.app/salary-check.html">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Full Frills Balance">
+    <meta property="og:title" content="Will I make it to salary day? — Full Frills Balance">
+    <meta property="og:description" content="A free quick check of what you can spend until salary day.">
+    <meta property="og:url" content="https://full-frills-landing.vercel.app/salary-check.html">
+    <meta property="og:image" content="https://full-frills-landing.vercel.app/assets/og-image.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <!-- Vercel Web Analytics -->
+    <script defer src="/_vercel/insights/script.js"></script>
+
+    <!-- Vercel Speed Insights -->
+    <script defer src="/_vercel/speed-insights/script.js"></script>
+    <style>
+        :root { --bg: #0a0c10; --text: #ececf0; --muted: #a3a3ad; --line: rgba(255,255,255,0.08); --mint: #7dd3a8; --accent-dim: #8ab094; }
+        * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; line-height: 1.7; margin: 0; background: var(--bg); color: var(--text); -webkit-font-smoothing: antialiased; }
+        .top { border-bottom: 1px solid var(--line); }
+        .top-inner, main, footer { max-width: 800px; margin: 0 auto; padding: 0 24px; }
+        .top-inner { display: flex; justify-content: space-between; align-items: center; padding-top: 20px; padding-bottom: 20px; }
+        .logo { font-family: Georgia, "Times New Roman", serif; font-size: 1.3rem; color: var(--text); text-decoration: none; }
+        .logo span { font-style: italic; color: var(--accent-dim); }
+        .back { color: var(--muted); text-decoration: none; font-size: 0.95rem; }
+        main { padding-top: 40px; padding-bottom: 64px; }
+        h1 { font-family: Georgia, "Times New Roman", serif; font-weight: 400; font-size: clamp(2rem, 6vw, 2.8rem); line-height: 1.15; margin: 0 0 16px; }
+        h2 { font-size: 1.3rem; margin: 2.4em 0 0.6em; padding-top: 0.4em; border-top: 1px solid var(--line); }
+        h3 { font-size: 1.05rem; margin: 1.6em 0 0.4em; color: var(--text); }
+        p, li { color: var(--muted); }
+        strong { color: var(--text); }
+        ul { padding-left: 22px; margin: 0 0 1em; }
+        li { margin-bottom: 0.35em; }
+        a { color: var(--mint); }
+        a:focus-visible { outline: 2px solid var(--mint); outline-offset: 3px; }
+        .dates { color: var(--muted); font-size: 0.95rem; margin: 0 0 24px; }
+        .callout { border: 1px solid rgba(125,211,168,0.3); background: rgba(125,211,168,0.05); border-radius: 16px; padding: 16px 20px; margin: 24px 0; }
+        .callout p { margin: 10px 0 0; } .callout summary { cursor: pointer; color: var(--text); }
+        .summary { border: 1px solid var(--line); border-radius: 16px; padding: 8px 20px 4px; margin: 24px 0; background: rgba(255,255,255,0.02); }
+        .summary h2 { border: 0; margin-top: 0.8em; }
+        nav.toc ol { columns: 2; column-gap: 32px; padding-left: 22px; color: var(--muted); }
+        nav.toc a { color: var(--muted); text-decoration: none; }
+        nav.toc a:hover { color: var(--text); }
+        footer { border-top: 1px solid var(--line); padding-top: 24px; padding-bottom: 48px; color: var(--muted); font-size: 0.9rem; }
+        @media (max-width: 600px) { nav.toc ol { columns: 1; } }
+            label { display: block; color: var(--muted); font-size: 0.95rem; margin: 16px 0 6px; }
+        input { font: inherit; color: var(--text); background: rgba(255,255,255,0.04); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; width: 100%; color-scheme: dark; }
+        input:focus-visible, button:focus-visible { outline: 2px solid var(--mint); outline-offset: 2px; }
+        .bill { display: grid; grid-template-columns: 1fr 1fr auto; gap: 8px; margin-bottom: 8px; }
+        button { font: inherit; color: var(--mint); background: none; border: 1px solid rgba(125,211,168,0.3); border-radius: 10px; padding: 8px 14px; cursor: pointer; }
+        .result { font-size: 1.15rem; } .result strong { font-size: 1.5rem; }
+        .bad strong { color: #f0a0a0; }
+    </style>
+</head>
+<body>
+    <header class="top">
+        <div class="top-inner">
+            <a href="/" class="logo">Full Frills <span>Balance</span></a>
+            <a href="/" class="back">← Back to home</a>
+        </div>
+    </header>
+    <main>
+        <h1>Will I make it to salary day?</h1>
+        <p>A free quick check. Enter what's in your account and the bills still due, and get a rough estimate of what's left to spend until salary day.</p>
+        <p class="dates"><strong>Your numbers never leave this browser.</strong> Everything is worked out on this page. Nothing is sent or saved, and closing the tab clears it.</p>
+
+        <form id="f" autocomplete="off" onsubmit="return false">
+            <label for="bal">Money in your account now (₹)</label>
+            <input id="bal" type="number" inputmode="decimal" min="0" placeholder="e.g. 18000">
+            <label for="sal">Next salary date</label>
+            <input id="sal" type="date">
+            <label>Bills still due (amount and date)</label>
+            <div id="bills"></div>
+            <button type="button" id="add">+ Add a bill</button>
+            <label for="daily">Usual daily spend, optional (₹)</label>
+            <input id="daily" type="number" inputmode="decimal" min="0" placeholder="e.g. 300">
+        </form>
+
+        <section class="summary" aria-live="polite"><p class="result" id="out">Fill in your balance and salary date to see the estimate.</p></section>
+        <p>This is an estimate. Bills dated after salary day are left out, since that salary can cover them. Bills before or on salary day come out of what you have now.</p>
+
+        <h2>Want this every day, without the typing?</h2>
+        <p>Full Frills Balance keeps your accounts and upcoming bills on your phone and shows what's safe to spend at a glance. <a href="https://play.google.com/store/apps/details?id=in.sahilsoni.fullfrillsbalance" target="_blank" rel="noopener">Get it on Google Play</a>.</p>
+    </main>
+    <footer>
+        <p>Full Frills Balance © 2026 · <a href="/">Home</a> · <a href="privacy.html">Privacy Policy</a></p>
+    </footer>
+    <script>
+        const $ = id => document.getElementById(id);
+        const inr = n => '₹' + Math.round(n).toLocaleString('en-IN');
+        const day = s => new Date(s + 'T00:00');
+        function addBill() {
+            const row = document.createElement('div');
+            row.className = 'bill';
+            row.innerHTML = '<input type="number" inputmode="decimal" min="0" placeholder="₹ amount" aria-label="Bill amount"><input type="date" aria-label="Bill date"><button type="button" aria-label="Remove bill">✕</button>';
+            row.lastChild.onclick = () => { row.remove(); calc(); };
+            $('bills').append(row);
+        }
+        function calc() {
+            const bal = +$('bal').value, sal = $('sal').value, daily = +$('daily').value || 0;
+            if (!$('bal').value || !sal) return;
+            const today = new Date(); today.setHours(0, 0, 0, 0);
+            const days = Math.max(1, Math.round((day(sal) - today) / 864e5));
+            let bills = 0;
+            for (const r of $('bills').children) {
+                const [a, d] = r.querySelectorAll('input');
+                if (+a.value && (!d.value || day(d.value) <= day(sal))) bills += +a.value;
+            }
+            const free = bal - bills, left = free - daily * days, dd = days === 1 ? 'day' : 'days';
+            const out = $('out');
+            out.className = 'result' + (left < 0 ? ' bad' : '');
+            if (free < 0) out.innerHTML = 'Short by about <strong>' + inr(-free) + '</strong>. The bills due before salary are more than you have now, before any daily spending.';
+            else if (left < 0) out.innerHTML = 'Short by about <strong>' + inr(-left) + '</strong>. After bills you have ' + inr(free) + ', but ' + inr(daily) + ' a day for ' + days + ' ' + dd + ' is ' + inr(daily * days) + '. That works out to about ' + inr(free / days) + ' a day.';
+            else out.innerHTML = 'About <strong>' + inr(free / days) + ' a day</strong> for the next ' + days + ' ' + dd + '. That\'s ' + inr(free) + ' free after bills' + (daily ? ', and about ' + inr(left) + ' still left on salary day at your usual spend.' : ' until salary day.');
+        }
+        $('add').onclick = addBill;
+        $('f').oninput = calc;
+        addBill();
+    </script>
+</body>
+</html>
