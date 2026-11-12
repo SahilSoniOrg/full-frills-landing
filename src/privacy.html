@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="policy-version" content="2026-11-09">
+    <meta name="policy-version" content="2026-11-12">
     <title>Privacy Policy — Full Frills Balance</title>
     <meta name="description" content="How Full Frills Balance handles your data: local-first storage, optional on-device SMS and Gmail import, limited analytics, and no bank connections.">
     <meta name="theme-color" content="#0a0c10">
-    <link rel="canonical" href="https://full-frills-landing.vercel.app/privacy.html">
+    <link rel="canonical" href="https://fullfrills.sahilsoni.in/privacy.html">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="Full Frills Balance">
     <meta property="og:title" content="Privacy Policy — Full Frills Balance">
     <meta property="og:description" content="Local-first, no bank connections, optional on-device SMS and Gmail import, limited analytics.">
-    <meta property="og:url" content="https://full-frills-landing.vercel.app/privacy.html">
-    <meta property="og:image" content="https://full-frills-landing.vercel.app/assets/og-image.png">
+    <meta property="og:url" content="https://fullfrills.sahilsoni.in/privacy.html">
+    <meta property="og:image" content="https://fullfrills.sahilsoni.in/assets/og-image.png">
     <meta name="twitter:card" content="summary_large_image">
     <!-- Vercel Web Analytics -->
     <script defer src="/_vercel/insights/script.js"></script>
@@ -62,7 +62,7 @@
     </header>
     <main>
         <h1>Privacy Policy for Full Frills Balance</h1>
-        <p class="dates"><strong>Effective date:</strong> November 9, 2026 · <strong>Last updated:</strong> November 9, 2026</p>
+        <p class="dates"><strong>Effective date:</strong> November 12, 2026 · <strong>Last updated:</strong> November 12, 2026</p>
 
         <section class="summary" aria-labelledby="summary">
             <h2 id="summary">The short version</h2>
@@ -70,7 +70,7 @@
                 <li>Your financial records are stored on your device. We don't store them on our servers.</li>
                 <li>No bank logins, no required app account, or app-provided online sync. If device backup is enabled, Apple or Android may back up app data.</li>
                 <li>SMS import is optional, Android-only, and parsed on your device. Transaction SMS you capture are kept on your phone until you clear app data, reset, or uninstall.</li>
-                <li>Gmail is optional. Google's gmail.readonly permission can read messages across your mailbox, while the app's capture search checks only new Inbox messages on your device, including unrelated mail it may inspect while matching. Selected details from matches are stored locally; full email bodies are not retained in app records. Disconnecting or dismissing an item does not erase those details; use Factory Reset or clear app data to remove local copies. Device backups may retain a copy if enabled. Google sign-in components handle access credentials; the app does not include them in transaction records or exported backups.</li>
+                <li>Gmail is optional. Google's <code>gmail.readonly</code> permission can read messages across your mailbox; Full Frills Balance checks only new Inbox messages on your device. Unmatched messages and full message bodies are not retained. Selected details from matches stay on your device until you reset or clear app data. The app does not add a separate encryption layer to its local database; its optional App Lock gates access using your device authentication. Exported ZIP backups are not encrypted.</li>
                 <li>We do not intentionally send Gmail content, amounts, balances, merchant names, SMS text or your notes in analytics or crash reports. Analytics is on in release builds and there is currently no in-app switch to turn it off.</li>
                 <li>Voice entry is optional. Your phone's speech-recognition service turns speech into text and, depending on your phone, may process the audio online.</li>
                 <li>If device backup is on, Apple or Android may back up the app's data to your iCloud or Google account.</li>
@@ -79,8 +79,8 @@
         </section>
 
         <details class="callout">
-            <summary><strong>What changed on November 9, 2026</strong></summary>
-        <p>This update documents optional Google sign-in and the mailbox-wide Gmail read-only permission, while clarifying that the app's capture search is limited to new Inbox messages. It also covers on-device parsing, locally retained matched-email details, optional automatic and Android background capture, deletion through Factory Reset or clearing app data, and the possibility that enabled Apple or Android device backups retain app data. The October 16 update's SMS, voice, analytics, backup and website disclosures remain in force.</p>
+            <summary><strong>What changed on November 12, 2026</strong></summary>
+        <p>This update makes the Gmail data-protection safeguards and retention and deletion rules explicit, including the local database's lack of separate app-level encryption and the unencrypted nature of exported backups. The homepage now describes optional Gmail transaction capture and its broad read-only permission. The November 9 update's Gmail access and use disclosures and the October 16 update's SMS, voice, analytics, backup and website disclosures remain in force.</p>
         </details>
 
         <nav class="toc" aria-label="Contents">
@@ -89,6 +89,8 @@
                 <li><a href="#local">Financial data stored locally</a></li>
                 <li><a href="#sms">SMS access and transaction import</a></li>
                 <li><a href="#gmail">Gmail access and transaction email import</a></li>
+                <li><a href="#google-protection">Gmail data protection</a></li>
+                <li><a href="#google-retention">Gmail data retention and deletion</a></li>
                 <li><a href="#voice">Voice entry</a></li>
                 <li><a href="#analytics">Analytics and crash reporting</a></li>
                 <li><a href="#internet">Internet use</a></li>
@@ -162,10 +164,22 @@
         <h2 id="gmail">4. Gmail Access and Transaction Email Import</h2>
         <p>On supported iOS and Android devices, you may connect a Google account and grant Full Frills Balance the Google <code>gmail.readonly</code> permission. This permission can read messages across your Gmail mailbox, not only transaction emails. The app's capture search is limited to Inbox messages received after you connect it to a Workplace, and it may inspect unrelated Inbox messages on your device while matching. Google does not offer a read-only permission limited to transaction emails. Connecting Gmail is optional. Ordinary local use does not require it. Automatic transaction capture and background Gmail checks on supported devices are separate optional settings.</p>
         <p>When Gmail is connected, the app checks Inbox messages received after you connect Gmail for a Workplace. It may inspect messages unrelated to transactions to decide whether they match. The app reads message sender, subject, received time, message identifiers, and text content for this on-device check. For a matched transaction email, the app processes the content on your device to identify transaction direction, amount, currency, merchant, reference number, and possible account. A transaction goes to the local inbox for review unless you separately enable automatic capture and the message meets the app's verification and matching requirements. Automatic capture applies only to eligible messages received after you enable it.</p>
-        <p>The app does not send Gmail message content or your financial records to Full Frills Balance servers. Email parsing and transaction matching happen on your device. The app does not save the full email body as a transaction record. For a matched email, it stores selected details locally: sender, subject, received time, Gmail message identifiers, parsed transaction fields, processing status, and account-recognition details used for matching. These details are kept in the local transaction inbox and may also be present in related journal records and exported backups. Disconnecting Gmail or dismissing an inbox item does not delete its saved details. Gmail inbox items have no separate delete control; to remove those local records from this device, use Factory Reset or clear app data, which also removes other local app data. Enabled Apple or Android device backups may retain a copy of app data, including these details; see section 8. Workplace backups you explicitly export may include saved transaction inbox and journal details; the app does not encrypt exported backups. Unmatched messages are not saved by the app. Message content temporarily fetched for parsing, previews, or signature checks is processed in memory and is not intentionally written to the app database, logs, or analytics.</p>
-        <p>Google processes sign-in and Gmail API requests under Google's own terms and privacy policy. The app uses Google's sign-in components and Gmail API directly from your device; analytics and crash-reporting providers do not receive Gmail bodies, sender details, subjects, access tokens, or parsed transaction content. Google's sign-in components provide and cache access credentials; the app does not write tokens to transaction records, logs, analytics, or exported backups. If you enable verified automatic capture, the app queries Google Public DNS with the sender domain and DKIM key selector to look up a public signing key; it does not send email content in that DNS request. The app stores a local association between the selected Workplace and Google account identifier, along with the Gmail history cursor and local capture settings.</p>
+        <p>The app does not send Gmail message content or your financial records to Full Frills Balance servers. Email parsing and transaction matching happen on your device. The app does not save the full email body as a transaction record. For a matched email, it stores selected details locally: sender, subject, received time, Gmail message identifiers, parsed transaction fields, processing status, and account-recognition details used for matching. These details are kept in the local transaction inbox and may also be present in related journal records and exported backups. Unmatched messages are not saved. Message content temporarily fetched for matching, previews, or signature checks is processed in memory and is not intentionally written to the app database, logs, analytics, or crash reports.</p>
+        <p>Google processes sign-in and Gmail API requests under Google's own terms and privacy policy. Gmail API requests go directly from your device to Google over HTTPS. Google Sign-In components manage access credentials; the app does not write tokens to transaction records, app logs, analytics, or exported backups. Analytics and crash-reporting providers do not receive Gmail bodies, sender details, subjects, access tokens, or parsed transaction content. If you enable verified automatic capture, the app queries Google Public DNS with the sender domain and DKIM key selector to look up a public signing key; it does not send email content in that DNS request. The app stores a local association between the selected Workplace and Google account identifier, along with the Gmail history cursor and local capture settings.</p>
         <p>The app's use of information received from Google APIs follows the <a href="https://developers.google.com/terms/api-services-user-data-policy">Google API Services User Data Policy</a>, including its Limited Use requirements, and the <a href="https://developers.google.com/workspace/workspace-api-user-data-developer-policy">Google Workspace User Data and Developer Policy</a>. Gmail data is used only for the transaction capture and bookkeeping features described here.</p>
-        <p>You can turn off automatic capture and background checks in Gmail settings, or disconnect Gmail from a Workplace. Disconnecting stops future checks for that Workplace and removes its local connection and history cursor. If no other Workplace uses the same Google account, the app also asks Google Sign-In to revoke the app's access and signs out. Disconnecting does not erase transaction inbox details or journals already created. To remove saved Gmail inbox details from this device, use Factory Reset or clear app data; this also removes other local app data. You can review or revoke Google access from your Google Account security settings. Exported files and enabled device backups are managed separately and may retain copies.</p>
+        <h3 id="google-protection">Data protection for Gmail information</h3>
+        <p>Matched Gmail details are stored in the app's private on-device SQLite database. The app does not add a separate encryption layer to this database. The optional App Lock gates in-app access with your device biometrics or credentials, and Privacy Mode hides amounts and source text on screen; neither encrypts stored files. Use a device screen lock and protect your files. Exported ZIP backups are not encrypted by the app.</p>
+
+        <h3 id="google-retention">Retention and deletion of Google user data</h3>
+        <ul>
+            <li><strong>Unmatched messages and full message bodies:</strong> not retained by Full Frills Balance. Message content is held in memory only while the app checks it, previews it at your request, or verifies a sender signature.</li>
+            <li><strong>Matched transaction details:</strong> retained on this device without automatic expiry, including after you dismiss an inbox item or disconnect Gmail. There is no separate delete control for an individual Gmail inbox item. Use Factory Reset, clear app data, or uninstall the app to remove the app's local records; these actions also remove other app data.</li>
+            <li><strong>Gmail connection data:</strong> disconnecting a Workplace removes its local account binding and Gmail history cursor and stops future checks for that Workplace. When no other Workplace uses the account, the app asks Google to revoke access and signs out. If revocation fails, you can revoke access in your Google Account security settings. Revocation stops future app access but does not delete records already stored on the device.</li>
+            <li><strong>Messages in Gmail:</strong> this app has read-only access and cannot delete or change source messages. Delete those messages in Gmail if you want them removed from your Google account.</li>
+            <li><strong>Copies outside the app:</strong> exported ZIP files and enabled Apple or Android device backups may retain Gmail-derived details. Resetting or uninstalling the app does not delete those copies; manage them in the location where you saved them or in your device-backup settings.</li>
+        </ul>
+
+        <p>You can turn off automatic capture and background checks in Gmail settings, or disconnect Gmail from a Workplace. Disconnecting stops future checks and removes its local connection and history cursor. If no other Workplace uses the same Google account, the app also asks Google Sign-In to revoke access and signs out. You can review or revoke access from your Google Account security settings.</p>
 
         <h2 id="voice">5. Voice Entry</h2>
         <p>You can optionally dictate a transaction instead of typing it. Voice entry asks for microphone and speech-recognition permission only when you start it. Speech is converted to text by your device's speech-recognition service, which, depending on your device and settings, may be provided by your phone's operating system vendor (for example Google on Android) and may process audio online under that provider's own privacy terms. The app then parses the resulting text on your device. We do not receive or store your audio recordings. Analytics may record that voice entry was started or that permission was denied, but not what you said.</p>
@@ -270,10 +284,10 @@
         <p>If online sync is introduced, this Privacy Policy and the in-app disclosure will be updated before the feature is enabled. Stopping sync would stop future uploads, but it would not automatically recall data already downloaded to a device or delete a server backup unless a separate deletion process is completed.</p>
 
         <h2 id="security">13. Security</h2>
-        <p>Your financial records remain primarily on your own device. The app offers an optional app lock using your device's biometrics or credentials, and a Privacy Mode that hides amounts and SMS content on screen. You are responsible for securing your device and exported backup files.</p>
+        <p>On native devices, the app stores financial records in an app-private SQLite database and does not add a separate encryption layer to that database. The optional App Lock requires your device's biometrics or credentials to open the app; Privacy Mode hides amounts and source text on screen. These controls restrict in-app access or display but do not encrypt stored files. Secure your device with its screen lock. Exported ZIP backups are not encrypted by the app, so protect or delete them yourself.</p>
 
         <h2 id="website">14. This Website</h2>
-        <p>This website (full-frills-landing.vercel.app) uses Vercel Web Analytics and Speed Insights to count page views and measure page performance. If you join the iOS waitlist, the email address you enter is sent through the FormSubmit form service so we can notify you when the iOS app is available. We use it only for that purpose.</p>
+        <p>This website (fullfrills.sahilsoni.in) uses Vercel Web Analytics and Speed Insights to count page views and measure page performance. If you join the iOS waitlist, the email address you enter is sent through the FormSubmit form service so we can notify you when the iOS app is available. We use it only for that purpose.</p>
 
         <h2 id="children">15. Children's Privacy</h2>
         <p>Full Frills Balance is not directed to children. If you are below the age at which you can provide valid consent under the law that applies to you, use the app only with a parent or legal guardian involved.</p>
