@@ -35,6 +35,15 @@
         ],
         "createdAt": "2026-11-13T10:06:58.349Z",
         "reason": "User confirmed: requested automatic iPhone screenshot carousel without a toggle button; it pauses on hover and focus and respects reduced motion."
+      },
+      {
+        "rule": "all-caps-body",
+        "value": "*",
+        "files": [
+          "src/index.html"
+        ],
+        "createdAt": "2026-11-13T10:19:06.975Z",
+        "reason": "Agent: the only uppercase styling is the short hero platform status badge; this file has no uppercase body passage."
       }
     ]
   }
