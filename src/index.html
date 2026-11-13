@@ -473,8 +473,18 @@
       .footer-links { flex-wrap: wrap; gap: 16px 24px; }
       .input-group { flex-direction: column; }
       .btn-submit { padding: 16px; }
+      .nav-links { gap: 12px; }
       .nav-links .nav-link { display: none; }
-      .btn-nav { padding: 8px 16px; }
+      .nav-links .nav-link[href="https://fullfrillsapp.sahilsoni.in/"] { display: inline-flex; font-size: 0.82rem; white-space: nowrap; }
+      .btn-nav { padding: 8px 12px; font-size: 0.82rem; white-space: nowrap; }
+    }
+
+    @media (max-width: 380px) {
+      .nav-inner { padding: 0 12px; }
+      .logo { font-size: 1.1rem; }
+      .nav-links { gap: 8px; }
+      .nav-links .nav-link[href="https://fullfrillsapp.sahilsoni.in/"] { font-size: 0.75rem; }
+      .btn-nav { padding: 7px 9px; font-size: 0.75rem; }
     }
   </style>
 </head>
@@ -494,7 +504,7 @@
         <a href="https://t.me/FullFrills" class="nav-link" target="_blank" rel="noopener">Telegram</a>
         <a href="https://github.com/SahilSoniOrg/full-frills-balance" class="nav-link" target="_blank" rel="noopener">GitHub</a>
         <a href="https://fullfrillsapp.sahilsoni.in/" class="nav-link" target="_blank" rel="noopener">Web app</a>
-        <a href="https://play.google.com/store/apps/details?id=in.sahilsoni.fullfrillsbalance" class="btn-nav" target="_blank" rel="noopener">Get the app</a>
+        <a href="https://play.google.com/store/apps/details?id=in.sahilsoni.fullfrillsbalance" class="btn-nav" target="_blank" rel="noopener">Google Play</a>
       </div>
     </div>
   </nav>
@@ -505,7 +515,7 @@
       <span class="pill">Android &amp; web · Live &nbsp;|&nbsp; iOS · Submitted</span>
       <h1>Your balance isn't all <em>yours to spend.</em></h1>
       <p>It sets aside the bills due before your salary and shows what's Safe to Spend.</p>
-      <p class="hero-note">No Full Frills account or bank login is required. Your records stay on this device. If enabled, transaction capture checks bank SMS on Android or new Gmail Inbox messages. Gmail's read-only permission covers your mailbox; the app checks only new Inbox messages on your device.</p>
+      <p class="hero-note">No account or bank login is required. Your records stay on this device.</p>
       <div class="cta-group">
         <a href="https://play.google.com/store/apps/details?id=in.sahilsoni.fullfrillsbalance" class="btn-primary" target="_blank" rel="noopener">Get it on Google Play</a>
         <a href="https://fullfrillsapp.sahilsoni.in/" class="btn-secondary" target="_blank" rel="noopener">Open the web app</a>
@@ -557,9 +567,9 @@
       <div class="card"><svg class="card-icon" aria-hidden="true" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.2"/></svg><h3>Safe to Spend</h3><p>What's left once bills before salary are set aside.</p></div>
       <div class="card"><svg class="card-icon" aria-hidden="true" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M8 3v4M16 3v4M4 10h16"/></svg><h3>Plan future expenses</h3><p>Future-dated entries count toward bills set aside until they appear in your transaction history.</p></div>
       <div class="card"><svg class="card-icon" aria-hidden="true" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l5-5 4 3 8-8"/><path d="M15 7h5v5"/></svg><h3>See future balances</h3><p>Project your balance 30, 60 or 90 days from now.</p></div>
-      <div class="card"><svg class="card-icon" aria-hidden="true" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg><h3>Private by design</h3><p>Records stay on your phone. Optional biometric app lock.</p></div>
+      <div class="card"><svg class="card-icon" aria-hidden="true" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg><h3>Private by design</h3><p>Records stay on this device. Optional biometric app lock.</p></div>
       <div class="card"><svg class="card-icon" aria-hidden="true" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h7v14H4z"/><path d="M13 5h7v14h-7z"/></svg><h3>Balances that add up</h3><p>Your balances are calculated from your transaction history, so totals stay consistent.</p></div>
-      <div class="card"><svg class="card-icon" aria-hidden="true" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2.5" width="10" height="19" rx="2"/><path d="M10 6h4M11 18.5h2"/></svg><h3>Review messages for transactions</h3><p>When enabled, transaction capture checks bank SMS on Android or new Gmail Inbox messages. Gmail access is read-only; the app checks only new Inbox messages on your phone.</p></div>
+      <div class="card"><svg class="card-icon" aria-hidden="true" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2.5" width="10" height="19" rx="2"/><path d="M10 6h4M11 18.5h2"/></svg><h3>Review messages for transactions</h3><p>When enabled, transaction capture checks bank SMS on Android or new Gmail Inbox messages. Gmail access is read-only; the app checks only new Inbox messages on this device.</p></div>
     </div>
   </section>
 
