@@ -5,13 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="policy-version" content="2026-11-12">
     <title>Privacy Policy — Full Frills Balance</title>
-    <meta name="description" content="How Full Frills Balance handles your data: local-first storage, optional on-device SMS and Gmail import, limited analytics, and no bank connections.">
+    <meta name="description" content="How Full Frills Balance handles your data: local-first storage, optional SMS, Gmail and voice entry, limited analytics, and no bank connections.">
     <meta name="theme-color" content="#0a0c10">
     <link rel="canonical" href="https://fullfrills.sahilsoni.in/privacy.html">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="Full Frills Balance">
     <meta property="og:title" content="Privacy Policy — Full Frills Balance">
-    <meta property="og:description" content="Local-first, no bank connections, optional on-device SMS and Gmail import, limited analytics.">
+    <meta property="og:description" content="Local-first, no bank connections, optional SMS, Gmail and voice entry, limited analytics.">
     <meta property="og:url" content="https://fullfrills.sahilsoni.in/privacy.html">
     <meta property="og:image" content="https://fullfrills.sahilsoni.in/assets/og-image.png">
     <meta name="twitter:card" content="summary_large_image">
@@ -71,8 +71,8 @@
                 <li>No bank logins, no required app account, or app-provided online sync. If device backup is enabled, Apple or Android may back up app data.</li>
                 <li>SMS import is optional, Android-only, and parsed on your device. Transaction SMS you capture are kept on your phone until you clear app data, reset, or uninstall.</li>
                 <li>Gmail is optional. Google's <code>gmail.readonly</code> permission can read messages across your mailbox; Full Frills Balance checks only new Inbox messages on your device. Unmatched messages and full message bodies are not retained. Selected details from matches stay on your device until you reset or clear app data. The app does not add a separate encryption layer to its local database; its optional App Lock gates access using your device authentication. Exported ZIP backups are not encrypted.</li>
-                <li>We do not intentionally send Gmail content, amounts, balances, merchant names, SMS text or your notes in analytics or crash reports. Analytics is on in release builds and there is currently no in-app switch to turn it off.</li>
-                <li>Voice entry is optional. Your phone's speech-recognition service turns speech into text and, depending on your phone, may process the audio online.</li>
+                <li>We do not intentionally send Gmail content, amounts, balances, merchant names, SMS text or your notes in analytics or crash reports. Analytics is on in release builds and there is currently no in-app switch to turn it off. PostHog also receives the network IP address for analytics requests and may use it to infer approximate location.</li>
+                <li>Voice entry is optional. On iOS, Apple Speech Recognition may send audio to Apple servers for processing. On Android, the selected system speech service may process audio online. The app parses the transcript on your device; if you apply a voice draft, its transcript is saved in the local transaction note. The app does not store audio recordings.</li>
                 <li>If device backup is on, Apple or Android may back up the app's data to your iCloud or Google account.</li>
                 <li>Backup files you export are not encrypted by the app and can include original SMS text, so keep them somewhere safe.</li>
             </ul>
@@ -80,7 +80,7 @@
 
         <details class="callout">
             <summary><strong>What changed on November 12, 2026</strong></summary>
-        <p>This update makes the Gmail data-protection safeguards and retention and deletion rules explicit, including the local database's lack of separate app-level encryption and the unencrypted nature of exported backups. The homepage now describes optional Gmail transaction capture and its broad read-only permission. The November 9 update's Gmail access and use disclosures and the October 16 update's SMS, voice, analytics, backup and website disclosures remain in force.</p>
+        <p>This update makes the Gmail data-protection safeguards and retention and deletion rules explicit, including the local database's lack of separate app-level encryption and the unencrypted nature of exported backups. It identifies Apple Speech Recognition as an iOS voice-processing service that may receive audio, explains that an applied voice transcript is saved in the local transaction note, and discloses PostHog's IP-based approximate location data. The homepage now describes optional Gmail transaction capture and its broad read-only permission.</p>
         </details>
 
         <nav class="toc" aria-label="Contents">
@@ -182,10 +182,10 @@
         <p>You can turn off automatic capture and background checks in Gmail settings, or disconnect Gmail from a Workplace. Disconnecting stops future checks and removes its local connection and history cursor. If no other Workplace uses the same Google account, the app also asks Google Sign-In to revoke access and signs out. You can review or revoke access from your Google Account security settings.</p>
 
         <h2 id="voice">5. Voice Entry</h2>
-        <p>You can optionally dictate a transaction instead of typing it. Voice entry asks for microphone and speech-recognition permission only when you start it. Speech is converted to text by your device's speech-recognition service, which, depending on your device and settings, may be provided by your phone's operating system vendor (for example Google on Android) and may process audio online under that provider's own privacy terms. The app then parses the resulting text on your device. We do not receive or store your audio recordings. Analytics may record that voice entry was started or that permission was denied, but not what you said.</p>
+        <p>You can optionally dictate a transaction instead of typing it. Voice entry asks for microphone and speech-recognition permission only when you start it. On iOS, the app uses Apple Speech Recognition; captured audio may be sent to Apple servers for processing. On Android, the device's selected speech-recognition service (for example Google) may process audio online under that provider's own privacy terms. The service returns transcript text to the app, which parses it on your device. If you apply the voice draft, its transcript is added to the local transaction note and may be included in backups you export. The app does not store audio recordings. Analytics may record that voice entry was started or that permission was denied, but not the audio or transcript.</p>
 
         <h2 id="analytics">6. Analytics and Crash Reporting</h2>
-        <p>We use PostHog and Expo Insights for product analytics and technical improvement. Analytics may include only allowlisted event fields and values, including:</p>
+        <p>We use PostHog for product analytics and Sentry for crash reporting and performance traces. Analytics may include only allowlisted event fields and values, including:</p>
         <ul>
             <li>pages visited inside the app</li>
             <li>onboarding completion</li>
@@ -199,6 +199,7 @@
             <li>app version, build, and variant</li>
             <li>operating system name and version, and tablet flag</li>
             <li>pseudonymous analytics identifiers</li>
+            <li>the network IP address sent with analytics requests and approximate location inferred from it, such as country, region, city, or postal code. The current PostHog project does not discard IP addresses.</li>
             <li>privacy policy acknowledgement events (policy version as event-specific data)</li>
         </ul>
         <p>We do not intentionally send:</p>
@@ -221,7 +222,7 @@
         <ul>
             <li><strong>Exchange rates.</strong> Current rates are fetched from ExchangeRate-API. Historical rates for a past date are fetched from the open currency-api dataset (served via the jsDelivr CDN, with a Cloudflare-hosted fallback) or from Frankfurter's European Central Bank rates. These requests contain currency codes and, for historical rates, a date. They do not include your transaction history, amounts, or personal financial records.</li>
             <li><strong>Update check.</strong> Release builds may download a small public version-policy file from GitHub to tell you when an app update is available or required. The request does not include your financial data.</li>
-            <li><strong>Analytics and crash reporting</strong>, as described in section 5.</li>
+            <li><strong>Analytics and crash reporting</strong>, as described in section 6.</li>
             <li><strong>Google sign-in and Gmail API requests</strong>, only if you connect Gmail, to check Inbox messages for transaction capture. Message content is fetched directly by the app on your device.</li>
             <li><strong>Google Public DNS</strong>, only if you enable verified Gmail automatic capture, to look up an email signing key using its sender domain and DKIM key selector. The DNS lookup does not include email content.</li>
         </ul>
@@ -244,13 +245,13 @@
         <h2 id="sharing">10. Data Sharing</h2>
         <p>We do not sell personal data. Data may be processed by these parties, only for the purposes described:</p>
         <ul>
-            <li><strong>PostHog and Expo</strong>: product analytics (section 5).</li>
-            <li><strong>Sentry</strong>: crash reports and performance traces (section 5).</li>
-            <li><strong>Your phone's speech-recognition service</strong> (for example Google on Android): audio when you use voice entry (section 4).</li>
+            <li><strong>PostHog</strong>: product analytics, including the IP address sent with analytics requests and approximate location inferred from it (section 6).</li>
+            <li><strong>Sentry</strong>: crash reports and performance traces (section 6).</li>
+            <li><strong>Apple Speech Recognition on iOS and the device's selected speech-recognition service on Android</strong> (for example Google): audio when you use voice entry (section 5). Apple may process iOS audio on its servers; the app parses the returned transcript on your device.</li>
             <li><strong>Apple (iCloud Backup) and Google (Android device backup)</strong>: the app's local data, if device backup is turned on (section 8).</li>
             <li><strong>Google (sign-in and Gmail API)</strong>: sign-in and mailbox requests, only if you connect Gmail (section 4). The app does not send Gmail content or parsed transaction details to its own servers or analytics providers.</li>
-            <li><strong>ExchangeRate-API, jsDelivr/Cloudflare (currency-api) and Frankfurter</strong>: exchange-rate requests (section 6).</li>
-            <li><strong>GitHub</strong>: the app-update check (section 6).</li>
+            <li><strong>ExchangeRate-API, jsDelivr/Cloudflare (currency-api) and Frankfurter</strong>: exchange-rate requests (section 7).</li>
+            <li><strong>GitHub</strong>: the app-update check (section 7).</li>
             <li><strong>Vercel</strong>: hosting, page-view analytics and performance measurement for this website (section 13).</li>
             <li><strong>FormSubmit</strong>: your email address if you join the iOS waitlist on this website (section 13).</li>
         </ul>
@@ -265,7 +266,7 @@
             <li>notification permission, for SMS review notifications</li>
             <li>biometric or device-credential authentication, for the optional app lock</li>
             <li>storage access on older Android versions (Android 12 and below), for export and backup files</li>
-            <li>internet access, for the features in section 6</li>
+            <li>internet access, for the online features in sections 4 through 7</li>
         </ul>
         <p>Permissions are optional where possible and used only for app functionality. The app does not request access to your photos or videos.</p>
 
@@ -301,6 +302,7 @@
         <p>This Privacy Policy may be updated when app features or data practices change. When an update materially changes how data is handled, we will update the effective and last-updated dates and provide an in-app or other appropriate notice where practical.</p>
         <p>Update history:</p>
         <ul>
+            <li>November 12, 2026 — disclosed possible Apple server processing of iOS speech audio, Android speech-provider processing, local storage of an applied voice transcript, and PostHog's IP-based approximate location; clarified Gmail data protection and retention.</li>
             <li>November 9, 2026 — documented optional Google sign-in and the mailbox-wide Gmail read-only permission, while clarifying that capture searches only new Inbox messages; also documented on-device parsing, locally retained matched-email details, optional automatic and background capture, the effect of disconnecting, dismissing, Factory Reset, and clearing app data, and adherence to Google's Limited Use requirements.</li>
             <li>October 16, 2026 — aligned the public policy with the current app: optional automatic SMS import on Android and local retention of original transaction SMS; SMS review notifications; allowlisted analytics and crash reporting (native crash reporting disabled, error message text removed); optional voice entry; exchange-rate providers and the app-update check; Android system backup; user-initiated bug reports; expanded permissions list; and this website's analytics and waitlist. No online sync or cloud backup was enabled by this update.</li>
             <li>October 4, 2026 — documented optional automatic SMS import on Android at startup and on new-message arrival; documented retention of original transaction SMS for journal details and user-controlled backups, privacy maintenance, and allowlisted diagnostics and analytics.</li>
