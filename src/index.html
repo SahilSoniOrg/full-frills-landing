@@ -247,14 +247,28 @@
 
     .marquee-track {
       display: flex;
-      gap: 32px;
       width: max-content;
-      padding: 20px 24px 32px;
     }
 
-    .marquee-track > .mockup { scroll-snap-align: start; }
-    .marquee-track > .mockup:first-child { scroll-margin-inline-start: 24px; }
+    .js .marquee-track { animation: screenshot-scroll 40s linear infinite; }
+
+    .marquee-group {
+      display: flex;
+      flex: 0 0 auto;
+      gap: 32px;
+      padding: 20px 8px 32px 24px;
+    }
+
+    .marquee-group > .mockup { scroll-snap-align: start; }
+    .marquee-group > .mockup:first-child { scroll-margin-inline-start: 24px; }
+    .marquee-container:hover .marquee-track,
+    .marquee-container:focus-within .marquee-track,
+    .marquee-container:active .marquee-track { animation-play-state: paused; }
     .marquee-container:focus-visible { outline: 2px solid var(--mint); outline-offset: 4px; }
+
+    @keyframes screenshot-scroll {
+      to { transform: translateX(-50%); }
+    }
 
     @keyframes fadeInUp {
       from {
@@ -489,15 +503,26 @@
     </div>
   </header>
 
-  <div class="marquee-container" role="region" aria-label="iPhone screenshots using sample account data. Scroll horizontally to browse seven screens." tabindex="0">
+  <div class="marquee-container" role="region" aria-label="iPhone screenshots using sample account data. Hover or focus to pause; scroll horizontally to browse seven screens." tabindex="0">
     <div class="marquee-track">
-      <div class="mockup"><img src="assets/app-store/iphone/01-dashboard.png" alt="iPhone dashboard showing Safe to Spend and a 30-day projection, with sample account data" width="1206" height="2622" loading="lazy" decoding="async"></div>
-      <div class="mockup"><img src="assets/app-store/iphone/02-accounts.png" alt="iPhone accounts screen with sample account balances" width="1206" height="2622" loading="lazy" decoding="async"></div>
-      <div class="mockup"><img src="assets/app-store/iphone/03-transactions.png" alt="iPhone transactions screen with sample activity" width="1206" height="2622" loading="lazy" decoding="async"></div>
-      <div class="mockup"><img src="assets/app-store/iphone/04-budgets.png" alt="iPhone budgets screen with sample category budgets" width="1206" height="2622" loading="lazy" decoding="async"></div>
-      <div class="mockup"><img src="assets/app-store/iphone/05-reports.png" alt="iPhone reports screen with sample income and expense totals" width="1206" height="2622" loading="lazy" decoding="async"></div>
-      <div class="mockup"><img src="assets/app-store/iphone/06-net-worth.png" alt="iPhone net worth screen with sample asset and liability totals" width="1206" height="2622" loading="lazy" decoding="async"></div>
-      <div class="mockup"><img src="assets/app-store/iphone/07-new-expense.png" alt="iPhone new expense entry screen" width="1206" height="2622" loading="lazy" decoding="async"></div>
+      <div class="marquee-group">
+        <div class="mockup"><img src="assets/app-store/iphone/01-dashboard.png" alt="iPhone dashboard showing Safe to Spend and a 30-day projection, with sample account data" width="1206" height="2622" loading="lazy" decoding="async"></div>
+        <div class="mockup"><img src="assets/app-store/iphone/02-accounts.png" alt="iPhone accounts screen with sample account balances" width="1206" height="2622" loading="lazy" decoding="async"></div>
+        <div class="mockup"><img src="assets/app-store/iphone/03-transactions.png" alt="iPhone transactions screen with sample activity" width="1206" height="2622" loading="lazy" decoding="async"></div>
+        <div class="mockup"><img src="assets/app-store/iphone/04-budgets.png" alt="iPhone budgets screen with sample category budgets" width="1206" height="2622" loading="lazy" decoding="async"></div>
+        <div class="mockup"><img src="assets/app-store/iphone/05-reports.png" alt="iPhone reports screen with sample income and expense totals" width="1206" height="2622" loading="lazy" decoding="async"></div>
+        <div class="mockup"><img src="assets/app-store/iphone/06-net-worth.png" alt="iPhone net worth screen with sample asset and liability totals" width="1206" height="2622" loading="lazy" decoding="async"></div>
+        <div class="mockup"><img src="assets/app-store/iphone/07-new-expense.png" alt="iPhone new expense entry screen" width="1206" height="2622" loading="lazy" decoding="async"></div>
+      </div>
+      <div class="marquee-group" aria-hidden="true">
+        <div class="mockup"><img src="assets/app-store/iphone/01-dashboard.png" alt="" width="1206" height="2622" loading="lazy" decoding="async"></div>
+        <div class="mockup"><img src="assets/app-store/iphone/02-accounts.png" alt="" width="1206" height="2622" loading="lazy" decoding="async"></div>
+        <div class="mockup"><img src="assets/app-store/iphone/03-transactions.png" alt="" width="1206" height="2622" loading="lazy" decoding="async"></div>
+        <div class="mockup"><img src="assets/app-store/iphone/04-budgets.png" alt="" width="1206" height="2622" loading="lazy" decoding="async"></div>
+        <div class="mockup"><img src="assets/app-store/iphone/05-reports.png" alt="" width="1206" height="2622" loading="lazy" decoding="async"></div>
+        <div class="mockup"><img src="assets/app-store/iphone/06-net-worth.png" alt="" width="1206" height="2622" loading="lazy" decoding="async"></div>
+        <div class="mockup"><img src="assets/app-store/iphone/07-new-expense.png" alt="" width="1206" height="2622" loading="lazy" decoding="async"></div>
+      </div>
     </div>
   </div>
 

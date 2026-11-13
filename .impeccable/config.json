@@ -26,6 +26,15 @@
         ],
         "createdAt": "2026-11-13T07:28:48.472Z",
         "reason": "Agent: the mint lighting on the hero device and ambient background glows are deliberate parts of this page's established visual system."
+      },
+      {
+        "rule": "marquee",
+        "value": "*",
+        "files": [
+          "src/index.html"
+        ],
+        "createdAt": "2026-11-13T10:06:58.349Z",
+        "reason": "User confirmed: requested automatic iPhone screenshot carousel without a toggle button; it pauses on hover and focus and respects reduced motion."
       }
     ]
   }
