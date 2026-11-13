@@ -1,0 +1,32 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "overused-font",
+        "value": "instrument sans",
+        "createdAt": "2026-11-13T07:28:38.704Z",
+        "reason": "Agent: Instrument Sans is the established body face paired with DM Serif Display and JetBrains Mono in this page's visual system."
+      },
+      {
+        "rule": "clipped-overflow-container",
+        "value": "*",
+        "files": [
+          "src/index.html"
+        ],
+        "createdAt": "2026-11-13T07:28:38.781Z",
+        "reason": "Agent: html/body horizontal clipping contains off-canvas decoration; the scrollable gallery works and no positioned menu or popover is nested there."
+      },
+      {
+        "rule": "dark-glow",
+        "value": "*",
+        "files": [
+          "src/index.html"
+        ],
+        "createdAt": "2026-11-13T07:28:48.472Z",
+        "reason": "Agent: the mint lighting on the hero device and ambient background glows are deliberate parts of this page's established visual system."
+      }
+    ]
+  }
+}

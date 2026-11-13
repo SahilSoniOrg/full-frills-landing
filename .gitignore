@@ -3,3 +3,12 @@ node_modules/
 .DS_Store
 *.log
 .vercel
+
+# Local browser and design-review artifacts
+.playwright-mcp/
+.impeccable/config.local.json
+.impeccable/hook.cache.json
+.impeccable/critique/
+
+# iPad captures are not used by the landing page
+src/assets/app-store/ipad/

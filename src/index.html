@@ -45,7 +45,7 @@
       
       --text-primary: #ececf0;
       --text-secondary: #94949e;
-      --text-muted: #5e5e66;
+      --text-muted: #87878f;
       
       --accent: #d4e3d8;
       --accent-dim: #8ab094;
@@ -77,15 +77,6 @@
       font-size: 16px;
       line-height: 1.5;
       position: relative;
-    }
-
-    .grain {
-      position: fixed;
-      top: 0; left: 0; width: 100%; height: 100%;
-      pointer-events: none;
-      z-index: 9999;
-      opacity: 0.035;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
     }
 
     .starfield { position: fixed; inset: 0; overflow: hidden; pointer-events: none; z-index: -2; }
@@ -128,9 +119,10 @@
       position: fixed;
       top: 0; width: 100%; z-index: 100;
       padding: 24px 0;
+      background: rgba(10, 12, 16, 0.96);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(255,255,255,0.03);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
     }
 
     .nav-inner {
@@ -196,16 +188,13 @@
       line-height: 0.95;
       letter-spacing: -0.03em;
       margin-bottom: 32px;
-      background: linear-gradient(to bottom, #fff 20%, #888);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      color: var(--text-primary);
     }
 
     h1 em {
       font-family: var(--font-display);
       font-style: italic;
       color: var(--accent);
-      -webkit-text-fill-color: var(--accent);
     }
 
     .hero p {
@@ -246,21 +235,26 @@
     .marquee-container {
       margin-top: 80px;
       width: 100%;
-      overflow: hidden;
+      overflow-x: auto;
+      overflow-y: hidden;
       position: relative;
-      mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
-      -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+      overscroll-behavior-x: contain;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-color: var(--accent-dim) transparent;
+      scrollbar-width: thin;
     }
 
     .marquee-track {
       display: flex;
       gap: 32px;
       width: max-content;
-      animation: scroll 40s linear infinite;
-      padding: 20px 0;
+      padding: 20px 24px 32px;
     }
-    
-    .marquee-track:hover { animation-play-state: paused; }
+
+    .marquee-track > .mockup { scroll-snap-align: start; }
+    .marquee-track > .mockup:first-child { scroll-margin-inline-start: 24px; }
+    .marquee-container:focus-visible { outline: 2px solid var(--mint); outline-offset: 4px; }
 
     @keyframes fadeInUp {
       from {
@@ -271,11 +265,6 @@
         opacity: 1;
         transform: translateY(0);
       }
-    }
-
-    @keyframes scroll {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(calc(-50% - 16px)); }
     }
 
     .mockup {
@@ -390,7 +379,13 @@
     .hero-visual { position: relative; justify-self: center; }
     .hero-visual .mockup { width: 290px; box-shadow: 0 30px 80px -20px rgba(125,211,168,0.18), 0 20px 50px -10px rgba(0,0,0,0.6); }
     .hero-visual .mockup:hover { transform: none; }
-    .hero-note { margin-top: 28px; font-size: 0.9rem; color: var(--text-muted); }
+    .hero .hero-note {
+      max-width: 56ch;
+      margin: 20px 0 24px;
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      line-height: 1.55;
+    }
 
     .how { max-width: 900px; margin: 120px auto 80px; padding: 0 32px; text-align: center; }
     .how h2, .waitlist h2 { font-family: var(--font-display); font-size: clamp(2rem, 4vw, 2.6rem); font-weight: 400; margin-bottom: 32px; }
@@ -414,6 +409,7 @@
       .hero { grid-template-columns: 1fr; text-align: center; gap: 48px; padding-top: 130px; }
       .hero p { margin: 0 auto 32px; }
       .hero .cta-group { justify-content: center; }
+      .hero .hero-note { margin-left: auto; margin-right: auto; }
     }
 
     @media (max-width: 768px) {
@@ -432,12 +428,15 @@
       .hero p { font-size: 1rem; margin-bottom: 20px; }
       .hero .cta-group { gap: 10px; }
       .hero .btn-primary, .hero .btn-secondary { padding: 12px 16px; font-size: 0.95rem; }
-      .hero-note { margin-top: 14px; font-size: 0.85rem; }
+      .hero .hero-note { margin-top: 14px; margin-bottom: 18px; font-size: 0.85rem; }
       .bento-grid { grid-template-columns: 1fr 1fr; gap: 12px; grid-auto-rows: auto; }
       .card { padding: 18px; }
       .math div { min-width: 0; padding: 12px 14px; }
       .math strong { font-size: 1.15rem; }
-      .math { gap: 8px; }
+      .math { gap: 8px; flex-direction: column; align-items: stretch; max-width: 420px; margin-inline: auto; }
+      .math > div { display: flex; align-items: center; justify-content: space-between; gap: 12px; width: 100%; text-align: left; }
+      .math > b { align-self: center; line-height: 1; }
+      .math span { text-align: right; }
       .card h3 { font-size: 1.25rem; }
       .card p { font-size: 0.9rem; }
       .card-icon { margin-bottom: 12px; }
@@ -455,7 +454,6 @@
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
-  <div class="grain" aria-hidden="true"></div>
   <div class="starfield" id="starfield" aria-hidden="true"></div>
   <div class="glow-orb orb-1" aria-hidden="true"></div>
   <div class="glow-orb orb-2" aria-hidden="true"></div>
@@ -480,32 +478,27 @@
       <span class="pill">Android · Live &nbsp;|&nbsp; iOS soon</span>
       <h1>Your balance isn't all <em>yours to spend.</em></h1>
       <p>It sets aside the bills due before your salary and shows what's Safe to Spend.</p>
+      <p class="hero-note">No Full Frills account or bank login is required. Your records stay on your phone. If enabled, transaction capture checks bank SMS on Android or new Gmail Inbox messages. Gmail's read-only permission covers your mailbox; the app checks only new Inbox messages on your phone.</p>
       <div class="cta-group">
         <a href="https://play.google.com/store/apps/details?id=in.sahilsoni.fullfrillsbalance" class="btn-primary" target="_blank" rel="noopener">Get it on Google Play</a>
         <a href="#waitlist" class="btn-secondary">Join the iOS waitlist →</a>
       </div>
-      <p class="hero-note">No account, no bank login, no loans. Your records stay on your phone.</p>
     </div>
     <div class="hero-visual">
       <div class="mockup"><img src="assets/shot-safe-to-spend.webp" width="600" height="807" alt="Full Frills Balance dashboard showing ₹12,400 Safe to Spend after commitments over 30 days, with a 30-day projection chart" fetchpriority="high"></div>
     </div>
   </header>
 
-  <div class="marquee-container" role="region" aria-label="More app screens">
+  <div class="marquee-container" role="region" aria-label="iPhone screenshots using sample account data. Scroll horizontally to browse seven screens." tabindex="0">
     <div class="marquee-track">
-      <div class="mockup"><img src="assets/car-1.webp" alt="Light-theme dashboard: ₹12,400 Safe to Spend with a 30-day projection" width="480" height="945" loading="lazy" decoding="async"></div>
-      <div class="mockup"><img src="assets/car-2.webp" alt="Commitments, Budgets tab: ₹14,330 left of the October limit, by category" width="480" height="945" loading="lazy" decoding="async"></div>
-      <div class="mockup"><img src="assets/car-3.webp" alt="Activity for October 2026: EMI, Zepto and Zomato entries in ₹" width="480" height="945" loading="lazy" decoding="async"></div>
-      <div class="mockup"><img src="assets/car-4.webp" alt="Commitments, Planned tab: ₹5,226 still to pay in October" width="480" height="945" loading="lazy" decoding="async"></div>
-      <div class="mockup"><img src="assets/car-5.webp" alt="Dashboard showing ₹1,01,345 Safe to Spend after commitments" width="480" height="945" loading="lazy" decoding="async"></div>
-      <!-- Duplicate for seamless loop (hidden from screen readers) -->
-      <div class="mockup" aria-hidden="true"><img src="assets/car-1.webp" alt="" width="480" height="945" loading="lazy" decoding="async"></div>
-      <div class="mockup" aria-hidden="true"><img src="assets/car-2.webp" alt="" width="480" height="945" loading="lazy" decoding="async"></div>
-      <div class="mockup" aria-hidden="true"><img src="assets/car-3.webp" alt="" width="480" height="945" loading="lazy" decoding="async"></div>
-      <div class="mockup" aria-hidden="true"><img src="assets/car-4.webp" alt="" width="480" height="945" loading="lazy" decoding="async"></div>
-      <div class="mockup" aria-hidden="true"><img src="assets/car-5.webp" alt="" width="480" height="945" loading="lazy" decoding="async"></div>
+      <div class="mockup"><img src="assets/app-store/iphone/01-dashboard.png" alt="iPhone dashboard showing Safe to Spend and a 30-day projection, with sample account data" width="1206" height="2622" loading="lazy" decoding="async"></div>
+      <div class="mockup"><img src="assets/app-store/iphone/02-accounts.png" alt="iPhone accounts screen with sample account balances" width="1206" height="2622" loading="lazy" decoding="async"></div>
+      <div class="mockup"><img src="assets/app-store/iphone/03-transactions.png" alt="iPhone transactions screen with sample activity" width="1206" height="2622" loading="lazy" decoding="async"></div>
+      <div class="mockup"><img src="assets/app-store/iphone/04-budgets.png" alt="iPhone budgets screen with sample category budgets" width="1206" height="2622" loading="lazy" decoding="async"></div>
+      <div class="mockup"><img src="assets/app-store/iphone/05-reports.png" alt="iPhone reports screen with sample income and expense totals" width="1206" height="2622" loading="lazy" decoding="async"></div>
+      <div class="mockup"><img src="assets/app-store/iphone/06-net-worth.png" alt="iPhone net worth screen with sample asset and liability totals" width="1206" height="2622" loading="lazy" decoding="async"></div>
+      <div class="mockup"><img src="assets/app-store/iphone/07-new-expense.png" alt="iPhone new expense entry screen" width="1206" height="2622" loading="lazy" decoding="async"></div>
     </div>
-  </div>
   </div>
 
   <section class="how" id="how" aria-labelledby="how-title">
@@ -517,17 +510,17 @@
       <b aria-hidden="true">=</b>
       <div class="total"><strong>₹12,400</strong><span>Safe to Spend</span></div>
     </div>
-    <p>Short this month? It shows the gap under Holding Back for Bills.</p>
+    <p>If upcoming bills exceed your balance, the app shows the shortfall.</p>
   </section>
 
   <section class="bento-section" id="features" aria-label="Features">
     <div class="bento-grid">
       <div class="card"><svg class="card-icon" aria-hidden="true" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.2"/></svg><h3>Safe to Spend</h3><p>What's left once bills before salary are set aside.</p></div>
-      <div class="card"><svg class="card-icon" aria-hidden="true" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M8 3v4M16 3v4M4 10h16"/></svg><h3>Planned entries</h3><p>Future-dated entries count under Commitments until they're posted.</p></div>
-      <div class="card"><svg class="card-icon" aria-hidden="true" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l5-5 4 3 8-8"/><path d="M15 7h5v5"/></svg><h3>Look ahead</h3><p>Project your balance 30, 60 or 90 days out.</p></div>
+      <div class="card"><svg class="card-icon" aria-hidden="true" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M8 3v4M16 3v4M4 10h16"/></svg><h3>Plan future expenses</h3><p>Future-dated entries count toward bills set aside until they appear in your transaction history.</p></div>
+      <div class="card"><svg class="card-icon" aria-hidden="true" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l5-5 4 3 8-8"/><path d="M15 7h5v5"/></svg><h3>See future balances</h3><p>Project your balance 30, 60 or 90 days from now.</p></div>
       <div class="card"><svg class="card-icon" aria-hidden="true" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg><h3>Private by design</h3><p>Records stay on your phone. Optional biometric app lock.</p></div>
-      <div class="card"><svg class="card-icon" aria-hidden="true" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h7v14H4z"/><path d="M13 5h7v14h-7z"/></svg><h3>Double-entry core</h3><p>Balances worked out from your history, so totals add up.</p></div>
-      <div class="card"><svg class="card-icon" aria-hidden="true" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2.5" width="10" height="19" rx="2"/><path d="M10 6h4M11 18.5h2"/></svg><h3>Optional transaction capture</h3><p>Review bank SMS on Android or new Gmail Inbox messages after connection. Gmail's read-only permission covers your mailbox; the app checks only new Inbox messages on your phone.</p></div>
+      <div class="card"><svg class="card-icon" aria-hidden="true" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h7v14H4z"/><path d="M13 5h7v14h-7z"/></svg><h3>Balances that add up</h3><p>Your balances are calculated from your transaction history, so totals stay consistent.</p></div>
+      <div class="card"><svg class="card-icon" aria-hidden="true" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2.5" width="10" height="19" rx="2"/><path d="M10 6h4M11 18.5h2"/></svg><h3>Review messages for transactions</h3><p>When enabled, transaction capture checks bank SMS on Android or new Gmail Inbox messages. Gmail access is read-only; the app checks only new Inbox messages on your phone.</p></div>
     </div>
   </section>
 
@@ -559,6 +552,7 @@
 
   <script>
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
     // Starfield
     const sf = document.getElementById('starfield');
     for (let i = 0; i < 50; i++) {
@@ -570,7 +564,7 @@
     }
 
     // 3D Tilt Effect
-    if (!reduceMotion && window.matchMedia('(hover: hover)').matches) document.querySelectorAll('.bento-grid .card, .marquee-track .mockup').forEach(card => {
+    if (!reduceMotion && window.matchMedia('(hover: hover)').matches) document.querySelectorAll('.bento-grid .card').forEach(card => {
       card.addEventListener('mousemove', e => {
         const rect = card.getBoundingClientRect();
         const x = e.clientX - rect.left;
