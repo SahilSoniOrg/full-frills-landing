@@ -5,13 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="policy-version" content="2026-11-12">
     <title>Privacy Policy — Full Frills Balance</title>
-    <meta name="description" content="How Full Frills Balance handles your data: local-first storage, optional SMS, Gmail and voice entry, limited analytics, and no bank connections.">
+    <meta name="description" content="How Full Frills Balance handles your data across Android, iOS and the web: local storage, optional capture features, limited analytics, and no bank connections.">
     <meta name="theme-color" content="#0a0c10">
     <link rel="canonical" href="https://fullfrills.sahilsoni.in/privacy.html">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="Full Frills Balance">
     <meta property="og:title" content="Privacy Policy — Full Frills Balance">
-    <meta property="og:description" content="Local-first, no bank connections, optional SMS, Gmail and voice entry, limited analytics.">
+    <meta property="og:description" content="Local-first across Android, iOS and web, with no bank connections and clear details on optional capture and analytics.">
     <meta property="og:url" content="https://fullfrills.sahilsoni.in/privacy.html">
     <meta property="og:image" content="https://fullfrills.sahilsoni.in/assets/og-image.png">
     <meta name="twitter:card" content="summary_large_image">
@@ -33,8 +33,8 @@
         .back { color: var(--muted); text-decoration: none; font-size: 0.95rem; }
         main { padding-top: 40px; padding-bottom: 64px; }
         h1 { font-family: Georgia, "Times New Roman", serif; font-weight: 400; font-size: clamp(2rem, 6vw, 2.8rem); line-height: 1.15; margin: 0 0 16px; }
-        h2 { font-size: 1.3rem; margin: 2.4em 0 0.6em; padding-top: 0.4em; border-top: 1px solid var(--line); }
-        h3 { font-size: 1.05rem; margin: 1.6em 0 0.4em; color: var(--text); }
+        h2 { font-size: 1.5rem; margin: 2.4em 0 0.6em; padding-top: 0.4em; border-top: 1px solid var(--line); }
+        h3 { font-size: 1.125rem; margin: 1.6em 0 0.4em; color: var(--text); }
         p, li { color: var(--muted); }
         strong { color: var(--text); }
         ul { padding-left: 22px; margin: 0 0 1em; }
@@ -62,31 +62,31 @@
     </header>
     <main>
         <h1>Privacy Policy for Full Frills Balance</h1>
-        <p class="dates"><strong>Effective date:</strong> November 12, 2026 · <strong>Last updated:</strong> November 12, 2026</p>
+        <p class="dates"><strong>Effective date:</strong> November 12, 2026 · <strong>Last updated:</strong> November 15, 2026</p>
 
         <section class="summary" aria-labelledby="summary">
             <h2 id="summary">The short version</h2>
             <ul>
-                <li>Your financial records are stored on your device. We don't store them on our servers.</li>
-                <li>No bank logins, no required app account, or app-provided online sync. If device backup is enabled, Apple or Android may back up app data.</li>
-                <li>SMS import is optional, Android-only, and parsed on your device. Transaction SMS you capture are kept on your phone until you clear app data, reset, or uninstall.</li>
-                <li>Gmail is optional. Google's <code>gmail.readonly</code> permission can read messages across your mailbox; Full Frills Balance checks only new Inbox messages on your device. Unmatched messages and full message bodies are not retained. Selected details from matches stay on your device until you reset or clear app data. The app does not add a separate encryption layer to its local database; its optional App Lock gates access using your device authentication. Exported ZIP backups are not encrypted.</li>
-                <li>We do not intentionally send Gmail content, amounts, balances, merchant names, SMS text or your notes in analytics or crash reports. Analytics is on in release builds and there is currently no in-app switch to turn it off. PostHog also receives the network IP address for analytics requests and may use it to infer approximate location.</li>
-                <li>Voice entry is optional. On iOS, Apple Speech Recognition may send audio to Apple servers for processing. On Android, the selected system speech service may process audio online. The app parses the transcript on your device; if you apply a voice draft, its transcript is saved in the local transaction note. The app does not store audio recordings.</li>
-                <li>If device backup is on, Apple or Android may back up the app's data to your iCloud or Google account.</li>
-                <li>Backup files you export are not encrypted by the app and can include original SMS text, so keep them somewhere safe.</li>
+                <li>Your accounts, journals, entries, categories and balances stay on your device. Native apps store records in local databases; the web app stores them in this browser on your device. We do not store these records on our servers.</li>
+                <li>You enter your financial data or import a file you choose. The app does not connect to bank accounts and does not require an app account. It has no app-provided online sync.</li>
+                <li>SMS import is optional and Android-only. Transaction messages are checked on your device and original text may remain there until you clear app data, use Factory Reset or uninstall.</li>
+                <li>Gmail capture is optional on supported iOS and Android devices. Google's <code>gmail.readonly</code> permission can read across your mailbox; the app checks new Inbox messages received after connection. Unmatched messages and full email bodies are not retained. Selected details from matches remain locally without automatic expiry; dismissing an item or disconnecting Gmail does not delete them.</li>
+                <li>Local databases have no separate app-level encryption. App Lock gates access inside the native app but does not encrypt stored files. Enabled iCloud or Android device backups may retain native app data, and exported ZIP backups are not encrypted.</li>
+                <li>Limited analytics and exchange-rate requests use the network. PostHog receives the network IP address and may infer approximate location. Analytics does not receive financial records, Gmail content, SMS text, audio or voice transcripts; session replay is disabled.</li>
+                <li>Voice entry is optional. On iOS, Apple Speech Recognition may send audio to Apple servers for processing. On Android, the selected speech service may process audio online. The transcript is parsed on your device and saved in a local transaction note only if you apply the draft. Audio recordings are not stored.</li>
             </ul>
         </section>
 
         <details class="callout">
-            <summary><strong>What changed on November 12, 2026</strong></summary>
-        <p>This update makes the Gmail data-protection safeguards and retention and deletion rules explicit, including the local database's lack of separate app-level encryption and the unencrypted nature of exported backups. It identifies Apple Speech Recognition as an iOS voice-processing service that may receive audio, explains that an applied voice transcript is saved in the local transaction note, and discloses PostHog's IP-based approximate location data. The homepage now describes optional Gmail transaction capture and its broad read-only permission.</p>
+            <summary><strong>What changed on November 15, 2026</strong></summary>
+        <p>This update clarifies that the published web app stores financial records in the current browser on your device, explains how to remove that local data, and aligns the short summary with the app's current privacy notice.</p>
         </details>
 
         <nav class="toc" aria-label="Contents">
             <ol>
                 <li><a href="#overview">Overview</a></li>
                 <li><a href="#local">Financial data stored locally</a></li>
+                <li><a href="#web-app">Using the web app</a></li>
                 <li><a href="#sms">SMS access and transaction import</a></li>
                 <li><a href="#gmail">Gmail access and transaction email import</a></li>
                 <li><a href="#google-protection">Gmail data protection</a></li>
@@ -100,7 +100,7 @@
                 <li><a href="#permissions">Permissions</a></li>
                 <li><a href="#future">Planned future online features</a></li>
                 <li><a href="#security">Security</a></li>
-                <li><a href="#website">This website</a></li>
+                <li><a href="#website">This website and the web app</a></li>
                 <li><a href="#children">Children's privacy</a></li>
                 <li><a href="#contact">Privacy requests and contact</a></li>
                 <li><a href="#changes">Changes to this policy</a></li>
@@ -108,8 +108,8 @@
         </nav>
 
         <h2 id="overview">1. Overview</h2>
-        <p>Full Frills Balance is designed primarily as an offline personal money management application. It does not connect to bank accounts; financial records are based on information you enter, SMS messages you choose to import, files you choose to import, or transaction emails you choose to connect.</p>
-        <p>Your financial records are stored on your device and are not uploaded to our servers. Data does leave your device for the purposes described in this policy: Google sign-in and Gmail API requests if you connect Gmail (section 4), allowlisted analytics and crash reports (section 6), voice entry through your phone's speech service (section 5), exchange-rate and update-check requests (section 7), and Apple or Android device backup if you have it turned on (section 8). Section 10 lists everyone who may receive data.</p>
+        <p>Full Frills Balance is an offline-first personal money management app for Android, iOS and the web. It does not connect to bank accounts; financial records are based on information you enter, files you choose to import, and optional SMS or transaction email capture on supported mobile devices.</p>
+        <p>Your financial records are stored locally on your device, including in the browser when you use the web app, and are not uploaded to our servers. Data does leave your device for the purposes described in this policy: Google sign-in and Gmail API requests if you connect Gmail (section 4), allowlisted analytics and crash reports (section 6), voice entry through your phone's speech service (section 5), exchange-rate and update-check requests (section 7), and Apple or Android device backup if you have it turned on (section 8). Section 10 lists everyone who may receive data.</p>
 
         <h2 id="local">2. Financial Data Stored Locally</h2>
         <p>The following data is stored on your device:</p>
@@ -124,6 +124,8 @@
             <li>rule-based tagging preferences</li>
         </ul>
         <p>We do not store this financial data on our own servers.</p>
+        <h3 id="web-app">Using the web app</h3>
+        <p>The web app at <a href="https://fullfrillsapp.sahilsoni.in/">fullfrillsapp.sahilsoni.in</a> stores your app records in IndexedDB in the browser profile on your device. That local database is separate from the marketing website. Use Factory Reset in the app or clear this site's stored data in your browser settings to remove local app records from that browser. Exported ZIP files are separate copies and are not removed when browser data is cleared. Browser storage may also be removed by browser or device storage controls, so export a backup before clearing site data or changing browsers.</p>
         <p>The app may also store the version of this Privacy Policy you acknowledged and the acknowledgement time. That local record is the app's acknowledgement state and remains on your device. If product analytics is enabled, the app may send a best-effort pseudonymous acknowledgement event to PostHog with the policy version as its event-specific data, alongside the standard analytics and device context described below. This telemetry is not a signed legal record. It does not send the policy text, a signature, or your financial records.</p>
 
         <h2 id="sms">3. SMS Access and Transaction Import</h2>
@@ -213,7 +215,7 @@
             <li>user-entered notes</li>
             <li>privacy policy text or signatures</li>
         </ul>
-        <p>Analytics and crash reporting are turned on in release builds of the app. There is currently no in-app setting to turn them off; if you object, contact us (section 15). Analytics identifiers are pseudonymous and are used only to understand app usage and improve functionality. PostHog session replay is disabled. We do not record in-app screenshots or screen replays for product analytics.</p>
+        <p>Analytics and crash reporting are turned on in release builds of the app. There is currently no in-app setting to turn them off; if you object, contact us (section 16). Analytics identifiers are pseudonymous and are used only to understand app usage and improve functionality. PostHog session replay is disabled. We do not record in-app screenshots or screen replays for product analytics.</p>
         <p><strong>Sentry (crash reporting)</strong> is separate from PostHog. When enabled, error reports and performance traces may include error types, code locations (function names, file paths and line numbers from the app's own code), and navigation timing; error message text is removed before sending. Default personal data collection is turned off. Native crash reporting is disabled because its reports bypass the app's privacy filters, so native crashes, freezes and out-of-memory terminations are not reported. We do not attach screenshots or screen layouts, and we do not enable Sentry session replay or screen recording.</p>
         <p><strong>Bug reports you choose to send.</strong> If you use the in-app bug report option, the app builds a diagnostic ZIP (app and device details plus recent app logs) and opens your phone's share sheet. Nothing is sent unless you pick where to share it.</p>
 
@@ -230,8 +232,8 @@
 
         <h2 id="backup">8. Export, Backup and Device Backup</h2>
         <p>You may export app data as ZIP backup files containing your personal records. Exported files remain under your control on your device or wherever you choose to save or share them.</p>
-        <p>Backups are not encrypted by the app, so you are responsible for protecting exported files. Backups you explicitly export may include original SMS content associated with the exported workplace records, including older journal source fields; the shared Device pending feed is not part of a workplace backup. Clearing app data does not delete backup files you previously saved or shared.</p>
-        <p><strong>Apple and Android device backup.</strong> If iCloud Backup or Android device backup is enabled, the operating system may include the app's local data in a backup associated with your Apple or Google account and may restore it to another device. The app allows Android's built-in app-data backup. These backups are controlled by your operating system and account settings, not by us, and we cannot access them. Factory Reset or clearing app data on this device does not delete copies already held in device backups.</p>
+        <p>Backups are not encrypted by the app, so you are responsible for protecting exported files. Backups you explicitly export may include original SMS content associated with the exported workplace records, including older journal source fields; the shared Device pending feed is not part of a workplace backup. Clearing app data does not delete backup files you previously saved or shared. For browser storage in the web app, see section 2.</p>
+        <p><strong>Apple and Android device backup.</strong> On native devices, if iCloud Backup or Android device backup is enabled, the operating system may include the app's local data in a backup associated with your Apple or Google account and may restore it to another device. The app allows Android's built-in app-data backup. These backups are controlled by your operating system and account settings, not by us, and we cannot access them. Factory Reset or clearing app data on this device does not delete copies already held in device backups.</p>
 
         <h2 id="accounts">9. No Required App Account</h2>
         <p>Full Frills Balance does not require an app account or sign-in for ordinary local use. Gmail capture is optional and requires you to connect a Google account and grant Gmail read-only access. The app does not require:</p>
@@ -252,8 +254,8 @@
             <li><strong>Google (sign-in and Gmail API)</strong>: sign-in and mailbox requests, only if you connect Gmail (section 4). The app does not send Gmail content or parsed transaction details to its own servers or analytics providers.</li>
             <li><strong>ExchangeRate-API, jsDelivr/Cloudflare (currency-api) and Frankfurter</strong>: exchange-rate requests (section 7).</li>
             <li><strong>GitHub</strong>: the app-update check (section 7).</li>
-            <li><strong>Vercel</strong>: hosting, page-view analytics and performance measurement for this website (section 13).</li>
-            <li><strong>FormSubmit</strong>: your email address if you join the iOS waitlist on this website (section 13).</li>
+            <li><strong>Vercel</strong>: hosting, page-view analytics and performance measurement for the marketing website (section 14).</li>
+            <li><strong>FormSubmit</strong>: your email address if you join the iOS waitlist on the marketing website (section 14).</li>
         </ul>
         <p>Files you export or bug reports you share go only where you choose to send them.</p>
 
@@ -285,10 +287,11 @@
         <p>If online sync is introduced, this Privacy Policy and the in-app disclosure will be updated before the feature is enabled. Stopping sync would stop future uploads, but it would not automatically recall data already downloaded to a device or delete a server backup unless a separate deletion process is completed.</p>
 
         <h2 id="security">13. Security</h2>
-        <p>On native devices, the app stores financial records in an app-private SQLite database and does not add a separate encryption layer to that database. The optional App Lock requires your device's biometrics or credentials to open the app; Privacy Mode hides amounts and source text on screen. These controls restrict in-app access or display but do not encrypt stored files. Secure your device with its screen lock. Exported ZIP backups are not encrypted by the app, so protect or delete them yourself.</p>
+        <p>On native devices, the app stores financial records in an app-private SQLite database. In the web app, it uses IndexedDB in your browser. The app does not add a separate encryption layer to either local database. On native devices, optional App Lock uses your device's biometrics or credentials to gate in-app access, while Privacy Mode hides amounts and source text on screen; neither control encrypts stored files. Secure your device and browser profile. Exported ZIP backups are not encrypted by the app, so protect or delete them yourself.</p>
 
-        <h2 id="website">14. This Website</h2>
-        <p>This website (fullfrills.sahilsoni.in) uses Vercel Web Analytics and Speed Insights to count page views and measure page performance. If you join the iOS waitlist, the email address you enter is sent through the FormSubmit form service so we can notify you when the iOS app is available. We use it only for that purpose.</p>
+        <h2 id="website">14. This Website and the Web App</h2>
+        <p>The marketing website at <a href="https://fullfrills.sahilsoni.in/">fullfrills.sahilsoni.in</a> uses Vercel Web Analytics and Speed Insights to count page views and measure page performance. If you join the iOS waitlist, the email address you enter is sent through the FormSubmit form service so we can notify you when the iOS app is available. We use it only for that purpose.</p>
+        <p>The web app at <a href="https://fullfrillsapp.sahilsoni.in/">fullfrillsapp.sahilsoni.in</a> is covered by the local-storage details above. Its product analytics and other network requests are described in sections 6 and 7. The app does not send your financial records to its servers.</p>
 
         <h2 id="children">15. Children's Privacy</h2>
         <p>Full Frills Balance is not directed to children. If you are below the age at which you can provide valid consent under the law that applies to you, use the app only with a parent or legal guardian involved.</p>
@@ -302,6 +305,7 @@
         <p>This Privacy Policy may be updated when app features or data practices change. When an update materially changes how data is handled, we will update the effective and last-updated dates and provide an in-app or other appropriate notice where practical.</p>
         <p>Update history:</p>
         <ul>
+            <li>November 15, 2026 — clarified local browser storage and deletion for the published web app, and aligned the short summary with the app's current privacy notice.</li>
             <li>November 12, 2026 — disclosed possible Apple server processing of iOS speech audio, Android speech-provider processing, local storage of an applied voice transcript, and PostHog's IP-based approximate location; clarified Gmail data protection and retention.</li>
             <li>November 9, 2026 — documented optional Google sign-in and the mailbox-wide Gmail read-only permission, while clarifying that capture searches only new Inbox messages; also documented on-device parsing, locally retained matched-email details, optional automatic and background capture, the effect of disconnecting, dismissing, Factory Reset, and clearing app data, and adherence to Google's Limited Use requirements.</li>
             <li>October 16, 2026 — aligned the public policy with the current app: optional automatic SMS import on Android and local retention of original transaction SMS; SMS review notifications; allowlisted analytics and crash reporting (native crash reporting disabled, error message text removed); optional voice entry; exchange-rate providers and the app-update check; Android system backup; user-initiated bug reports; expanded permissions list; and this website's analytics and waitlist. No online sync or cloud backup was enabled by this update.</li>
